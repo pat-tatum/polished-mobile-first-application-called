@@ -5,7 +5,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>App</title>
     <!-- Tatum API bridge: provides window.__TATUM_API_KEY, window.__tatum(), window.__tatumGet() -->
-    <script src="/api/app-bridge.js"></script>
+    <script>
+/* Tatum API helpers — injected at serve-time */
+if (typeof window.__TATUM_API_KEY === 'undefined') window.__TATUM_API_KEY = '';
+
+window.__tatum = function(method, path, body) {
+  var key = window.__TATUM_API_KEY || '';
+  var url = path.startsWith('http') ? path : 'https://api.tatum.io' + path;
+  var opts = {
+    method: method || 'GET',
+    headers: { 'x-api-key': key, 'Content-Type': 'application/json' },
+  };
+  if (body) opts.body = JSON.stringify(body);
+  return fetch(url, opts).then(function(r) { return r.json(); });
+};
+
+window.__tatumGet = function(path) {
+  return window.__tatum('GET', path);
+};
+
+/* Fullstack apps run inside an iframe at /api/app/{user}/{agent}/{session}/.
+ * Generated code often calls the app backend with fetch('/api/...') or
+ * fetch(window.location.origin + '/api/...') — both would hit the Tatentic host
+ * instead of the container. Rewrite same-origin /api/* to {prefix}/api/*.
+ * Host-served routes (/api/app/, /api/app-bridge.js, /api/tatum) pass through. */
+(function() {
+  var m = window.location.pathname.match(/^(\/api\/app\/[^/]+\/[^/]+\/[^/]+)(?:\/at\/[^/]+)?\/?/);
+  if (!m) return;
+  var prefix = m[1];
+  function apiPath(url) {
+    if (typeof url !== 'string') return null;
+    try {
+      if (url.indexOf('http://') === 0 || url.indexOf('https://') === 0 || url.indexOf('//') === 0) {
+        var u = new URL(url, window.location.origin);
+        if (u.origin !== window.location.origin) return null;
+        return u.pathname + u.search;
+      }
+    } catch (e) { return null; }
+    if (url.indexOf('/api/') === 0) return url;
+    return null;
+  }
+  function rewrite(url) {
+    var path = apiPath(url);
+    if (!path) return url;
+    if (path.indexOf('/api/app/') === 0 || path.indexOf('/api/app-bridge') === 0 || path.indexOf('/api/tatum') === 0) return url;
+    if (path.indexOf(prefix + '/api/') === 0) return url;
+    return prefix + path;
+  }
+  function rewriteFetchInput(input) {
+    if (typeof input === 'string') return rewrite(input);
+    if (typeof URL !== 'undefined' && input instanceof URL) {
+      var u = rewrite(input.href);
+      return u === input.href ? input : new URL(u);
+    }
+    if (typeof Request !== 'undefined' && input instanceof Request) {
+      var r = rewrite(input.url);
+      return r === input.url ? input : new Request(r, input);
+    }
+    return input;
+  }
+  var origFetch = window.fetch.bind(window);
+  window.fetch = function(input, init) {
+    return origFetch(rewriteFetchInput(input), init);
+  };
+  var origOpen = XMLHttpRequest.prototype.open;
+  XMLHttpRequest.prototype.open = function(method, url) {
+    arguments[1] = rewrite(url);
+    return origOpen.apply(this, arguments);
+  };
+  function patchAxios(ax) {
+    if (!ax || ax.__tatenticPatched) return;
+    ax.__tatenticPatched = true;
+    ax.interceptors.request.use(function(config) {
+      if (config && config.url) config.url = rewrite(config.url);
+      return config;
+    });
+  }
+  patchAxios(window.axios);
+  var axPoll = setInterval(function() {
+    if (window.axios) { patchAxios(window.axios); clearInterval(axPoll); }
+  }, 50);
+  setTimeout(function() { clearInterval(axPoll); }, 5000);
+})();
+
+/* Runtime-error relay → parent. A React crash or thrown error produces a blank
+ * white screen with NOTHING in the Vite/server logs (get_logs stays clean), so
+ * the builder thinks it succeeded. Forward such errors to the parent preview so
+ * it can surface them instead of showing a silent white screen. */
+(function() {
+  if (window.parent === window) return; // only inside the preview iframe
+  var sent = 0;
+  // The app is served under /api/app/{user}/{agent}/{session}/… — capture that
+  // prefix so the server can attribute the error to the right project's logs.
+  var pm = window.location.pathname.match(/^(\/api\/app\/[^/]+\/[^/]+\/[^/]+)/);
+  var logPrefix = pm ? pm[1] : '';
+  function relay(kind, message, stack) {
+    if (sent > 20) return; sent++;
+    var msg = String(message || '').slice(0, 1000);
+    var stk = String(stack || '').slice(0, 2000);
+    // 1) live overlay in the parent preview
+    try {
+      window.parent.postMessage({
+        __tatentic: true, type: 'app-error', kind: kind, message: msg, stack: stk,
+      }, '*');
+    } catch (e) {}
+    // 2) server-side capture so it also lands in the Project logs drawer (the
+    //    container's own logs never see a browser-side React crash). sendBeacon
+    //    is used deliberately — it is NOT rewritten by the fetch shim above and
+    //    still fires while the page is tearing down.
+    try {
+      if (logPrefix && navigator.sendBeacon) {
+        var payload = JSON.stringify({
+          prefix: logPrefix, kind: kind, message: msg, stack: stk,
+          url: String(window.location.href || '').slice(0, 500),
+        });
+        navigator.sendBeacon('/api/__client_log', new Blob([payload], { type: 'application/json' }));
+      }
+    } catch (e) {}
+  }
+  window.addEventListener('error', function(e) {
+    relay('error', e && e.message, e && e.error && e.error.stack);
+  });
+  window.addEventListener('unhandledrejection', function(e) {
+    var r = e && e.reason;
+    relay('unhandledrejection', r && (r.message || r), r && r.stack);
+  });
+  // NOTE: we intentionally do NOT hook console.error — apps log non-fatal
+  // errors there (e.g. a transient "failed to fetch" during backend cold-start)
+  // and escalating those to a "crashed" banner is a false alarm. Only genuine
+  // uncaught errors / unhandled rejections (which actually blank the screen)
+  // surface in the preview overlay.
+})();
+</script>
   </head>
   <body>
     <div id="root"></div>
