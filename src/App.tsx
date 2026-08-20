@@ -121,8 +121,8 @@ interface Van {
   waitMin: number
   lat: number
   lng: number
-  mapX: number // percentage
-  mapY: number // percentage
+  mapX: number
+  mapY: number
   image: string
 }
 
@@ -186,7 +186,7 @@ interface RentalPass {
   sessionActive?: boolean
 }
 
-// --- DATA DEFINITION WITH HIGH-QUALITY DISTINCT REGIONAL IMAGERY ---
+// --- DATA DEFINITIONS ---
 const BEACHES: Beach[] = [
   {
     id: 'rockaway',
@@ -607,7 +607,7 @@ const INITIAL_VANS: Van[] = [
   }
 ]
 
-// --- AUTHENTIC BOARD QUIVER INVENTORY WITH PRECISE SURF SPECS ---
+// --- BOARDS WITH PRECISE SPECS ---
 const INITIAL_BOARDS: Board[] = [
   {
     id: 'b-01',
@@ -814,12 +814,11 @@ const INITIAL_BOARDS: Board[] = [
   }
 ]
 
-// --- CLEAN ILLUSTRATED SURFBOARD SILHOUETTE COMPONENT ---
+// --- BOARD SILHOUETTES ---
 const BoardSilhouette: React.FC<{
   shapeType: 'long' | 'mid' | 'fish' | 'short' | 'soft'
   className?: string
-  accentColor?: string
-}> = ({ shapeType, className = 'w-16 h-40', accentColor = '#38bdf8' }) => {
+}> = ({ shapeType, className = 'w-16 h-40' }) => {
   if (shapeType === 'long') {
     return (
       <svg viewBox="0 0 100 280" className={className}>
@@ -892,7 +891,6 @@ const BoardSilhouette: React.FC<{
       </svg>
     )
   }
-  // default shortboard
   return (
     <svg viewBox="0 0 100 240" className={className}>
       <defs>
@@ -911,20 +909,16 @@ const BoardSilhouette: React.FC<{
 
 // --- MAIN APPLICATION COMPONENT ---
 export default function App() {
-  // Core navigation
   const [activeTab, setActiveTab] = useState<'home' | 'explore' | 'map' | 'rentals' | 'profile'>('home')
   
-  // Selected states
   const [selectedRegion, setSelectedRegion] = useState<string>('All')
   const [selectedBeach, setSelectedBeach] = useState<Beach>(BEACHES[0])
   const [selectedVan, setSelectedVan] = useState<Van>(INITIAL_VANS[0])
   const [selectedBoard, setSelectedBoard] = useState<Board>(INITIAL_BOARDS[0])
   
-  // Dynamic fleets and inventory
   const [vans, setVans] = useState<Van[]>(INITIAL_VANS)
   const [boards, setBoards] = useState<Board[]>(INITIAL_BOARDS)
   
-  // Modals & flows
   const [showBeachModal, setShowBeachModal] = useState(false)
   const [showVanModal, setShowVanModal] = useState(false)
   const [showBoardModal, setShowBoardModal] = useState(false)
@@ -935,23 +929,18 @@ export default function App() {
   const [showRideRecommender, setShowRideRecommender] = useState(false)
   const [showTravelerModal, setShowTravelerModal] = useState(false)
   
-  // Checkout duration & payment state
   const [rentalDuration, setRentalDuration] = useState<'2hr' | '4hr' | 'full'>('2hr')
   const [paymentRail, setPaymentRail] = useState<'USDC' | 'BTC' | 'CARD'>('USDC')
   const [paymentStep, setPaymentStep] = useState<'SELECT' | 'WAITING' | 'DETECTED' | 'CONFIRMING' | 'CONFIRMED'>('SELECT')
   const [showOnchainDetails, setShowOnchainDetails] = useState(false)
   const [createdPass, setCreatedPass] = useState<RentalPass | null>(null)
-  const [isCopied, setIsCopied] = useState(false)
   
-  // Returning and deposit release
   const [returningPassId, setReturningPassId] = useState<string | null>(null)
   const [returnStep, setReturnStep] = useState<'READY' | 'SCANNING' | 'RETURNED' | 'RELEASING' | 'RELEASED'>('READY')
   
-  // Wallet state
   const [walletConnected, setWalletConnected] = useState(false)
   const [walletAddress, setWalletAddress] = useState('')
   
-  // Rentals list
   const [rentals, setRentals] = useState<RentalPass[]>([
     {
       id: 'SP-RKW-7F3A92',
@@ -980,10 +969,8 @@ export default function App() {
     }
   ])
 
-  // Active pass for pass modal
   const [viewingPass, setViewingPass] = useState<RentalPass | null>(rentals[0])
 
-  // Keyboard Escape listener for all modals
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -1003,13 +990,11 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
-  // Filtered beaches by region
   const filteredBeaches = useMemo(() => {
     if (selectedRegion === 'All') return BEACHES
     return BEACHES.filter(b => b.region === selectedRegion)
   }, [selectedRegion])
 
-  // Calculate checkout pricing based on duration
   const currentPricing = useMemo(() => {
     if (!selectedBoard) return { rental: 25, protection: 3, deposit: 50, total: 78 }
     let rental = selectedBoard.pricing.twoHours
@@ -1021,7 +1006,6 @@ export default function App() {
     return { rental, protection, deposit, total }
   }, [selectedBoard, rentalDuration])
 
-  // Handle Wallet Connect
   const handleConnectWallet = () => {
     setWalletConnected(true)
     setWalletAddress('7xKp...4wL9')
@@ -1034,7 +1018,6 @@ export default function App() {
     setShowWalletModal(false)
   }
 
-  // Execute reservation flow with Tatum step-by-step detection
   const handleStartCheckout = () => {
     if (paymentRail === 'CARD') {
       setPaymentStep('WAITING')
@@ -1045,10 +1028,9 @@ export default function App() {
       return
     }
 
-    // Crypto payment (USDC on Solana or BTC)
     setPaymentStep('WAITING')
     setTimeout(() => {
-      setPaymentStep('DETECTED') // via Tatum
+      setPaymentStep('DETECTED')
       setTimeout(() => {
         setPaymentStep('CONFIRMING')
         setTimeout(() => {
@@ -1059,7 +1041,6 @@ export default function App() {
     }, 1200)
   }
 
-  // Finalize reservation and decrement inventory
   const finishReservation = (method: 'USDC' | 'BTC' | 'CARD') => {
     const newPassId = `SP-${selectedBeach.id.slice(0, 3).toUpperCase()}-${Math.random().toString(36).substring(2, 8).toUpperCase()}`
     const newPass: RentalPass = {
@@ -1088,7 +1069,6 @@ export default function App() {
       sessionActive: true
     }
 
-    // Decrement board availability
     setBoards(prev => prev.map(b => {
       if (b.id === selectedBoard.id) {
         return { ...b, availableCount: Math.max(0, b.availableCount - 1) }
@@ -1096,7 +1076,6 @@ export default function App() {
       return b
     }))
 
-    // Decrement van board count
     setVans(prev => prev.map(v => {
       if (v.id === selectedVan.id) {
         return { ...v, boardsAvailable: Math.max(0, v.boardsAvailable - 1) }
@@ -1112,7 +1091,6 @@ export default function App() {
     setPaymentStep('SELECT')
   }
 
-  // Return board and release deposit
   const handleReturnBoard = (passId: string) => {
     setReturningPassId(passId)
     setReturnStep('SCANNING')
@@ -1122,14 +1100,12 @@ export default function App() {
         setReturnStep('RELEASING')
         setTimeout(() => {
           setReturnStep('RELEASED')
-          // Update rentals state
           setRentals(prev => prev.map(r => {
             if (r.id === passId) {
               return { ...r, depositStatus: 'REFUNDED', status: 'COMPLETED', sessionActive: false }
             }
             return r
           }))
-          // Restore inventory
           setBoards(prev => prev.map(b => {
             return { ...b, availableCount: Math.min(b.totalInVan, b.availableCount + 1) }
           }))
@@ -1141,20 +1117,12 @@ export default function App() {
     }, 1200)
   }
 
-  const copyAddress = (text: string) => {
-    navigator.clipboard.writeText(text)
-    setIsCopied(true)
-    setTimeout(() => setIsCopied(false), 2000)
-  }
-
   return (
     <div className="min-h-screen bg-[#07090E] text-slate-100 font-sans antialiased pb-24 md:pb-12">
-      {/* ------------------------------------------------------------- */}
-      {/* TOP APP HEADER                                                */}
-      {/* ------------------------------------------------------------- */}
+      {/* HEADER */}
       <header className="sticky top-0 z-40 bg-[#07090E]/90 backdrop-blur-md border-b border-slate-800/80 px-4 py-3">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
-          {/* Logo & Brand */}
+          {/* Logo */}
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => setActiveTab('home')}>
             <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
               <Waves className="w-5 h-5 text-white" />
@@ -1168,7 +1136,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* Desktop Navigation */} 
+          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-1 bg-[#0F141E] p-1 rounded-xl border border-slate-800 text-xs font-semibold">
             <button
               onClick={() => setActiveTab('home')}
@@ -1217,9 +1185,8 @@ export default function App() {
             </button>
           </nav>
 
-          {/* Top Right Action Pills: Tatum Infra & Connect Wallet */} 
+          {/* Action Buttons: Tatum Infra & Connect Wallet */}
           <div className="flex items-center gap-2">
-            {/* Tatum Infra Button */}
             <button
               onClick={() => setShowInfraModal(true)}
               title="View Tatum Multi-Chain Infrastructure"
@@ -1229,7 +1196,6 @@ export default function App() {
               <span className="hidden sm:inline">Tatum Infra</span>
             </button>
 
-            {/* Connect Wallet Button */}
             <button
               onClick={() => setShowWalletModal(true)}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition shadow-sm ${
@@ -1245,16 +1211,12 @@ export default function App() {
         </div>
       </header>
 
-      {/* ------------------------------------------------------------- */}
-      {/* MAIN CONTENT ROUTING                                          */}
-      {/* ------------------------------------------------------------- */}
+      {/* MAIN CONTENT */}
       <main className="max-w-7xl mx-auto px-4 py-6">
-        {/* =========================================================== */}
-        {/* 1. HOME TAB                                                 */}
-        {/* =========================================================== */}
+        {/* TAB 1: HOME */}
         {activeTab === 'home' && (
           <div className="space-y-8">
-            {/* HERO PROPOSITION */}
+            {/* HERO */}
             <div className="relative rounded-3xl overflow-hidden border border-slate-800 bg-gradient-to-b from-[#0F1420] to-[#07090E] p-6 sm:p-10 shadow-2xl">
               <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-cyan-500/10 via-purple-500/5 to-transparent rounded-full blur-3xl pointer-events-none" />
               
@@ -1276,7 +1238,6 @@ export default function App() {
                   Find waves. Find a board. Go surf.
                 </p>
 
-                {/* Primary CTA buttons */}
                 <div className="pt-2 flex flex-wrap items-center gap-3">
                   <button
                     onClick={() => {
@@ -1309,7 +1270,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* SMART "BEST MATCH RIGHT NOW" CARD */}
+            {/* BEST MATCH RIGHT NOW */}
             <div className="rounded-2xl border border-cyan-800/40 bg-gradient-to-br from-[#0D1422] via-[#0B0F17] to-[#0A0D14] p-5 sm:p-6 shadow-xl relative overflow-hidden">
               <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
                 <div className="flex items-center gap-2">
@@ -1327,7 +1288,6 @@ export default function App() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {/* 1. Beach conditions */}
                 <div className="bg-[#0F1420] p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
                   <div>
                     <div className="flex items-center justify-between text-xs text-slate-400 mb-1">
@@ -1352,7 +1312,6 @@ export default function App() {
                   </button>
                 </div>
 
-                {/* 2. Recommended Board */}
                 <div className="bg-[#0F1420] p-4 rounded-xl border border-slate-800 flex gap-3">
                   <div className="w-12 h-24 bg-slate-900/80 rounded-lg flex items-center justify-center p-1 border border-slate-800">
                     <BoardSilhouette shapeType="long" className="w-8 h-20" />
@@ -1370,7 +1329,6 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* 3. Nearby Van & Quick Reserve */}
                 <div className="bg-[#0F1420] p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
                   <div>
                     <div className="flex items-center justify-between text-xs text-slate-400 mb-1">
@@ -1406,7 +1364,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* GOOD SURF NEAR YOU (SCROLLABLE BEACH CARDS) */}
+            {/* GOOD SURF NEAR YOU */}
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
@@ -1429,7 +1387,6 @@ export default function App() {
                     className="group rounded-2xl border border-slate-800 bg-[#0D121D] hover:border-slate-700 transition overflow-hidden shadow-lg flex flex-col justify-between"
                   >
                     <div>
-                      {/* Card Image Header with Quality Badge */}
                       <div className="relative h-44 overflow-hidden">
                         <img
                           src={beach.image}
@@ -1438,7 +1395,6 @@ export default function App() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#0D121D] via-transparent to-black/40" />
                         
-                        {/* Top Badges */}
                         <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
                           <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-black/60 backdrop-blur-md text-white border border-white/10">
                             {beach.region}
@@ -1454,16 +1410,13 @@ export default function App() {
                           </span>
                         </div>
 
-                        {/* Bottom Name inside Image */}
                         <div className="absolute bottom-2 left-3 right-3">
                           <h3 className="text-lg font-black text-white leading-tight">{beach.name}</h3>
                           <p className="text-xs text-slate-300">{beach.breakName} • {beach.city}, {beach.state}</p>
                         </div>
                       </div>
 
-                      {/* Card Body */}
                       <div className="p-4 space-y-3">
-                        {/* Metrics Grid */}
                         <div className="grid grid-cols-3 gap-2 text-center bg-[#090C12] p-2.5 rounded-xl border border-slate-800/80">
                           <div>
                             <span className="text-[10px] text-slate-400 block uppercase">Wave</span>
@@ -1479,7 +1432,6 @@ export default function App() {
                           </div>
                         </div>
 
-                        {/* Van & Board availability pill */}
                         <div className="flex items-center justify-between text-xs text-slate-300 px-1">
                           <div className="flex items-center gap-1.5 text-cyan-400 font-medium">
                             <Car className="w-3.5 h-3.5" />
@@ -1494,7 +1446,6 @@ export default function App() {
                       </div>
                     </div>
 
-                    {/* Card Footer Actions */}
                     <div className="p-4 pt-0 flex gap-2">
                       <button
                         onClick={() => {
@@ -1522,7 +1473,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* FAST-PATH "SURF NOW" ACTION BANNER */}
+            {/* WHAT SHOULD I RIDE BANNER */}
             <div className="rounded-2xl border border-purple-800/40 bg-gradient-to-r from-[#140F24] via-[#0E121E] to-[#0A1624] p-6 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="space-y-1 text-center sm:text-left">
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-950 text-purple-300 border border-purple-800 text-[11px] font-bold">
@@ -1548,19 +1499,15 @@ export default function App() {
           </div>
         )}
 
-        {/* =========================================================== */}
-        {/* 2. EXPLORE TAB                                              */}
-        {/* =========================================================== */}
+        {/* TAB 2: EXPLORE */}
         {activeTab === 'explore' && (
           <div className="space-y-6">
-            {/* Explore Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
                 <h2 className="text-2xl font-black tracking-tight text-white">Nationwide Surf Discovery</h2>
                 <p className="text-xs text-slate-400">Explore active surf breaks and mobile surfboard vans across all major US surf regions</p>
               </div>
 
-              {/* Region Filter Tabs */}
               <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
                 {['All', 'New York', 'New Jersey', 'California', 'Florida', 'Hawaii'].map((region) => (
                   <button
@@ -1578,7 +1525,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* Beach Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredBeaches.map((beach) => (
                 <div
@@ -1612,7 +1558,6 @@ export default function App() {
                     </div>
 
                     <div className="p-4 space-y-3">
-                      {/* Conditions Breakdown */}
                       <div className="grid grid-cols-3 gap-2 text-center bg-[#090C12] p-2.5 rounded-xl border border-slate-800/80">
                         <div>
                           <span className="text-[10px] text-slate-400 block uppercase">Wave</span>
@@ -1667,9 +1612,7 @@ export default function App() {
           </div>
         )}
 
-        {/* =========================================================== */}
-        {/* 3. LIVE MAP TAB                                             */}
-        {/* =========================================================== */}
+        {/* TAB 3: LIVE MAP */}
         {activeTab === 'map' && (
           <div className="space-y-6">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
@@ -1689,9 +1632,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* Interactive Coastal Map Prototype */}
             <div className="relative rounded-3xl border border-slate-800 bg-[#0B0F19] overflow-hidden h-[540px] shadow-2xl">
-              {/* Simulated Coastal Topography SVG Map */}
               <svg className="w-full h-full object-cover" viewBox="0 0 1000 600">
                 <defs>
                   <linearGradient id="waterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -1704,16 +1645,9 @@ export default function App() {
                   </linearGradient>
                 </defs>
 
-                {/* Ocean Area */}
                 <rect width="1000" height="600" fill="url(#waterGrad)" />
-
-                {/* Land / Coastline */}
                 <path d="M 0 0 L 1000 0 L 1000 280 C 850 260 700 310 550 330 C 400 350 200 310 0 340 Z" fill="url(#sandGrad)" stroke="#2e3d56" strokeWidth="2" />
-                
-                {/* Boardwalk Line */}
                 <path d="M 0 325 C 200 295 400 335 550 315 C 700 295 850 245 1000 265" fill="none" stroke="#38bdf8" strokeWidth="1.5" strokeDasharray="4 4" strokeOpacity="0.4" />
-                
-                {/* Street Grid lines */}
                 <line x1="220" y1="100" x2="220" y2="320" stroke="#334155" strokeWidth="1" strokeOpacity="0.4" />
                 <line x1="420" y1="80" x2="420" y2="330" stroke="#334155" strokeWidth="1" strokeOpacity="0.4" />
                 <line x1="740" y1="100" x2="740" y2="290" stroke="#334155" strokeWidth="1" strokeOpacity="0.4" />
@@ -1723,8 +1657,6 @@ export default function App() {
                 <text x="80" y="520" fill="#0284c7" fontSize="18" fontWeight="bold" fillOpacity="0.2" fontFamily="sans-serif">ATLANTIC OCEAN</text>
               </svg>
 
-              {/* Map Markers Overlay */}
-              {/* 1. Rockaway Beach Break Marker */}
               <div
                 className="absolute top-[48%] left-[45%] -translate-x-1/2 -translate-y-1/2 cursor-pointer group"
                 onClick={() => {
@@ -1742,7 +1674,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* 2. Van #12 Rockaway Runner Marker */}
               <div
                 className="absolute top-[42%] left-[42%] -translate-x-1/2 -translate-y-1/2 cursor-pointer group"
                 onClick={() => {
@@ -1764,7 +1695,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* 3. Van #07 Boardwalk Cruiser Marker */}
               <div
                 className="absolute top-[38%] left-[74%] -translate-x-1/2 -translate-y-1/2 cursor-pointer group"
                 onClick={() => {
@@ -1782,7 +1712,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Floating Bottom Card: Quick Navigation to Selected Van */}
               <div className="absolute bottom-4 left-4 right-4 max-w-md mx-auto bg-[#0A0E18]/95 backdrop-blur-md border border-slate-800 p-4 rounded-2xl shadow-2xl flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white font-black text-xs">
@@ -1807,9 +1736,7 @@ export default function App() {
           </div>
         )}
 
-        {/* =========================================================== */}
-        {/* 4. RENTALS TAB                                              */}
-        {/* =========================================================== */}
+        {/* TAB 4: RENTALS */}
         {activeTab === 'rentals' && (
           <div className="space-y-6 max-w-3xl mx-auto">
             <div>
@@ -1838,7 +1765,6 @@ export default function App() {
                     key={pass.id}
                     className="rounded-2xl border border-cyan-800/40 bg-gradient-to-b from-[#0F1524] to-[#0A0D15] p-5 shadow-xl space-y-4"
                   >
-                    {/* Pass Header */}
                     <div className="flex items-center justify-between pb-3 border-b border-slate-800/80">
                       <div className="flex items-center gap-2.5">
                         <div className="w-9 h-9 rounded-xl bg-cyan-950 border border-cyan-700/60 flex items-center justify-center text-cyan-400">
@@ -1865,7 +1791,6 @@ export default function App() {
                       </div>
                     </div>
 
-                    {/* Pass Body Info */}
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
                       <div>
                         <span className="text-slate-400 block text-[10px]">Board Model</span>
@@ -1891,7 +1816,6 @@ export default function App() {
                       </div>
                     </div>
 
-                    {/* Pass Action Buttons */}
                     <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/80">
                       <button
                         onClick={() => {
@@ -1921,12 +1845,9 @@ export default function App() {
           </div>
         )}
 
-        {/* =========================================================== */}
-        {/* 5. PROFILE TAB                                              */}
-        {/* =========================================================== */}
+        {/* TAB 5: PROFILE */}
         {activeTab === 'profile' && (
           <div className="max-w-2xl mx-auto space-y-6">
-            {/* Surfer Profile Card */}
             <div className="rounded-2xl border border-slate-800 bg-[#0F1420] p-6 shadow-xl space-y-4">
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-cyan-500/20">
@@ -1946,7 +1867,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Surfer Stats */}
               <div className="grid grid-cols-3 gap-3 text-center bg-[#090C12] p-3 rounded-xl border border-slate-800">
                 <div>
                   <span className="text-[10px] text-slate-400 uppercase block">Sessions</span>
@@ -1963,7 +1883,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* Connected Wallet & Settlement Rails */}
             <div className="rounded-2xl border border-slate-800 bg-[#0F1420] p-6 shadow-xl space-y-4">
               <h4 className="text-sm font-bold text-white uppercase tracking-wider">Payment & Wallet Rails</h4>
               
@@ -2004,9 +1923,7 @@ export default function App() {
         )}
       </main>
 
-      {/* ------------------------------------------------------------- */}
-      {/* PERSISTENT PRIMARY BOTTOM NAVIGATION (MOBILE & FLOATING DESK)  */}
-      {/* ------------------------------------------------------------- */}
+      {/* PERSISTENT BOTTOM NAVIGATION */}
       <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#07090E]/95 backdrop-blur-lg border-t border-slate-800/90 py-2 px-4">
         <div className="max-w-md mx-auto flex items-center justify-between text-[11px] font-semibold">
           <button
@@ -2081,13 +1998,10 @@ export default function App() {
         </div>
       </div>
 
-      {/* ============================================================= */}
-      {/* MODAL 1: BEACH DETAIL & 12-HOUR SURF FORECAST GRAPH           */}
-      {/* ============================================================= */}
+      {/* MODAL 1: BEACH DETAIL */}
       {showBeachModal && selectedBeach && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-[#0D121D] border border-slate-800 rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl relative my-8">
-            {/* Image Header with Close Button */}
             <div className="relative h-56 overflow-hidden">
               <img src={selectedBeach.image} alt={selectedBeach.name} className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0D121D] via-black/40 to-transparent" />
@@ -2108,9 +2022,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* Modal Body */}
             <div className="p-5 space-y-5">
-              {/* Telemetry Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center bg-[#07090E] p-3 rounded-2xl border border-slate-800">
                 <div>
                   <span className="text-[10px] text-slate-400 block uppercase">Wave Height</span>
@@ -2134,7 +2046,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* 12-Hour Surf Forecast Graph */}
               <div className="bg-[#07090E] p-4 rounded-2xl border border-slate-800 space-y-2">
                 <div className="flex items-center justify-between text-xs">
                   <span className="font-bold text-white flex items-center gap-1.5">
@@ -2170,7 +2081,6 @@ export default function App() {
                 </p>
               </div>
 
-              {/* Available Vans for this Beach */}
               <div className="space-y-3">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-slate-300">
                   SurfPass Vans at {selectedBeach.name}
@@ -2208,7 +2118,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* Modal Footer */}
             <div className="p-4 bg-[#07090E] border-t border-slate-800/80 flex justify-between items-center">
               <button
                 onClick={() => setShowBeachModal(false)}
@@ -2231,13 +2140,10 @@ export default function App() {
         </div>
       )}
 
-      {/* ============================================================= */}
-      {/* MODAL 2: VAN QUIVER & LIVE BOARD INVENTORY                     */}
-      {/* ============================================================= */}
+      {/* MODAL 2: VAN QUIVER */}
       {showVanModal && selectedVan && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-[#0D121D] border border-slate-800 rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl relative my-8">
-            {/* Header */}
             <div className="p-5 bg-gradient-to-r from-[#0F1524] to-[#0A0D15] border-b border-slate-800/80 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white">
@@ -2256,7 +2162,6 @@ export default function App() {
               </button>
             </div>
 
-            {/* Van Board Quiver List */}
             <div className="p-5 space-y-4 max-h-[60vh] overflow-y-auto">
               <div className="flex items-center justify-between text-xs text-slate-400 pb-1 border-b border-slate-800">
                 <span>Available Quiver ({selectedVan.boardsAvailable} boards ready)</span>
@@ -2307,7 +2212,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* Modal Footer */}
             <div className="p-4 bg-[#07090E] border-t border-slate-800/80 flex justify-end">
               <button
                 onClick={() => setShowVanModal(false)}
@@ -2320,13 +2224,10 @@ export default function App() {
         </div>
       )}
 
-      {/* ============================================================= */}
-      {/* MODAL 3: MULTI-RAIL CHECKOUT (USDC, BITCOIN, APPLE PAY/CARD)   */}
-      {/* ============================================================= */}
+      {/* MODAL 3: CHECKOUT */}
       {showReserveModal && selectedBoard && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-[#0D121D] border border-slate-800 rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl relative my-8">
-            {/* Modal Header */}
             <div className="p-5 bg-gradient-to-r from-[#0F1524] to-[#0A0D15] border-b border-slate-800/80 flex items-center justify-between">
               <div>
                 <span className="text-[10px] uppercase font-bold text-cyan-400">Instant Reservation</span>
@@ -2343,9 +2244,7 @@ export default function App() {
               </button>
             </div>
 
-            {/* Modal Body */}
             <div className="p-5 space-y-4">
-              {/* Step 1: Duration Selection */}
               <div>
                 <label className="text-xs font-bold text-slate-300 block mb-2">Select Rental Duration</label>
                 <div className="grid grid-cols-3 gap-2">
@@ -2370,7 +2269,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Price Breakdown */}
               <div className="bg-[#07090E] p-3.5 rounded-xl border border-slate-800 space-y-1.5 text-xs">
                 <div className="flex justify-between text-slate-300">
                   <span>Board Rental ({rentalDuration === '2hr' ? '2 Hours' : rentalDuration === '4hr' ? '4 Hours' : 'Full Day'})</span>
@@ -2390,11 +2288,9 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Step 2: Payment Rail Selection */}
               <div>
                 <label className="text-xs font-bold text-slate-300 block mb-2">Choose Payment Method</label>
                 <div className="space-y-2">
-                  {/* USDC on Solana (Recommended) */}
                   <div
                     onClick={() => setPaymentRail('USDC')}
                     className={`p-3 rounded-xl border cursor-pointer transition flex items-center justify-between ${
@@ -2418,7 +2314,6 @@ export default function App() {
                     <span className="text-xs font-black text-cyan-400">{currentPricing.total} USDC</span>
                   </div>
 
-                  {/* Bitcoin */}
                   <div
                     onClick={() => setPaymentRail('BTC')}
                     className={`p-3 rounded-xl border cursor-pointer transition flex items-center justify-between ${
@@ -2439,7 +2334,6 @@ export default function App() {
                     <span className="text-xs font-black text-amber-400">0.00078 BTC</span>
                   </div>
 
-                  {/* Card / Apple Pay */}
                   <div
                     onClick={() => setPaymentRail('CARD')}
                     className={`p-3 rounded-xl border cursor-pointer transition flex items-center justify-between ${
@@ -2462,8 +2356,269 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Animated Tatum Transaction State Display */}
-              {paymentStep !== 'SELECT' && (\n                <div className="p-4 rounded-xl bg-[#07090E] border border-cyan-500/50 space-y-2 text-center animate-fadeIn">\n                  {paymentStep === 'WAITING' && (\n                    <div className="space-y-1">\n                      <RefreshCw className="w-5 h-5 text-cyan-400 animate-spin mx-auto" />\n                      <p className="text-xs font-bold text-white">Waiting for payment broadcast...</p>\n                      <p className="text-[10px] text-slate-400">Listening on Tatum node listener</p>\n                    </div>\n                  )}\n                  {paymentStep === 'DETECTED' && (\n                    <div className="space-y-1">\n                      <CheckCircle2 className="w-5 h-5 text-cyan-400 mx-auto animate-bounce" />\n                      <p className="text-xs font-bold text-cyan-300">Transaction detected via Tatum</p>\n                      <p className="text-[10px] text-slate-400">Routing through Solana validator network</p>\n                    </div>\n                  )}\n                  {paymentStep === 'CONFIRMING' && (\n                    <div className="space-y-1">\n                      <Activity className="w-5 h-5 text-purple-400 animate-pulse mx-auto" />\n                      <p className="text-xs font-bold text-purple-300">Confirming on Solana block finality...</p>\n                      <p className="text-[10px] text-slate-400">Deposit held in escrow lock</p>\n                    </div>\n                  )}\n                  {paymentStep === 'CONFIRMED' && (\n                    <div className="space-y-1">\n                      <CheckCircle2 className="w-5 h-5 text-emerald-400 mx-auto" />\n                      <p className="text-xs font-bold text-emerald-400">Payment confirmed ✓</p>\n                      <p className="text-[10px] text-slate-400">SurfPass Rental Pass generated!</p>\n                    </div>\n                  )}\n                </div>\n              )}\n            </div>\n\n            {/* Modal Footer CTA */}\n            <div className="p-4 bg-[#07090E] border-t border-slate-800/80 flex items-center justify-between">\n              <button\n                onClick={() => setShowReserveModal(false)}\n                className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs transition"\n              >\n                Cancel\n              </button>\n\n              <button\n                onClick={handleStartCheckout}\n                disabled={paymentStep !== 'SELECT'}\n                className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs shadow-lg shadow-cyan-500/25 transition disabled:opacity-50"\n              >\n                {paymentRail === 'USDC' ? `Pay ${currentPricing.total} USDC` : paymentRail === 'BTC' ? 'Pay with Bitcoin' : `Pay $${currentPricing.total}`} \n              </button>\n            </div>\n          </div>\n        </div>\n      )}\n\n      {/* ============================================================= */}\n      {/* MODAL 4: DIGITAL SURFPASS RENTAL PASS (BOARDING PASS)          */}\n      {/* ============================================================= */}\n      {showPassModal && viewingPass && (\n        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">\n          <div className="bg-gradient-to-b from-[#0D1526] to-[#080B12] border border-cyan-500/40 rounded-3xl max-w-md w-full overflow-hidden shadow-2xl relative my-8">\n            {/* Pass Top Banner */}\n            <div className="p-5 bg-gradient-to-r from-cyan-900/60 to-blue-900/60 border-b border-cyan-500/30 flex items-center justify-between">\n              <div className="flex items-center gap-2.5">\n                <div className="w-8 h-8 rounded-xl bg-cyan-400 text-black flex items-center justify-center font-black">\n                  <Waves className="w-4 h-4" />\n                </div>\n                <div>\n                  <span className="text-[9px] uppercase font-black tracking-widest text-cyan-300 block">DIGITAL RENTAL PASS</span>\n                  <h3 className="text-sm font-black text-white">{viewingPass.id}</h3>\n                </div>\n              </div>\n              <button\n                onClick={() => setShowPassModal(false)}\n                className="w-8 h-8 rounded-full bg-black/50 hover:bg-black text-white flex items-center justify-center transition"\n              >\n                <X className="w-4 h-4" />\n              </button>\n            </div>\n\n            {/* Pass Visual Card */}\n            <div className="p-6 space-y-4">\n              <div className="flex items-center justify-between">\n                <div>\n                  <span className="text-[10px] text-slate-400 block uppercase">Board Model</span>\n                  <h4 className="text-base font-black text-white">{viewingPass.boardName}</h4>\n                  <p className="text-xs text-cyan-400 font-medium">{viewingPass.boardDimensions} • {viewingPass.boardVolume}</p>\n                </div>\n                <div className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-950 border border-emerald-700 text-emerald-400">\n                  ACTIVE PASS\n                </div>\n              </div>\n\n              <div className="grid grid-cols-2 gap-3 text-xs bg-[#06080F] p-3 rounded-2xl border border-slate-800">\n                <div>\n                  <span className="text-slate-400 block text-[10px]\">Pickup Location</span>\n                  <span className="font-bold text-white block">{viewingPass.location}</span>\n                  <span className="text-[10px] text-cyan-300">{viewingPass.spot}</span>\n                </div>\n                <div>\n                  <span className="text-slate-400 block text-[10px]\">Van</span>\n                  <span className="font-bold text-white block">{viewingPass.vanNickname}</span>\n                  <span className="text-[10px] text-purple-300">{viewingPass.vanName}</span>\n                </div>\n                <div>\n                  <span className="text-slate-400 block text-[10px]\">Session Window</span>\n                  <span className="font-bold text-white block">{viewingPass.startTime} – {viewingPass.endTime}</span>\n                </div>\n                <div>\n                  <span className="text-slate-400 block text-[10px]\">Security Deposit</span>\n                  <span className="font-bold text-amber-400 block">${viewingPass.deposit} HELD</span>\n                </div>\n              </div>\n\n              {/* QR Code Presentation */}\n              <div className="bg-white p-4 rounded-2xl flex flex-col items-center justify-center space-y-2 shadow-xl">\n                <QrCode className="w-36 h-36 text-black" />\n                <p className="text-[11px] font-mono font-bold text-slate-800 text-center">\n                  Scan at {viewingPass.vanName} to pick up board\n                </p>\n              </div>\n\n              {/* Expandable Onchain Details */}\n              <div className="pt-2 border-t border-slate-800">\n                <button\n                  onClick={() => setShowOnchainDetails(!showOnchainDetails)}\n                  className="w-full flex items-center justify-between text-xs text-slate-400 hover:text-white transition py-1"\n                >\n                  <span className="flex items-center gap-1.5">\n                    <Zap className="w-3.5 h-3.5 text-purple-400" />\n                    Onchain Settlement Details\n                  </span>\n                  {showOnchainDetails ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}\n                </button>\n\n                {showOnchainDetails && (\n                  <div className="mt-2 p-3 rounded-xl bg-[#06080F] border border-slate-800 text-xs space-y-1 font-mono text-slate-300">\n                    <div className="flex justify-between">\n                      <span className="text-slate-400">Network:</span>\n                      <span className="text-cyan-400">Solana Mainnet</span>\n                    </div>\n                    <div className="flex justify-between">\n                      <span className="text-slate-400">Settlement Rail:</span>\n                      <span className="text-purple-300">Tatum Multi-Chain Gateway</span>\n                    </div>\n                    <div className="flex justify-between">\n                      <span className="text-slate-400">Tx Signature:</span>\n                      <span className="text-white">{viewingPass.txHash || '5UxQ...9mKz'}</span>\n                    </div>\n                    <div className="flex justify-between">\n                      <span className="text-slate-400">Deposit Escrow:</span>\n                      <span className="text-amber-400">50 USDC Verified</span>\n                    </div>\n                  </div>\n                )}\n              </div>\n            </div>\n\n            {/* Pass Footer */}\n            <div className="p-4 bg-[#06080F] border-t border-slate-800 flex gap-2">\n              <button\n                onClick={() => {\n                  setShowPassModal(false)\n                  setActiveTab('map')\n                }}\n                className="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-1.5"\n              >\n                <Navigation className="w-3.5 h-3.5" />\n                <span>Navigate to Van</span>\n              </button>\n            </div>\n          </div>\n        </div>\n      )}\n\n      {/* ============================================================= */}\n      {/* MODAL 5: \"WHAT SHOULD I RIDE?\" INTERACTION                    */}\n      {/* ============================================================= */}\n      {showRideRecommender && (\n        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">\n          <div className="bg-[#0D121D] border border-slate-800 rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl relative my-8">\n            <div className="p-5 bg-gradient-to-r from-purple-900/60 to-cyan-900/60 border-b border-slate-800 flex items-center justify-between">\n              <div className="flex items-center gap-2.5">\n                <Sparkles className="w-5 h-5 text-cyan-400" />\n                <h3 className="text-base font-black text-white">What Should I Ride?</h3>\n              </div>\n              <button\n                onClick={() => setShowRideRecommender(false)}\n                className="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center"\n              >\n                <X className="w-4 h-4" />\n              </button>\n            </div>\n\n            <div className="p-5 space-y-4 text-xs">\n              <p className="text-slate-300 leading-relaxed">\n                Based on <strong>Rockaway Beach</strong>’s 2–3 ft clean wave shape and rising tide, here is your customized match:\n              </p>\n\n              <div className="p-4 rounded-2xl bg-[#07090E] border border-cyan-500/40 flex gap-3">\n                <div className="w-12 h-24 bg-slate-900 rounded-lg flex items-center justify-center p-1">\n                  <BoardSilhouette shapeType="long" className="w-8 h-20" />\n                </div>\n                <div className="flex-1 space-y-1">\n                  <span className="text-[10px] uppercase font-bold text-cyan-400">Top Recommendation</span>\n                  <h4 className="text-sm font-bold text-white">9'0 Dawn Patrol Log</h4>\n                  <p className="text-slate-300">72 L • 1–4 ft wave range</p>\n                  <p className="text-[11px] text-slate-400">\n                    Clean, softer morning conditions make this higher-volume noserider the easiest option to glide through every set wave.\n                  </p>\n                </div>\n              </div>\n            </div>\n\n            <div className="p-4 bg-[#07090E] border-t border-slate-800 flex justify-between">\n              <button\n                onClick={() => setShowRideRecommender(false)}\n                className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 font-semibold text-xs"\n              >\n                Close\n              </button>\n              <button\n                onClick={() => {\n                  setShowRideRecommender(false)\n                  setSelectedBoard(boards[0])\n                  setShowReserveModal(true)\n                }}\n                className="px-5 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-xs shadow-md"\n              >\n                Reserve Board ($25)\n              </button>\n            </div>\n          </div>\n        </div>\n      )}\n\n      {/* ============================================================= */}\n      {/* MODAL 6: TRAVELER MODE ENTRY MODAL                            */}\n      {/* ============================================================= */}\n      {showTravelerModal && (\n        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">\n          <div className="bg-[#0D121D] border border-slate-800 rounded-3xl max-w-md w-full overflow-hidden shadow-2xl relative my-8">\n            <div className="p-5 bg-gradient-to-r from-[#0F1524] to-[#0A0D15] border-b border-slate-800 flex items-center justify-between">\n              <div className="flex items-center gap-2.5">\n                <Plane className="w-5 h-5 text-cyan-400" />\n                <h3 className="text-base font-black text-white">Traveling to Surf?</h3>\n              </div>\n              <button\n                onClick={() => setShowTravelerModal(false)}\n                className="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center"\n              >\n                <X className="w-4 h-4" />\n              </button>\n            </div>\n\n            <div className="p-5 space-y-3 text-xs">\n              <p className="text-slate-300 leading-relaxed">\n                Avoid costly airline board fees ($150+ each way) and the hassle of lugging surfboards through airport terminals. Reserve your board online and have it waiting in a mobile SurfPass van right at the break.\n              </p>\n              \n              <div className="p-3 rounded-xl bg-[#07090E] border border-slate-800 space-y-1.5">\n                <span className="text-[10px] uppercase font-bold text-purple-400">Supported Travel Markets</span>\n                <p className="text-slate-200">• California: Huntington Beach & Lower Trestles</p>\n                <p className="text-slate-200">• Hawaii: Waikiki & Oahu South Shore</p>\n                <p className="text-slate-200">• New York: Rockaway Beach & Montauk</p>\n                <p className="text-slate-200">• Florida: Cocoa Beach Pier</p>\n              </div>\n            </div>\n\n            <div className="p-4 bg-[#07090E] border-t border-slate-800 flex justify-end">\n              <button\n                onClick={() => {\n                  setShowTravelerModal(false)\n                  setActiveTab('explore')\n                }}
+              {paymentStep !== 'SELECT' && (
+                <div className="p-4 rounded-xl bg-[#07090E] border border-cyan-500/50 space-y-2 text-center animate-fadeIn">
+                  {paymentStep === 'WAITING' && (
+                    <div className="space-y-1">
+                      <RefreshCw className="w-5 h-5 text-cyan-400 animate-spin mx-auto" />
+                      <p className="text-xs font-bold text-white">Waiting for payment broadcast...</p>
+                      <p className="text-[10px] text-slate-400">Listening on Tatum node listener</p>
+                    </div>
+                  )}
+                  {paymentStep === 'DETECTED' && (
+                    <div className="space-y-1">
+                      <CheckCircle2 className="w-5 h-5 text-cyan-400 mx-auto animate-bounce" />
+                      <p className="text-xs font-bold text-cyan-300">Transaction detected via Tatum</p>
+                      <p className="text-[10px] text-slate-400">Routing through Solana validator network</p>
+                    </div>
+                  )}
+                  {paymentStep === 'CONFIRMING' && (
+                    <div className="space-y-1">
+                      <Activity className="w-5 h-5 text-purple-400 animate-pulse mx-auto" />
+                      <p className="text-xs font-bold text-purple-300">Confirming on Solana block finality...</p>
+                      <p className="text-[10px] text-slate-400">Deposit held in escrow lock</p>
+                    </div>
+                  )}
+                  {paymentStep === 'CONFIRMED' && (
+                    <div className="space-y-1">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-400 mx-auto" />
+                      <p className="text-xs font-bold text-emerald-400">Payment confirmed ✓</p>
+                      <p className="text-[10px] text-slate-400">SurfPass Rental Pass generated!</p>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+
+            <div className="p-4 bg-[#07090E] border-t border-slate-800/80 flex items-center justify-between">
+              <button
+                onClick={() => setShowReserveModal(false)}
+                className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs transition"
+              >
+                Cancel
+              </button>
+
+              <button
+                onClick={handleStartCheckout}
+                disabled={paymentStep !== 'SELECT'}
+                className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs shadow-lg shadow-cyan-500/25 transition disabled:opacity-50"
+              >
+                {paymentRail === 'USDC' ? `Pay ${currentPricing.total} USDC` : paymentRail === 'BTC' ? 'Pay with Bitcoin' : `Pay $${currentPricing.total}`}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL 4: RENTAL PASS */}
+      {showPassModal && viewingPass && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-gradient-to-b from-[#0D1526] to-[#080B12] border border-cyan-500/40 rounded-3xl max-w-md w-full overflow-hidden shadow-2xl relative my-8">
+            <div className="p-5 bg-gradient-to-r from-cyan-900/60 to-blue-900/60 border-b border-cyan-500/30 flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-xl bg-cyan-400 text-black flex items-center justify-center font-black">
+                  <Waves className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="text-[9px] uppercase font-black tracking-widest text-cyan-300 block">DIGITAL RENTAL PASS</span>
+                  <h3 className="text-sm font-black text-white">{viewingPass.id}</h3>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowPassModal(false)}
+                className="w-8 h-8 rounded-full bg-black/50 hover:bg-black text-white flex items-center justify-center transition"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <span className="text-[10px] text-slate-400 block uppercase">Board Model</span>
+                  <h4 className="text-base font-black text-white">{viewingPass.boardName}</h4>
+                  <p className="text-xs text-cyan-400 font-medium">{viewingPass.boardDimensions} • {viewingPass.boardVolume}</p>
+                </div>
+                <div className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-950 border border-emerald-700 text-emerald-400">
+                  ACTIVE PASS
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3 text-xs bg-[#06080F] p-3 rounded-2xl border border-slate-800">
+                <div>
+                  <span className="text-slate-400 block text-[10px]">Pickup Location</span>
+                  <span className="font-bold text-white block">{viewingPass.location}</span>
+                  <span className="text-[10px] text-cyan-300">{viewingPass.spot}</span>
+                </div>
+                <div>
+                  <span className="text-slate-400 block text-[10px]">Van</span>
+                  <span className="font-bold text-white block">{viewingPass.vanNickname}</span>
+                  <span className="text-[10px] text-purple-300">{viewingPass.vanName}</span>
+                </div>
+                <div>
+                  <span className="text-slate-400 block text-[10px]">Session Window</span>
+                  <span className="font-bold text-white block">{viewingPass.startTime} – {viewingPass.endTime}</span>
+                </div>
+                <div>
+                  <span className="text-slate-400 block text-[10px]">Security Deposit</span>
+                  <span className="font-bold text-amber-400 block">${viewingPass.deposit} HELD</span>
+                </div>
+              </div>
+
+              <div className="bg-white p-4 rounded-2xl flex flex-col items-center justify-center space-y-2 shadow-xl">
+                <QrCode className="w-36 h-36 text-black" />
+                <p className="text-[11px] font-mono font-bold text-slate-800 text-center">
+                  Scan at {viewingPass.vanName} to pick up board
+                </p>
+              </div>
+
+              <div className="pt-2 border-t border-slate-800">
+                <button
+                  onClick={() => setShowOnchainDetails(!showOnchainDetails)}
+                  className="w-full flex items-center justify-between text-xs text-slate-400 hover:text-white transition py-1"
+                >
+                  <span className="flex items-center gap-1.5">
+                    <Zap className="w-3.5 h-3.5 text-purple-400" />
+                    Onchain Settlement Details
+                  </span>
+                  {showOnchainDetails ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                </button>
+
+                {showOnchainDetails && (
+                  <div className="mt-2 p-3 rounded-xl bg-[#06080F] border border-slate-800 text-xs space-y-1 font-mono text-slate-300">
+                    <div className="flex justify-between">
+                      <span className="text-slate-400">Network:</span>
+                      <span className="text-cyan-400">Solana Mainnet</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-slate-400">Settlement Rail:</span>
+                      <span className="text-purple-300">Tatum Multi-Chain Gateway</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-slate-400">Tx Signature:</span>
+                      <span className="text-white">{viewingPass.txHash || '5UxQ...9mKz'}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-slate-400">Deposit Escrow:</span>
+                      <span className="text-amber-400">50 USDC Verified</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="p-4 bg-[#06080F] border-t border-slate-800 flex gap-2">
+              <button
+                onClick={() => {
+                  setShowPassModal(false)
+                  setActiveTab('map')
+                }}
+                className="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-1.5"
+              >
+                <Navigation className="w-3.5 h-3.5" />
+                <span>Navigate to Van</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL 5: WHAT SHOULD I RIDE */}
+      {showRideRecommender && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-[#0D121D] border border-slate-800 rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl relative my-8">
+            <div className="p-5 bg-gradient-to-r from-purple-900/60 to-cyan-900/60 border-b border-slate-800 flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <Sparkles className="w-5 h-5 text-cyan-400" />
+                <h3 className="text-base font-black text-white">What Should I Ride?</h3>
+              </div>
+              <button
+                onClick={() => setShowRideRecommender(false)}
+                className="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="p-5 space-y-4 text-xs">
+              <p className="text-slate-300 leading-relaxed">
+                Based on <strong>Rockaway Beach</strong>’s 2–3 ft clean wave shape and rising tide, here is your customized match:
+              </p>
+
+              <div className="p-4 rounded-2xl bg-[#07090E] border border-cyan-500/40 flex gap-3">
+                <div className="w-12 h-24 bg-slate-900 rounded-lg flex items-center justify-center p-1">
+                  <BoardSilhouette shapeType="long" className="w-8 h-20" />
+                </div>
+                <div className="flex-1 space-y-1">
+                  <span className="text-[10px] uppercase font-bold text-cyan-400">Top Recommendation</span>
+                  <h4 className="text-sm font-bold text-white">9'0 Dawn Patrol Log</h4>
+                  <p className="text-slate-300">72 L • 1–4 ft wave range</p>
+                  <p className="text-[11px] text-slate-400">
+                    Clean, softer morning conditions make this higher-volume noserider the easiest option to glide through every set wave.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-4 bg-[#07090E] border-t border-slate-800 flex justify-between">
+              <button
+                onClick={() => setShowRideRecommender(false)}
+                className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 font-semibold text-xs"
+              >
+                Close
+              </button>
+              <button
+                onClick={() => {
+                  setShowRideRecommender(false)
+                  setSelectedBoard(boards[0])
+                  setShowReserveModal(true)
+                }}
+                className="px-5 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-xs shadow-md"
+              >
+                Reserve Board ($25)
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL 6: TRAVELER MODE */}
+      {showTravelerModal && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-[#0D121D] border border-slate-800 rounded-3xl max-w-md w-full overflow-hidden shadow-2xl relative my-8">
+            <div className="p-5 bg-gradient-to-r from-[#0F1524] to-[#0A0D15] border-b border-slate-800 flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <Plane className="w-5 h-5 text-cyan-400" />
+                <h3 className="text-base font-black text-white">Traveling to Surf?</h3>
+              </div>
+              <button
+                onClick={() => setShowTravelerModal(false)}
+                className="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="p-5 space-y-3 text-xs">
+              <p className="text-slate-300 leading-relaxed">
+                Avoid costly airline board fees ($150+ each way) and the hassle of lugging surfboards through airport terminals. Reserve your board online and have it waiting in a mobile SurfPass van right at the break.
+              </p>
+              
+              <div className="p-3 rounded-xl bg-[#07090E] border border-slate-800 space-y-1.5">
+                <span className="text-[10px] uppercase font-bold text-purple-400">Supported Travel Markets</span>
+                <p className="text-slate-200">• California: Huntington Beach & Lower Trestles</p>
+                <p className="text-slate-200">• Hawaii: Waikiki & Oahu South Shore</p>
+                <p className="text-slate-200">• New York: Rockaway Beach & Montauk</p>
+                <p className="text-slate-200">• Florida: Cocoa Beach Pier</p>
+              </div>
+            </div>
+
+            <div className="p-4 bg-[#07090E] border-t border-slate-800 flex justify-end">
+              <button
+                onClick={() => {
+                  setShowTravelerModal(false)
+                  setActiveTab('explore')
+                }}
                 className="px-5 py-2 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold text-xs shadow-md"
               >
                 Explore Travel Destinations
@@ -2473,9 +2628,7 @@ export default function App() {
         </div>
       )}
 
-      {/* ============================================================= */}
-      {/* MODAL 7: WALLET CONNECTION MODAL                               */}
-      {/* ============================================================= */}
+      {/* MODAL 7: WALLET CONNECTION */}
       {showWalletModal && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-[#0D121D] border border-slate-800 rounded-3xl max-w-md w-full overflow-hidden shadow-2xl relative my-8">
@@ -2559,9 +2712,7 @@ export default function App() {
         </div>
       )}
 
-      {/* ============================================================= */}
-      {/* MODAL 8: TATUM MULTI-CHAIN INFRASTRUCTURE PAGE                */}
-      {/* ============================================================= */}
+      {/* MODAL 8: INFRASTRUCTURE */}
       {showInfraModal && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-[#0D121D] border border-purple-500/40 rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl relative my-8">
@@ -2582,7 +2733,6 @@ export default function App() {
             </div>
 
             <div className="p-5 space-y-4 text-xs">
-              {/* Network Status Grid */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="p-3 rounded-xl bg-[#07090E] border border-slate-800 flex items-center justify-between">
                   <div>
@@ -2604,7 +2754,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Architecture Flow Diagram */}
               <div className="p-4 rounded-2xl bg-[#07090E] border border-slate-800 space-y-2">
                 <span className="text-[10px] uppercase font-bold text-cyan-400 block">Payment & Settlement Flow</span>
                 <p className="text-slate-300 font-mono text-[11px] leading-relaxed">
@@ -2612,7 +2761,6 @@ export default function App() {
                 </p>
               </div>
 
-              {/* Tatum Modules */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="p-3 rounded-xl bg-[#07090E] border border-slate-800">
                   <span className="font-bold text-white block mb-1">RPC Gateway</span>
