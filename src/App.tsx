@@ -186,7 +186,7 @@ interface RentalPass {
   sessionActive?: boolean
 }
 
-// --- DATA DEFINITIONS ---
+// --- ACCURATE REGIONAL DESTINATION DATA ---
 const BEACHES: Beach[] = [
   {
     id: 'rockaway',
@@ -214,7 +214,7 @@ const BEACHES: Beach[] = [
     vanCount: 3,
     boardCount: 22,
     image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1200&q=80',
-    description: 'Urban beach-break surfing with multiple jetty sandbar peaks and easy subway access from New York City.',
+    description: 'Urban beach-break surfing with multiple jetty sandbar peaks and easy boardwalk access from New York City.',
     recommendation: 'Cleanest conditions before the afternoon wind shift. Longboards, classic mid-lengths, and forgiving fish are catching everything on the incoming push.',
     bestWindow: '8:30 AM – 11:30 AM',
     bestWindowSub: 'Cleanest conditions before the afternoon wind shift.',
@@ -301,8 +301,8 @@ const BEACHES: Beach[] = [
     distance: '48 mi',
     vanCount: 2,
     boardCount: 15,
-    image: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1200&q=80',
-    description: 'New Jersey boardwalk, historic casino jetties, and classic East Coast beach-town vibe with punchy inside peaks.',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
+    description: 'New Jersey boardwalk, historic stone jetties, and classic East Coast beach-town vibe with punchy inside peaks.',
     recommendation: 'Soft waves right next to the 8th Avenue stone jetty. Perfect for high-volume soft-tops and stable logs.',
     bestWindow: '9:00 AM – 11:30 AM',
     bestWindowSub: 'Mid-tide sweet spot before water gets too shallow on the inside bar.',
@@ -380,7 +380,7 @@ const BEACHES: Beach[] = [
     distance: 'West Coast Market',
     vanCount: 3,
     boardCount: 26,
-    image: 'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
     description: 'World-famous cobblestone skatepark wave with peeling lefts and rippable rights inside San Onofre State Park.',
     recommendation: 'A-frame perfection with wide open faces. Performance shortboards, step-downs, and refined fish are the weapon of choice.',
     bestWindow: '7:00 AM – 11:30 AM',
@@ -419,16 +419,15 @@ const BEACHES: Beach[] = [
     distance: 'East Coast Market',
     vanCount: 2,
     boardCount: 18,
-    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
     description: 'Warm-water Florida surf with approachable beach-break conditions and classic Space Coast surf roots.',
     recommendation: 'Gentle peelers next to the pier. Soft-top logs and high-volume gliders will keep you standing all morning.',
     bestWindow: '8:00 AM – 11:00 AM',
     bestWindowSub: 'Morning offshore wind keeping rolling sandbars clean and fun.',
     hourly: [
-      { time: '8 AM', hourVal: 8, heightFt: 2.3, heightLabel: '2.3 ft', periodSec: 9, tideFt: 2.4, windDir: 'WNW', windSpeed: 6, quality: 'FAIR-GOOD' },
-      { time: '9 AM', hourVal: 9, heightFt: 2.5, heightLabel: '2.5 ft', periodSec: 9, tideFt: 3.1, windDir: 'WNW', windSpeed: 6, quality: 'FAIR-GOOD' },
-      { time: '10 AM', hourVal: 10, heightFt: 2.4, heightLabel: '2.4 ft', periodSec: 8, tideFt: 3.6, windDir: 'NW', windSpeed: 7, quality: 'FAIR-GOOD' },
-      { time: '11 AM', hourVal: 11, heightFt: 2.0, heightLabel: '2.0 ft', periodSec: 8, tideFt: 3.8, windDir: 'N', windSpeed: 9, quality: 'FAIR' }
+      { time: '8 AM', hourVal: 8, heightFt: 2.3, heightLabel: '2.3 ft', periodSec: 9, tideFt: 2.4, windDir: 'WNW', windSpeed: 6, quality: 'FAIR' },
+      { time: '9 AM', hourVal: 9, heightFt: 2.5, heightLabel: '2.5 ft', periodSec: 9, tideFt: 3.1, windDir: 'NW', windSpeed: 6, quality: 'FAIR-GOOD' },
+      { time: '10 AM', hourVal: 10, heightFt: 2.4, heightLabel: '2.4 ft', periodSec: 9, tideFt: 3.6, windDir: 'NNW', windSpeed: 8, quality: 'FAIR-GOOD' }
     ],
     lat: 28.3200,
     lng: -80.6076
@@ -436,46 +435,83 @@ const BEACHES: Beach[] = [
   {
     id: 'waikiki',
     name: 'Waikiki - Canoes & Queens',
-    breakName: 'Canoes Outside Reef',
+    breakName: 'Canoes Reef Peak',
     city: 'Honolulu',
     state: 'HI',
     region: 'Hawaii',
     waveHeight: '2–4 ft',
-    waveDesc: 'Thigh to shoulder high',
-    waveSub: 'Endless rolling turquoise waves',
+    waveDesc: 'Waist to chest high',
+    waveSub: 'Endless rolling tropical walls',
     quality: 'GOOD',
-    wind: 'ENE 10 mph gentle trade',
-    windSub: 'Pleasant tropical breeze',
+    wind: 'ENE 10 mph trades',
+    windSub: 'Gentle trade wind texture',
     windMph: 10,
-    tide: 'Low rising',
-    tideSub: 'Shallow tropical reef peeling',
+    tide: 'High incoming',
+    tideSub: 'Deep enough for 200-yard rides',
     waterTemp: '79°F',
-    airTemp: '83°F',
-    swell: 'S 3.0 ft',
-    swellSub: 'South Pacific summer groundswell',
+    airTemp: '82°F',
+    swell: 'S 3.2 ft',
+    swellSub: 'Southern ocean wrap',
     swellPeriod: '13s',
-    skill: 'All Levels',
+    skill: 'Beginner',
     distance: 'Hawaii Market',
     vanCount: 3,
-    boardCount: 30,
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
-    description: 'Long rolling waves and one of the most approachable, iconic longboard environments in the world with Diamond Head views.',
-    recommendation: 'Endless peeling rights over the sandy reef. Classic noseriders and easy gliders are trimming all the way to the sand.',
+    boardCount: 34,
+    image: 'https://images.unsplash.com/photo-1542259009477-d625272157b7?auto=format&fit=crop&w=1200&q=80',
+    description: 'Long rolling waves, warm tropical water, and one of the most celebrated and approachable longboard arenas on earth.',
+    recommendation: 'Classic rolling South Shore walls. Classic 9’0+ noseriders and easy-gliding cruisers are scoring 200-yard rides.',
     bestWindow: '7:30 AM – 1:00 PM',
-    bestWindowSub: 'Consistent long-period southern lines rolling across the outer reef shelf.',
+    bestWindowSub: 'Sustained southern swell with mellow rolling peelers all morning.',
     hourly: [
-      { time: '7 AM', hourVal: 7, heightFt: 2.8, heightLabel: '2.8 ft', periodSec: 13, tideFt: 0.9, windDir: 'ENE', windSpeed: 8, quality: 'GOOD' },
-      { time: '8 AM', hourVal: 8, heightFt: 3.2, heightLabel: '3.2 ft', periodSec: 13, tideFt: 1.4, windDir: 'ENE', windSpeed: 9, quality: 'GOOD' },
-      { time: '9 AM', hourVal: 9, heightFt: 3.4, heightLabel: '3.4 ft', periodSec: 13, tideFt: 1.8, windDir: 'ENE', windSpeed: 10, quality: 'GOOD' },
-      { time: '10 AM', hourVal: 10, heightFt: 3.3, heightLabel: '3.3 ft', periodSec: 13, tideFt: 2.1, windDir: 'E', windSpeed: 11, quality: 'GOOD' }
+      { time: '7 AM', hourVal: 7, heightFt: 3.2, heightLabel: '3.2 ft', periodSec: 13, tideFt: 1.5, windDir: 'ENE', windSpeed: 8, quality: 'GOOD' },
+      { time: '8 AM', hourVal: 8, heightFt: 3.5, heightLabel: '3.5 ft', periodSec: 13, tideFt: 2.1, windDir: 'ENE', windSpeed: 9, quality: 'GOOD' },
+      { time: '9 AM', hourVal: 9, heightFt: 3.6, heightLabel: '3.6 ft', periodSec: 13, tideFt: 2.6, windDir: 'E', windSpeed: 10, quality: 'GOOD' },
+      { time: '10 AM', hourVal: 10, heightFt: 3.4, heightLabel: '3.4 ft', periodSec: 13, tideFt: 2.8, windDir: 'E', windSpeed: 11, quality: 'GOOD' }
     ],
-    lat: 21.2766,
-    lng: -157.8275
+    lat: 21.2765,
+    lng: -157.8272
+  },
+  {
+    id: 'outer-banks',
+    name: 'Outer Banks - Cape Hatteras',
+    breakName: 'Cape Point / Buxton',
+    city: 'Buxton',
+    state: 'NC',
+    region: 'North Carolina',
+    waveHeight: '3–5 ft',
+    waveDesc: 'Chest to head high',
+    waveSub: 'Heavy sandbar barrels & walls',
+    quality: 'GOOD',
+    wind: 'NW 9 mph offshore',
+    windSub: 'Hard offshore spray',
+    windMph: 9,
+    tide: 'Low rising',
+    tideSub: 'Deep sandbars creating hollow peaks',
+    waterTemp: '71°F',
+    airTemp: '77°F',
+    swell: 'E 4.1 ft',
+    swellSub: 'Raw Atlantic groundswell',
+    swellPeriod: '11s',
+    skill: 'Intermediate',
+    distance: 'East Coast Market',
+    vanCount: 2,
+    boardCount: 16,
+    image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1200&q=80',
+    description: 'Raw Atlantic power, shifting sandbars, and dramatic lighthouse coastline in the surf heart of North Carolina.',
+    recommendation: 'Punchy peaks near the Cape. Twin fins, daily drivers, and step-up shortboards are finding open faces.',
+    bestWindow: '7:00 AM – 10:30 AM',
+    bestWindowSub: 'Crisp morning offshore winds grooming powerful Atlantic swell.',
+    hourly: [
+      { time: '7 AM', hourVal: 7, heightFt: 4.2, heightLabel: '4.2 ft', periodSec: 11, tideFt: 1.4, windDir: 'NW', windSpeed: 8, quality: 'GOOD' },
+      { time: '8 AM', hourVal: 8, heightFt: 4.5, heightLabel: '4.5 ft', periodSec: 11, tideFt: 2.1, windDir: 'NW', windSpeed: 9, quality: 'GOOD' },
+      { time: '9 AM', hourVal: 9, heightFt: 4.3, heightLabel: '4.3 ft', periodSec: 11, tideFt: 2.8, windDir: 'NNW', windSpeed: 10, quality: 'GOOD' }
+    ],
+    lat: 35.2638,
+    lng: -75.5293
   }
 ]
 
-// --- VANS WITH PERSONALITY FLEET NAMES ---
-const INITIAL_VANS: Van[] = [
+const VANS: Van[] = [
   {
     id: 'van-12',
     fleetNumber: 'Van #12',
@@ -491,16 +527,14 @@ const INITIAL_VANS: Van[] = [
     boardsAvailable: 8,
     longboards: 3,
     midsAndFun: 3,
-    softTops: 1,
+    softTops: 2,
     shortboards: 1,
     fish: 1,
-    nextLocation: 'Beach 67th St',
-    eta: '4:00 PM',
     waitMin: 2,
-    lat: 40.5843,
-    lng: -73.8164,
-    mapX: 42,
-    mapY: 62,
+    lat: 40.5841,
+    lng: -73.8152,
+    mapX: 48,
+    mapY: 52,
     image: 'https://images.unsplash.com/photo-1527786356703-4b100091cd2c?auto=format&fit=crop&w=800&q=80'
   },
   {
@@ -509,26 +543,49 @@ const INITIAL_VANS: Van[] = [
     nickname: 'Boardwalk Cruiser',
     beachId: 'rockaway',
     beachName: 'Rockaway Beach',
-    spot: 'Beach 67th Street Subway Pl',
+    spot: 'Beach 67th Street Subway Lot',
     status: 'OPEN',
     distance: '0.9 mi',
-    walkTime: '12 min walk',
-    driveTime: '3 min drive',
+    walkTime: '14 min walk',
+    driveTime: '4 min drive',
     hours: '6:30 AM – 7:00 PM',
     boardsAvailable: 9,
     longboards: 4,
-    midsAndFun: 3,
-    softTops: 2,
+    midsAndFun: 2,
+    softTops: 3,
     shortboards: 0,
     fish: 0,
-    nextLocation: 'Beach 90th St',
-    eta: '5:30 PM',
+    waitMin: 1,
+    lat: 40.5902,
+    lng: -73.7951,
+    mapX: 72,
+    mapY: 38,
+    image: 'https://images.unsplash.com/photo-1527786356703-4b100091cd2c?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'van-19',
+    fleetNumber: 'Van #19',
+    nickname: 'Montauk Nomad',
+    beachId: 'montauk',
+    beachName: 'Montauk - Ditch Plains',
+    spot: 'Ditch Plains Main Beach Lot',
+    status: 'OPEN',
+    distance: '118 mi',
+    walkTime: 'East End',
+    driveTime: '2.5 hrs',
+    hours: '6:00 AM – 8:00 PM',
+    boardsAvailable: 11,
+    longboards: 5,
+    midsAndFun: 3,
+    softTops: 2,
+    shortboards: 1,
+    fish: 1,
     waitMin: 3,
-    lat: 40.5898,
-    lng: -73.7995,
-    mapX: 74,
-    mapY: 48,
-    image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80'
+    lat: 41.0480,
+    lng: -71.9175,
+    mapX: 85,
+    mapY: 20,
+    image: 'https://images.unsplash.com/photo-1527786356703-4b100091cd2c?auto=format&fit=crop&w=800&q=80'
   },
   {
     id: 'van-31',
@@ -536,12 +593,12 @@ const INITIAL_VANS: Van[] = [
     nickname: 'Huntington Nomad',
     beachId: 'huntington',
     beachName: 'Huntington Beach',
-    spot: 'Southside Pier Lot 2',
+    spot: 'PCH & Twin Dolphins Lot',
     status: 'OPEN',
-    distance: '0.1 mi',
-    walkTime: '2 min walk',
-    driveTime: '1 min drive',
-    hours: '6:00 AM – 8:00 PM',
+    distance: 'West Coast Market',
+    walkTime: 'SoCal Fleet',
+    driveTime: 'PCH',
+    hours: '6:00 AM – 7:30 PM',
     boardsAvailable: 14,
     longboards: 3,
     midsAndFun: 4,
@@ -549,10 +606,10 @@ const INITIAL_VANS: Van[] = [
     shortboards: 3,
     fish: 2,
     waitMin: 1,
-    lat: 33.6595,
-    lng: -117.9988,
-    mapX: 50,
-    mapY: 55,
+    lat: 33.6590,
+    lng: -117.9980,
+    mapX: 30,
+    mapY: 65,
     image: 'https://images.unsplash.com/photo-1527786356703-4b100091cd2c?auto=format&fit=crop&w=800&q=80'
   },
   {
@@ -561,12 +618,12 @@ const INITIAL_VANS: Van[] = [
     nickname: 'Cocoa Cruiser',
     beachId: 'cocoa-beach',
     beachName: 'Cocoa Beach',
-    spot: 'Meade Ave Pier Access',
+    spot: 'Pier Boardwalk Access',
     status: 'OPEN',
-    distance: '0.3 mi',
-    walkTime: '4 min walk',
-    driveTime: '1 min drive',
-    hours: '7:00 AM – 7:00 PM',
+    distance: 'East Coast Market',
+    walkTime: 'Florida Fleet',
+    driveTime: 'A1A',
+    hours: '7:00 AM – 6:30 PM',
     boardsAvailable: 10,
     longboards: 4,
     midsAndFun: 3,
@@ -574,11 +631,11 @@ const INITIAL_VANS: Van[] = [
     shortboards: 0,
     fish: 0,
     waitMin: 2,
-    lat: 28.3200,
-    lng: -80.6076,
-    mapX: 45,
-    mapY: 50,
-    image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80'
+    lat: 28.3210,
+    lng: -80.6080,
+    mapX: 60,
+    mapY: 80,
+    image: 'https://images.unsplash.com/photo-1527786356703-4b100091cd2c?auto=format&fit=crop&w=800&q=80'
   },
   {
     id: 'van-61',
@@ -586,374 +643,424 @@ const INITIAL_VANS: Van[] = [
     nickname: 'Waikiki Nomad',
     beachId: 'waikiki',
     beachName: 'Waikiki - Canoes & Queens',
-    spot: 'Kalakaua Boardwalk Turnout',
+    spot: 'Kalakaua Avenue & Beachwalk',
     status: 'OPEN',
-    distance: '0.1 mi',
-    walkTime: '2 min walk',
-    driveTime: '1 min drive',
-    hours: '6:30 AM – 7:30 PM',
-    boardsAvailable: 12,
-    longboards: 6,
-    midsAndFun: 3,
-    softTops: 3,
+    distance: 'Hawaii Market',
+    walkTime: 'Oahu South Shore',
+    driveTime: 'Kalakaua Ave',
+    hours: '6:30 AM – 6:30 PM',
+    boardsAvailable: 16,
+    longboards: 8,
+    midsAndFun: 4,
+    softTops: 4,
     shortboards: 0,
     fish: 0,
-    waitMin: 1,
-    lat: 21.2766,
-    lng: -157.8275,
-    mapX: 52,
-    mapY: 58,
+    waitMin: 2,
+    lat: 21.2770,
+    lng: -157.8280,
+    mapX: 20,
+    mapY: 85,
     image: 'https://images.unsplash.com/photo-1527786356703-4b100091cd2c?auto=format&fit=crop&w=800&q=80'
   }
 ]
 
-// --- BOARDS WITH PRECISE SPECS ---
-const INITIAL_BOARDS: Board[] = [
+const BOARDS: Board[] = [
   {
-    id: 'b-01',
+    id: 'board-01',
     code: 'SP-RKW-0092',
     name: "9'0 Dawn Patrol Log",
-    nickname: 'Classic Noserider',
+    nickname: 'Noserider Classic',
     type: 'Longboard',
     dimensions: "9'0 × 22 3/4 × 3",
     length: "9'0",
     width: '22 3/4"',
     thickness: '3"',
     volume: '72 L',
-    finSetup: 'Single Fin Box (9.5" Hatchet)',
+    finSetup: 'Single Fin Box',
     skill: 'Beginner / Intermediate',
-    recommendedWaves: '1–4 ft soft & clean waves',
+    recommendedWaves: '1–3 ft',
     condition: 'Excellent',
     vanId: 'van-12',
-    vanName: 'SurfPass Van #12',
+    vanName: 'Van #12 — Rockaway Runner',
     beachId: 'rockaway',
     beachName: 'Rockaway Beach',
     availableCount: 3,
     totalInVan: 3,
-    personality: 'Easy glide & noseriding',
-    whyMatch: "The waves are 2–3 ft, clean and soft this morning. The 72L volume and wide nose help you glide effortlessly through flatter sections without bogging down.",
-    pricing: { twoHours: 25, fourHours: 38, fullDay: 48 },
+    personality: 'Easy glide & early wave entry',
+    whyMatch: "Small, clean 2-3 ft surf with a rising tide. The 72L volume lets you paddle in early without pushing water.",
+    pricing: {
+      twoHours: 25,
+      fourHours: 38,
+      fullDay: 48
+    },
     deposit: 50,
     protectionFee: 3,
-    tag: 'Best for Today',
+    tag: 'Best for today',
     shapeType: 'long'
   },
   {
-    id: 'b-02',
-    code: 'SP-RKW-0072',
+    id: 'board-02',
+    code: 'SP-RKW-0074',
     name: "7'2 Sunday Mid",
-    nickname: 'Mid-Length Cruiser',
+    nickname: 'Egg Mid-Length',
     type: 'Mid-Length',
     dimensions: "7'2 × 21 1/2 × 2 3/4",
     length: "7'2",
     width: '21 1/2"',
     thickness: '2 3/4"',
     volume: '54 L',
-    finSetup: '2+1 (7" Center + FCS Sidebites)',
+    finSetup: '2+1 Fin Setup',
     skill: 'All Levels',
-    recommendedWaves: '2–5 ft peeling lines',
+    recommendedWaves: '2–4 ft',
     condition: 'Mint',
     vanId: 'van-12',
-    vanName: 'SurfPass Van #12',
+    vanName: 'Van #12 — Rockaway Runner',
     beachId: 'rockaway',
     beachName: 'Rockaway Beach',
-    availableCount: 3,
+    availableCount: 2,
     totalInVan: 3,
-    personality: 'Best all-around pick',
-    whyMatch: 'Smooth paddle power with rail sensitivity. Perfect for surfers wanting maneuverability without sacrificing wave count on the rising tide.',
-    pricing: { twoHours: 28, fourHours: 42, fullDay: 54 },
-    deposit: 60,
+    personality: 'Smooth trim with nimble carving',
+    whyMatch: "2-3 ft clean lines with push. Mid-length outline gives speed through flat sections while turning easily off the tail.",
+    pricing: {
+      twoHours: 28,
+      fourHours: 40,
+      fullDay: 50
+    },
+    deposit: 50,
     protectionFee: 3,
-    tag: 'Popular',
+    tag: 'Surfer Favorite',
     shapeType: 'mid'
   },
   {
-    id: 'b-03',
+    id: 'board-03',
     code: 'SP-RKW-0080',
     name: "8'0 Boardwalk Soft-Top",
-    nickname: 'Beach Cruiser',
+    nickname: 'Foam Cruiser',
     type: 'Soft-Top',
-    dimensions: "8'0 × 22 1/2 × 3 1/8",
+    dimensions: "8'0 × 23 × 3 1/4",
     length: "8'0",
-    width: '22 1/2"',
-    thickness: '3 1/8"',
+    width: '23"',
+    thickness: '3 1/4"',
     volume: '82 L',
-    finSetup: 'Safe Flexible Thruster (Tri-Fin)',
+    finSetup: 'Safe Flexible Thruster',
     skill: 'Beginner',
-    recommendedWaves: '1–3 ft gentle waves',
+    recommendedWaves: '1–3 ft',
     condition: 'Excellent',
     vanId: 'van-12',
-    vanName: 'SurfPass Van #12',
+    vanName: 'Van #12 — Rockaway Runner',
     beachId: 'rockaway',
     beachName: 'Rockaway Beach',
-    availableCount: 1,
+    availableCount: 2,
     totalInVan: 2,
-    personality: 'Stable & forgiving',
-    whyMatch: 'Ultra-stable platform with soft deck construction. The easiest board to pop up and catch whitewash or green waves with zero stress.',
-    pricing: { twoHours: 22, fourHours: 32, fullDay: 42 },
+    personality: 'Ultra-stable & ultra-forgiving',
+    whyMatch: "High-volume soft construction makes standing up effortless on smaller morning rollers.",
+    pricing: {
+      twoHours: 24,
+      fourHours: 35,
+      fullDay: 45
+    },
     deposit: 40,
-    protectionFee: 2,
-    tag: 'Beginner Friendly',
+    protectionFee: 3,
+    tag: 'Beginner Choice',
     shapeType: 'soft'
   },
   {
-    id: 'b-04',
+    id: 'board-04',
     code: 'SP-RKW-0058',
     name: "5'10 Fast Fish",
-    nickname: 'Twin Keel Flyer',
+    nickname: 'Twin Keel Retro',
     type: 'Fish',
-    dimensions: "5'10 × 20 3/4 × 2 9/16",
+    dimensions: "5'10 × 20 3/4 × 2 1/2",
     length: "5'10",
     width: '20 3/4"',
-    thickness: '2 9/16"',
-    volume: '36 L',
-    finSetup: 'Twin Keel (Futures K2)',
+    thickness: '2 1/2"',
+    volume: '34 L',
+    finSetup: 'Twin Keel Fins',
     skill: 'Intermediate',
-    recommendedWaves: '2–5 ft punchy faces',
+    recommendedWaves: '2–5 ft',
     condition: 'Mint',
     vanId: 'van-12',
-    vanName: 'SurfPass Van #12',
+    vanName: 'Van #12 — Rockaway Runner',
     beachId: 'rockaway',
     beachName: 'Rockaway Beach',
     availableCount: 1,
     totalInVan: 1,
-    personality: 'Fast & skatey down the line',
-    whyMatch: 'High speed across flatter wave sections. The wide swallow tail generates maximum velocity on waist-to-chest high waves.',
-    pricing: { twoHours: 30, fourHours: 45, fullDay: 58 },
+    personality: 'Fast down the line in small pockets',
+    whyMatch: "Generates its own speed in waist-high surf with wide swallow tail drive.",
+    pricing: {
+      twoHours: 30,
+      fourHours: 42,
+      fullDay: 54
+    },
     deposit: 75,
-    protectionFee: 4,
+    protectionFee: 3,
     tag: 'Speed Machine',
     shapeType: 'fish'
   },
   {
-    id: 'b-05',
-    code: 'SP-RKW-0060',
-    name: "6'0 Pocket Rocket",
-    nickname: 'Daily Driver Shortboard',
+    id: 'board-05',
+    code: 'SP-RKW-0062',
+    name: "6'2 Daily Driver",
+    nickname: 'All-Around Shortboard',
     type: 'Shortboard',
-    dimensions: "6'0 × 19 1/4 × 2 3/8",
-    length: "6'0",
-    width: '19 1/4"',
-    thickness: '2 3/8"',
-    volume: '31 L',
-    finSetup: 'Thruster (FCS II Performer)',
-    skill: 'Advanced',
-    recommendedWaves: '3–6 ft steep & punchy',
-    condition: 'Mint',
+    dimensions: "6'2 × 19 3/4 × 2 5/8",
+    length: "6'2",
+    width: '19 3/4"',
+    thickness: '2 5/8"',
+    volume: '33 L',
+    finSetup: 'Thruster (Tri-Fin)',
+    skill: 'Intermediate',
+    recommendedWaves: '3–6 ft',
+    condition: 'Good',
     vanId: 'van-12',
-    vanName: 'SurfPass Van #12',
+    vanName: 'Van #12 — Rockaway Runner',
     beachId: 'rockaway',
     beachName: 'Rockaway Beach',
-    availableCount: 0,
+    availableCount: 1,
     totalInVan: 1,
-    personality: 'High-performance responsiveness',
-    whyMatch: 'Aggressive rocker and tight rails for steep beach-break pockets and vertical maneuvers.',
-    pricing: { twoHours: 32, fourHours: 48, fullDay: 60 },
-    deposit: 100,
-    protectionFee: 5,
+    personality: 'Punchy turns on steeper faces',
+    whyMatch: "Best when the sandbar pitches up at peak mid-tide.",
+    pricing: {
+      twoHours: 30,
+      fourHours: 42,
+      fullDay: 54
+    },
+    deposit: 75,
+    protectionFee: 3,
     tag: 'Performance',
     shapeType: 'short'
   },
   {
-    id: 'b-06',
-    code: 'SP-HB-0062',
-    name: "6'2 Daily Driver",
-    nickname: 'Pier Ripper',
+    id: 'board-06',
+    code: 'SP-HB-0060',
+    name: "6'0 Pocket Rocket",
+    nickname: 'Performance Thruster',
     type: 'Shortboard',
-    dimensions: "6'2 × 19 1/2 × 2 1/2",
-    length: "6'2",
-    width: '19 1/2"',
-    thickness: '2 1/2"',
-    volume: '33 L',
-    finSetup: 'Thruster / Quad Convertible',
+    dimensions: "6'0 × 19 1/4 × 2 7/16",
+    length: "6'0",
+    width: '19 1/4"',
+    thickness: '2 7/16"',
+    volume: '30 L',
+    finSetup: 'FCS II Thruster',
     skill: 'Advanced',
-    recommendedWaves: '3–6 ft punchy waves',
+    recommendedWaves: '3–6 ft',
     condition: 'Mint',
     vanId: 'van-31',
-    vanName: 'SurfPass Van #31',
+    vanName: 'Van #31 — Huntington Nomad',
     beachId: 'huntington',
     beachName: 'Huntington Beach',
-    availableCount: 3,
+    availableCount: 2,
     totalInVan: 3,
-    personality: 'For punchier waves',
-    whyMatch: 'Engineered for high-speed turns and steep drops under the pier runway.',
-    pricing: { twoHours: 30, fourHours: 45, fullDay: 58 },
+    personality: 'Crisp release in the pocket',
+    whyMatch: "Built for punchy Huntington pier bowls and steep drops.",
+    pricing: {
+      twoHours: 32,
+      fourHours: 45,
+      fullDay: 58
+    },
     deposit: 80,
     protectionFee: 4,
-    tag: 'HB Choice',
+    tag: 'SoCal High Performance',
     shapeType: 'short'
   },
   {
-    id: 'b-07',
-    code: 'SP-WAI-0096',
+    id: 'board-07',
+    code: 'SP-WKK-0096',
     name: "9'6 Waikiki Noserider",
-    nickname: 'Island Glider',
+    nickname: 'Island Classic Log',
     type: 'Longboard',
-    dimensions: "9'6 × 23 1/4 × 3 1/4",
+    dimensions: "9'6 × 23 1/2 × 3 1/8",
     length: "9'6",
-    width: '23 1/4"',
-    thickness: '3 1/4"',
-    volume: '86 L',
-    finSetup: 'Single Fin Pivot (10.0")',
+    width: '23 1/2"',
+    thickness: '3 1/8"',
+    volume: '78 L',
+    finSetup: '10" Pivot Single Fin',
     skill: 'All Levels',
-    recommendedWaves: '1–3 ft rolling reef peelers',
+    recommendedWaves: '1–4 ft',
     condition: 'Mint',
     vanId: 'van-61',
-    vanName: 'SurfPass Van #61',
+    vanName: 'Van #61 — Waikiki Nomad',
     beachId: 'waikiki',
     beachName: 'Waikiki - Canoes & Queens',
     availableCount: 4,
-    totalInVan: 4,
-    personality: 'Endless cross-stepping trim',
-    whyMatch: 'The quintessential Hawaiian single-fin. Trims across turquoise reef flats for 200+ yard rides.',
-    pricing: { twoHours: 28, fourHours: 42, fullDay: 55 },
-    deposit: 60,
+    totalInVan: 5,
+    personality: 'Hang-ten stability on rolling walls',
+    whyMatch: "Deep concave in the nose locks you in for 200-yard Waikiki runners.",
+    pricing: {
+      twoHours: 26,
+      fourHours: 38,
+      fullDay: 48
+    },
+    deposit: 50,
     protectionFee: 3,
-    tag: 'Island Classic',
+    tag: 'Island Standard',
     shapeType: 'long'
   }
 ]
 
-// --- BOARD SILHOUETTES ---
+// --- BOARD SILHOUETTE VECTOR COMPONENT ---
 const BoardSilhouette: React.FC<{
   shapeType: 'long' | 'mid' | 'fish' | 'short' | 'soft'
   className?: string
 }> = ({ shapeType, className = 'w-16 h-40' }) => {
   if (shapeType === 'long') {
     return (
-      <svg viewBox="0 0 100 280" className={className}>
+      <svg viewBox="0 0 100 280" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="gradLong" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#1e293b" />
-            <stop offset="50%" stopColor="#334155" />
-            <stop offset="100%" stopColor="#1e293b" />
+          <linearGradient id="longGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#38BDF8" stopOpacity="0.85" />
+            <stop offset="50%" stopColor="#0284C7" stopOpacity="0.95" />
+            <stop offset="100%" stopColor="#0369A1" stopOpacity="1" />
           </linearGradient>
-          <linearGradient id="stripeLong" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="#818cf8" stopOpacity="0.9" />
+          <linearGradient id="longStringer" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#E0F2FE" />
+            <stop offset="100%" stopColor="#BAE6FD" />
           </linearGradient>
         </defs>
-        <path d="M 50 10 C 65 30 76 80 76 150 C 76 220 68 260 50 270 C 32 260 24 220 24 150 C 24 80 35 30 50 10 Z" fill="url(#gradLong)" stroke="#475569" strokeWidth="2" />
-        <line x1="50" y1="12" x2="50" y2="268" stroke="#e2e8f0" strokeWidth="1.5" strokeOpacity="0.4" />
-        <rect x="48" y="40" width="4" height="190" rx="2" fill="url(#stripeLong)" />
-        <ellipse cx="50" cy="245" rx="2" ry="6" fill="#64748b" />
+        <path d="M50 10 C32 20 22 70 22 140 C22 210 30 260 42 272 C46 276 54 276 58 272 C70 260 78 210 78 140 C78 70 68 20 50 10 Z" fill="url(#longGrad)" stroke="#38BDF8" strokeWidth="2" />
+        <line x1="50" y1="12" x2="50" y2="272" stroke="url(#longStringer)" strokeWidth="1.5" strokeDasharray="3 2" />
+        <circle cx="50" cy="45" r="3" fill="#E0F2FE" opacity="0.8" />
+        <path d="M42 260 L50 268 L58 260" stroke="#E0F2FE" strokeWidth="1.5" strokeLinecap="round" opacity="0.7" />
       </svg>
     )
   }
   if (shapeType === 'mid') {
     return (
-      <svg viewBox="0 0 100 260" className={className}>
+      <svg viewBox="0 0 100 240" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="gradMid" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#1e293b" />
-            <stop offset="50%" stopColor="#2d3748" />
-            <stop offset="100%" stopColor="#1e293b" />
+          <linearGradient id="midGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#818CF8" stopOpacity="0.85" />
+            <stop offset="50%" stopColor="#6366F1" stopOpacity="0.95" />
+            <stop offset="100%" stopColor="#4338CA" stopOpacity="1" />
           </linearGradient>
         </defs>
-        <path d="M 50 15 C 68 45 74 95 74 150 C 74 205 65 240 50 248 C 35 240 26 205 26 150 C 26 95 32 45 50 15 Z" fill="url(#gradMid)" stroke="#475569" strokeWidth="2" />
-        <line x1="50" y1="18" x2="50" y2="245" stroke="#38bdf8" strokeWidth="2" strokeOpacity="0.8" />
-        <ellipse cx="50" cy="150" rx="16" ry="28" fill="#38bdf8" fillOpacity="0.15" stroke="#38bdf8" strokeWidth="1" />
+        <path d="M50 12 C30 26 22 75 22 125 C22 175 32 220 44 230 C47 233 53 233 56 230 C68 220 78 175 78 125 C78 75 70 26 50 12 Z" fill="url(#midGrad)" stroke="#818CF8" strokeWidth="2" />
+        <line x1="50" y1="14" x2="50" y2="230" stroke="#E0E7FF" strokeWidth="1.5" />
+        <circle cx="50" cy="50" r="3.5" fill="#E0E7FF" opacity="0.9" />
       </svg>
     )
   }
   if (shapeType === 'fish') {
     return (
-      <svg viewBox="0 0 100 240" className={className}>
+      <svg viewBox="0 0 100 200" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="gradFish" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#1e293b" />
-            <stop offset="50%" stopColor="#334155" />
-            <stop offset="100%" stopColor="#1e293b" />
+          <linearGradient id="fishGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#34D399" stopOpacity="0.85" />
+            <stop offset="50%" stopColor="#059669" stopOpacity="0.95" />
+            <stop offset="100%" stopColor="#047857" stopOpacity="1" />
           </linearGradient>
         </defs>
-        <path d="M 50 18 C 72 45 78 95 78 145 C 78 185 70 215 72 225 C 65 220 58 208 50 208 C 42 208 35 220 28 225 C 30 215 22 185 22 145 C 22 95 28 45 50 18 Z" fill="url(#gradFish)" stroke="#475569" strokeWidth="2" />
-        <line x1="50" y1="20" x2="50" y2="208" stroke="#cbd5e1" strokeWidth="1.5" strokeOpacity="0.5" />
-        <polygon points="50,60 62,90 38,90" fill="#a855f7" fillOpacity="0.4" />
-        <circle cx="36" cy="195" r="3" fill="#a855f7" />
-        <circle cx="64" cy="195" r="3" fill="#a855f7" />
+        {/* Swallow tail */}
+        <path d="M50 12 C28 28 20 70 20 115 C20 160 26 182 32 192 L50 178 L68 192 C74 182 80 160 80 115 C80 70 72 28 50 12 Z" fill="url(#fishGrad)" stroke="#34D399" strokeWidth="2" />
+        <line x1="50" y1="14" x2="50" y2="178" stroke="#D1FAE5" strokeWidth="1.5" />
+        <circle cx="50" cy="45" r="3.5" fill="#D1FAE5" opacity="0.9" />
+        {/* Twin keel fin indicators */}
+        <line x1="32" y1="165" x2="32" y2="180" stroke="#D1FAE5" strokeWidth="2" strokeLinecap="round" />
+        <line x1="68" y1="165" x2="68" y2="180" stroke="#D1FAE5" strokeWidth="2" strokeLinecap="round" />
       </svg>
     )
   }
   if (shapeType === 'soft') {
     return (
-      <svg viewBox="0 0 100 270" className={className}>
+      <svg viewBox="0 0 100 260" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="gradSoft" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#0284c7" />
-            <stop offset="50%" stopColor="#38bdf8" />
-            <stop offset="100%" stopColor="#0284c7" />
+          <linearGradient id="softGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#F59E0B" stopOpacity="0.85" />
+            <stop offset="50%" stopColor="#D97706" stopOpacity="0.95" />
+            <stop offset="100%" stopColor="#B45309" stopOpacity="1" />
           </linearGradient>
         </defs>
-        <path d="M 50 12 C 68 35 77 85 77 150 C 77 215 68 252 50 260 C 32 252 23 215 23 150 C 23 85 32 35 50 12 Z" fill="url(#gradSoft)" stroke="#bae6fd" strokeWidth="2" />
-        <rect x="30" y="60" width="40" height="8" rx="4" fill="#ffffff" fillOpacity="0.6" />
-        <rect x="30" y="80" width="40" height="8" rx="4" fill="#ffffff" fillOpacity="0.6" />
-        <line x1="50" y1="14" x2="50" y2="258" stroke="#ffffff" strokeWidth="2" strokeOpacity="0.4" />
+        <path d="M50 10 C30 22 20 70 20 135 C20 200 30 245 42 254 C46 257 54 257 58 254 C70 245 80 200 80 135 C80 70 70 22 50 10 Z" fill="url(#softGrad)" stroke="#FBBF24" strokeWidth="2" />
+        <line x1="50" y1="12" x2="50" y2="254" stroke="#FEF3C7" strokeWidth="2" />
+        {/* Soft grip crosshatch subtle lines */}
+        <line x1="34" y1="80" x2="66" y2="80" stroke="#FEF3C7" strokeWidth="1" opacity="0.6" />
+        <line x1="32" y1="120" x2="68" y2="120" stroke="#FEF3C7" strokeWidth="1" opacity="0.6" />
+        <line x1="34" y1="160" x2="66" y2="160" stroke="#FEF3C7" strokeWidth="1" opacity="0.6" />
+        <line x1="38" y1="200" x2="62" y2="200" stroke="#FEF3C7" strokeWidth="1" opacity="0.6" />
       </svg>
     )
   }
+  // Performance shortboard
   return (
-    <svg viewBox="0 0 100 240" className={className}>
+    <svg viewBox="0 0 100 210" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="gradShort" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#1e293b" />
-          <stop offset="50%" stopColor="#334155" />
-          <stop offset="100%" stopColor="#1e293b" />
+        <linearGradient id="shortGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#EC4899" stopOpacity="0.85" />
+          <stop offset="50%" stopColor="#BE185D" stopOpacity="0.95" />
+          <stop offset="100%" stopColor="#9D174D" stopOpacity="1" />
         </linearGradient>
       </defs>
-      <path d="M 50 10 C 66 40 72 90 72 145 C 72 195 62 225 50 232 C 38 225 28 195 28 145 C 28 90 34 40 50 10 Z" fill="url(#gradShort)" stroke="#475569" strokeWidth="2" />
-      <line x1="50" y1="12" x2="50" y2="230" stroke="#f43f5e" strokeWidth="2" strokeOpacity="0.8" />
-      <polygon points="50,45 60,65 40,65" fill="#f43f5e" fillOpacity="0.5" />
+      {/* Pointy nose and squash tail */}
+      <path d="M50 8 C32 30 22 75 22 118 C22 162 30 196 44 204 L56 204 C70 196 78 162 78 118 C78 75 68 30 50 8 Z" fill="url(#shortGrad)" stroke="#F472B6" strokeWidth="2" />
+      <line x1="50" y1="10" x2="50" y2="204" stroke="#FCE7F3" strokeWidth="1.5" />
+      {/* Tail traction pad */}
+      <path d="M38 175 L62 175 L59 198 L41 198 Z" fill="#475569" stroke="#94A3B8" strokeWidth="1" opacity="0.85" />
     </svg>
   )
 }
 
-// --- MAIN APPLICATION COMPONENT ---
 export default function App() {
+  // Navigation & View States
   const [activeTab, setActiveTab] = useState<'home' | 'explore' | 'map' | 'rentals' | 'profile'>('home')
-  
-  const [selectedRegion, setSelectedRegion] = useState<string>('All')
   const [selectedBeach, setSelectedBeach] = useState<Beach>(BEACHES[0])
-  const [selectedVan, setSelectedVan] = useState<Van>(INITIAL_VANS[0])
-  const [selectedBoard, setSelectedBoard] = useState<Board>(INITIAL_BOARDS[0])
-  
-  const [vans, setVans] = useState<Van[]>(INITIAL_VANS)
-  const [boards, setBoards] = useState<Board[]>(INITIAL_BOARDS)
-  
+  const [selectedVan, setSelectedVan] = useState<Van>(VANS[0])
+  const [selectedBoard, setSelectedBoard] = useState<Board>(BOARDS[0])
   const [showBeachModal, setShowBeachModal] = useState(false)
   const [showVanModal, setShowVanModal] = useState(false)
   const [showBoardModal, setShowBoardModal] = useState(false)
-  const [showReserveModal, setShowReserveModal] = useState(false)
+  const [showCheckoutModal, setShowCheckoutModal] = useState(false)
   const [showPassModal, setShowPassModal] = useState(false)
   const [showInfraModal, setShowInfraModal] = useState(false)
-  const [showWalletModal, setShowWalletModal] = useState(false)
+  const [showTravelModal, setShowTravelModal] = useState(false)
   const [showRideRecommender, setShowRideRecommender] = useState(false)
-  const [showTravelerModal, setShowTravelerModal] = useState(false)
-  
-  const [rentalDuration, setRentalDuration] = useState<'2hr' | '4hr' | 'full'>('2hr')
-  const [paymentRail, setPaymentRail] = useState<'USDC' | 'BTC' | 'CARD'>('USDC')
+  const [showWalletModal, setShowWalletModal] = useState(false)
+
+  // Explore filters
+  const [regionFilter, setRegionFilter] = useState('All')
+  const [qualityFilter, setQualityFilter] = useState('All')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [boardTypeFilter, setBoardTypeFilter] = useState('All')
+
+  // Reservation & Checkout State
+  const [rentalDuration, setRentalDuration] = useState<2 | 4 | 24>(2)
+  const [includeProtection, setIncludeProtection] = useState(true)
+  const [paymentMethod, setPaymentMethod] = useState<'USDC' | 'BTC' | 'CARD'>('USDC')
   const [paymentStep, setPaymentStep] = useState<'SELECT' | 'WAITING' | 'DETECTED' | 'CONFIRMING' | 'CONFIRMED'>('SELECT')
-  const [showOnchainDetails, setShowOnchainDetails] = useState(false)
-  const [createdPass, setCreatedPass] = useState<RentalPass | null>(null)
-  
-  const [returningPassId, setReturningPassId] = useState<string | null>(null)
-  const [returnStep, setReturnStep] = useState<'READY' | 'SCANNING' | 'RETURNED' | 'RELEASING' | 'RELEASED'>('READY')
-  
-  const [walletConnected, setWalletConnected] = useState(false)
-  const [walletAddress, setWalletAddress] = useState('')
-  
+  const [paymentTxHash, setPaymentTxHash] = useState<string>('')
+  const [expandedOnchainDetails, setExpandedOnchainDetails] = useState(false)
+
+  // Wallet State
+  const [walletConnected, setWalletConnected] = useState(true)
+  const [walletAddress] = useState('8xF3...9D2b')
+  const [walletBalanceUsdc, setWalletBalanceUsdc] = useState(250.00)
+  const [walletBalanceSol, setWalletBalanceSol] = useState(1.45)
+  const [walletBalanceBtc, setWalletBalanceBtc] = useState(0.0185)
+
+  // Real-time dynamic inventories
+  const [boardInventories, setBoardInventories] = useState<Record<string, number>>({
+    'board-01': 3,
+    'board-02': 2,
+    'board-03': 2,
+    'board-04': 1,
+    'board-05': 1,
+    'board-06': 2,
+    'board-07': 4
+  })
+
+  // Rentals collection
   const [rentals, setRentals] = useState<RentalPass[]>([
     {
-      id: 'SP-RKW-7F3A92',
+      id: 'pass-sample-1',
       boardName: "9'0 Dawn Patrol Log",
       boardCode: 'SP-RKW-0092',
       boardType: 'Longboard',
-      boardDimensions: "9'0 × 22 3/4 × 3",
+      boardDimensions: "9'0 × 22 3/4 × 3 (72L)",
       boardVolume: '72 L',
       vanId: 'van-12',
-      vanName: 'SurfPass Van #12',
+      vanName: 'Van #12',
       vanNickname: 'Rockaway Runner',
       location: 'Rockaway Beach, NY',
-      spot: 'Beach 90th Street',
+      spot: 'Beach 90th Street Boardwalk',
       startTime: '8:30 AM',
       endTime: '10:30 AM',
       durationLabel: '2 Hours',
@@ -963,401 +1070,461 @@ export default function App() {
       deposit: 50,
       depositStatus: 'HELD',
       status: 'ACTIVE',
-      txHash: '5UxQ...9mKz',
-      createdAt: Date.now() - 3600000 * 1.5,
+      txHash: '5Kz2...9Lm4 (Solana)',
+      createdAt: Date.now() - 3600000,
       sessionActive: true
     }
   ])
 
-  const [viewingPass, setViewingPass] = useState<RentalPass | null>(rentals[0])
+  const [activeRentalPass, setActiveRentalPass] = useState<RentalPass | null>(rentals[0])
 
+  // ESC key handler for all modals
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setShowBeachModal(false)
         setShowVanModal(false)
         setShowBoardModal(false)
-        setShowReserveModal(false)
+        setShowCheckoutModal(false)
         setShowPassModal(false)
         setShowInfraModal(false)
-        setShowWalletModal(false)
+        setShowTravelModal(false)
         setShowRideRecommender(false)
-        setShowTravelerModal(false)
-        setReturningPassId(null)
+        setShowWalletModal(false)
       }
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
-  const filteredBeaches = useMemo(() => {
-    if (selectedRegion === 'All') return BEACHES
-    return BEACHES.filter(b => b.region === selectedRegion)
-  }, [selectedRegion])
-
-  const currentPricing = useMemo(() => {
-    if (!selectedBoard) return { rental: 25, protection: 3, deposit: 50, total: 78 }
-    let rental = selectedBoard.pricing.twoHours
-    if (rentalDuration === '4hr') rental = selectedBoard.pricing.fourHours
-    if (rentalDuration === 'full') rental = selectedBoard.pricing.fullDay
-    const protection = selectedBoard.protectionFee
-    const deposit = selectedBoard.deposit
-    const total = rental + protection + deposit
-    return { rental, protection, deposit, total }
+  // Calculations for current checkout
+  const currentRentalCost = useMemo(() => {
+    if (!selectedBoard) return 25
+    if (rentalDuration === 2) return selectedBoard.pricing.twoHours
+    if (rentalDuration === 4) return selectedBoard.pricing.fourHours
+    return selectedBoard.pricing.fullDay
   }, [selectedBoard, rentalDuration])
 
+  const protectionTotal = includeProtection ? (selectedBoard?.protectionFee || 3) : 0
+  const depositTotal = selectedBoard?.deposit || 50
+  const totalAuthorization = currentRentalCost + protectionTotal + depositTotal
+  const netRentalCost = currentRentalCost + protectionTotal
+
+  // Filtered beaches for Explore
+  const filteredBeaches = useMemo(() => {
+    return BEACHES.filter(b => {
+      const matchesRegion = regionFilter === 'All' || b.region === regionFilter
+      const matchesQuality = qualityFilter === 'All' || b.quality === qualityFilter
+      const matchesSearch = searchQuery === '' ||
+        b.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        b.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        b.state.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        b.breakName.toLowerCase().includes(searchQuery.toLowerCase())
+      return matchesRegion && matchesQuality && matchesSearch
+    })
+  }, [regionFilter, qualityFilter, searchQuery])
+
+  // Handlers
   const handleConnectWallet = () => {
     setWalletConnected(true)
-    setWalletAddress('7xKp...4wL9')
     setShowWalletModal(false)
   }
 
   const handleDisconnectWallet = () => {
     setWalletConnected(false)
-    setWalletAddress('')
     setShowWalletModal(false)
   }
 
-  const handleStartCheckout = () => {
-    if (paymentRail === 'CARD') {
-      setPaymentStep('WAITING')
-      setTimeout(() => {
-        setPaymentStep('CONFIRMED')
-        finishReservation('CARD')
-      }, 1500)
-      return
-    }
-
-    setPaymentStep('WAITING')
-    setTimeout(() => {
-      setPaymentStep('DETECTED')
-      setTimeout(() => {
-        setPaymentStep('CONFIRMING')
-        setTimeout(() => {
-          setPaymentStep('CONFIRMED')
-          finishReservation(paymentRail)
-        }, 1200)
-      }, 1400)
-    }, 1200)
+  const handleStartCheckout = (board: Board) => {
+    setSelectedBoard(board)
+    setPaymentStep('SELECT')
+    setPaymentTxHash('')
+    setExpandedOnchainDetails(false)
+    setShowBoardModal(false)
+    setShowBeachModal(false)
+    setShowVanModal(false)
+    setShowRideRecommender(false)
+    setShowCheckoutModal(true)
   }
 
-  const finishReservation = (method: 'USDC' | 'BTC' | 'CARD') => {
-    const newPassId = `SP-${selectedBeach.id.slice(0, 3).toUpperCase()}-${Math.random().toString(36).substring(2, 8).toUpperCase()}`
+  const handleExecutePayment = () => {
+    if (paymentMethod === 'CARD') {
+      setPaymentStep('WAITING')
+      setTimeout(() => {
+        completeReservation('card-auth-demo')
+      }, 1200)
+    } else {
+      // Crypto flow via Tatum: Waiting -> Detected -> Confirming -> Confirmed
+      setPaymentStep('WAITING')
+      setTimeout(() => {
+        setPaymentStep('DETECTED')
+        setTimeout(() => {
+          setPaymentStep('CONFIRMING')
+          setTimeout(() => {
+            const fakeTx = paymentMethod === 'USDC' ? '4Zx9...k7Lm (Solana)' : '1Bv8...8Qz2 (Bitcoin)'
+            setPaymentTxHash(fakeTx)
+            completeReservation(fakeTx)
+          }, 1000)
+        }, 1100)
+      }, 1000)
+    }
+  }
+
+  const completeReservation = (txHash: string) => {
+    setPaymentStep('CONFIRMED')
+    
+    // Decrement local inventory
+    if (selectedBoard) {
+      setBoardInventories(prev => ({
+        ...prev,
+        [selectedBoard.id]: Math.max(0, (prev[selectedBoard.id] || 1) - 1)
+      }))
+    }
+
+    // Deduct wallet balance if USDC
+    if (paymentMethod === 'USDC' && walletConnected) {
+      setWalletBalanceUsdc(prev => Math.max(0, prev - totalAuthorization))
+    }
+
+    const durationText = rentalDuration === 2 ? '2 Hours' : rentalDuration === 4 ? '4 Hours' : 'Full Day'
     const newPass: RentalPass = {
-      id: newPassId,
+      id: `SP-PASS-${Math.floor(100000 + Math.random() * 900000)}`,
       boardName: selectedBoard.name,
       boardCode: selectedBoard.code,
       boardType: selectedBoard.type,
-      boardDimensions: selectedBoard.dimensions,
+      boardDimensions: `${selectedBoard.dimensions} (${selectedBoard.volume})`,
       boardVolume: selectedBoard.volume,
       vanId: selectedVan.id,
       vanName: selectedVan.fleetNumber,
       vanNickname: selectedVan.nickname,
       location: `${selectedBeach.name}, ${selectedBeach.state}`,
       spot: selectedVan.spot,
-      startTime: '10:15 AM',
-      endTime: rentalDuration === '2hr' ? '12:15 PM' : rentalDuration === '4hr' ? '2:15 PM' : '6:00 PM',
-      durationLabel: rentalDuration === '2hr' ? '2 Hours' : rentalDuration === '4hr' ? '4 Hours' : 'Full Day',
-      paymentMethod: method,
-      rentalPrice: currentPricing.rental + currentPricing.protection,
-      protection: currentPricing.protection,
-      deposit: currentPricing.deposit,
+      startTime: 'Now',
+      endTime: rentalDuration === 2 ? 'In 2 Hours' : rentalDuration === 4 ? 'In 4 Hours' : 'End of Day',
+      durationLabel: durationText,
+      paymentMethod,
+      rentalPrice: currentRentalCost,
+      protection: protectionTotal,
+      deposit: depositTotal,
       depositStatus: 'HELD',
       status: 'ACTIVE',
-      txHash: method === 'USDC' ? '8mZq...5tLp' : method === 'BTC' ? '3a2f...c9b1' : undefined,
+      txHash,
       createdAt: Date.now(),
       sessionActive: true
     }
 
-    setBoards(prev => prev.map(b => {
-      if (b.id === selectedBoard.id) {
-        return { ...b, availableCount: Math.max(0, b.availableCount - 1) }
-      }
-      return b
-    }))
-
-    setVans(prev => prev.map(v => {
-      if (v.id === selectedVan.id) {
-        return { ...v, boardsAvailable: Math.max(0, v.boardsAvailable - 1) }
-      }
-      return v
-    }))
-
     setRentals(prev => [newPass, ...prev])
-    setCreatedPass(newPass)
-    setViewingPass(newPass)
-    setShowReserveModal(false)
-    setShowPassModal(true)
-    setPaymentStep('SELECT')
+    setActiveRentalPass(newPass)
+
+    setTimeout(() => {
+      setShowCheckoutModal(false)
+      setShowPassModal(true)
+    }, 900)
   }
 
   const handleReturnBoard = (passId: string) => {
-    setReturningPassId(passId)
-    setReturnStep('SCANNING')
-    setTimeout(() => {
-      setReturnStep('RETURNED')
-      setTimeout(() => {
-        setReturnStep('RELEASING')
-        setTimeout(() => {
-          setReturnStep('RELEASED')
-          setRentals(prev => prev.map(r => {
-            if (r.id === passId) {
-              return { ...r, depositStatus: 'REFUNDED', status: 'COMPLETED', sessionActive: false }
-            }
-            return r
-          }))
-          setBoards(prev => prev.map(b => {
-            return { ...b, availableCount: Math.min(b.totalInVan, b.availableCount + 1) }
-          }))
-          setVans(prev => prev.map(v => {
-            return { ...v, boardsAvailable: v.boardsAvailable + 1 }
-          }))
-        }, 1400)
-      }, 1000)
-    }, 1200)
+    setRentals(prev =>
+      prev.map(p => {
+        if (p.id === passId) {
+          return {
+            ...p,
+            status: 'COMPLETED',
+            depositStatus: 'REFUNDED',
+            sessionActive: false
+          }
+        }
+        return p
+      })
+    )
+
+    // Restore inventory
+    if (selectedBoard) {
+      setBoardInventories(prev => ({
+        ...prev,
+        [selectedBoard.id]: (prev[selectedBoard.id] || 0) + 1
+      }))
+    }
+
+    // Refund USDC to wallet if applicable
+    if (walletConnected) {
+      setWalletBalanceUsdc(prev => prev + 50)
+    }
+
+    if (activeRentalPass?.id === passId) {
+      setActiveRentalPass(prev => prev ? { ...prev, status: 'COMPLETED', depositStatus: 'REFUNDED', sessionActive: false } : null)
+    }
   }
 
   return (
-    <div className="min-h-screen bg-[#07090E] text-slate-100 font-sans antialiased pb-24 md:pb-12">
-      {/* HEADER */}
-      <header className="sticky top-0 z-40 bg-[#07090E]/90 backdrop-blur-md border-b border-slate-800/80 px-4 py-3">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
-          {/* Logo */}
-          <div className="flex items-center gap-3 cursor-pointer" onClick={() => setActiveTab('home')}>
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
-              <Waves className="w-5 h-5 text-white" />
+    <div className="min-h-screen bg-[#07090E] text-slate-100 font-sans antialiased pb-28">
+      {/* HIGH-CONTRAST HEADER */}
+      <header className="sticky top-0 z-40 bg-[#0B0F19]/95 backdrop-blur-md border-b border-slate-800 px-4 py-3 shadow-lg">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
+          {/* Logo & Slogan */}
+          <div
+            className="flex items-center gap-2.5 cursor-pointer"
+            onClick={() => setActiveTab('home')}
+          >
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 via-blue-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
+              <Waves className="w-6 h-6 text-white" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-lg font-black tracking-tight text-white">SurfPass</span>
-                <span className="text-[10px] uppercase font-bold tracking-widest px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-400 border border-cyan-800/50 hidden sm:inline-block">FLEET</span>
+                <span className="text-xl font-black tracking-tight text-white">SurfPass</span>
+                <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-300">
+                  Mobile Fleet
+                </span>
               </div>
-              <p className="text-[11px] text-slate-400 -mt-0.5 hidden xs:block">Rent the perfect board for today’s surf</p>
+              <p className="text-xs text-slate-300 font-medium -mt-0.5 hidden sm:block">
+                Rent the perfect board for today’s surf
+              </p>
             </div>
           </div>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1 bg-[#0F141E] p-1 rounded-xl border border-slate-800 text-xs font-semibold">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-1 bg-[#131826] p-1.5 rounded-xl border border-slate-700 shadow-inner">
             <button
               onClick={() => setActiveTab('home')}
-              className={`px-3 py-1.5 rounded-lg transition ${
-                activeTab === 'home' ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow' : 'text-slate-400 hover:text-white'
+              className={`px-3.5 py-1.5 rounded-lg text-sm font-semibold transition ${
+                activeTab === 'home'
+                  ? 'bg-cyan-500 text-slate-950 font-bold shadow'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
               }`}
             >
               Home
             </button>
             <button
               onClick={() => setActiveTab('explore')}
-              className={`px-3 py-1.5 rounded-lg transition ${
-                activeTab === 'explore' ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow' : 'text-slate-400 hover:text-white'
+              className={`px-3.5 py-1.5 rounded-lg text-sm font-semibold transition ${
+                activeTab === 'explore'
+                  ? 'bg-cyan-500 text-slate-950 font-bold shadow'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
               }`}
             >
               Explore
             </button>
             <button
               onClick={() => setActiveTab('map')}
-              className={`px-3 py-1.5 rounded-lg transition ${
-                activeTab === 'map' ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow' : 'text-slate-400 hover:text-white'
+              className={`px-3.5 py-1.5 rounded-lg text-sm font-semibold transition ${
+                activeTab === 'map'
+                  ? 'bg-cyan-500 text-slate-950 font-bold shadow'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
               }`}
             >
               Live Map
             </button>
             <button
               onClick={() => setActiveTab('rentals')}
-              className={`px-3 py-1.5 rounded-lg transition relative ${
-                activeTab === 'rentals' ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow' : 'text-slate-400 hover:text-white'
+              className={`px-3.5 py-1.5 rounded-lg text-sm font-semibold transition flex items-center gap-1.5 ${
+                activeTab === 'rentals'
+                  ? 'bg-cyan-500 text-slate-950 font-bold shadow'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
               }`}
             >
-              Rentals
-              {rentals.filter(r => r.status === 'ACTIVE').length > 0 && (
-                <span className="ml-1.5 px-1.5 py-0.2 text-[9px] font-bold bg-cyan-400 text-black rounded-full">
-                  {rentals.filter(r => r.status === 'ACTIVE').length}
-                </span>
+              My Rentals
+              {rentals.some(r => r.status === 'ACTIVE') && (
+                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
               )}
             </button>
             <button
               onClick={() => setActiveTab('profile')}
-              className={`px-3 py-1.5 rounded-lg transition ${
-                activeTab === 'profile' ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow' : 'text-slate-400 hover:text-white'
+              className={`px-3.5 py-1.5 rounded-lg text-sm font-semibold transition ${
+                activeTab === 'profile'
+                  ? 'bg-cyan-500 text-slate-950 font-bold shadow'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
               }`}
             >
               Profile
             </button>
           </nav>
 
-          {/* Action Buttons: Tatum Infra & Connect Wallet */}
+          {/* Action CTAs: Surf Now + Tatum Infra + Connect Wallet */}
           <div className="flex items-center gap-2">
             <button
-              onClick={() => setShowInfraModal(true)}
-              title="View Tatum Multi-Chain Infrastructure"
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#0F141E] hover:bg-slate-800 border border-slate-800 hover:border-purple-500/50 text-xs text-purple-300 font-medium transition shadow-sm"
+              onClick={() => {
+                setSelectedBeach(BEACHES[0])
+                setSelectedVan(VANS[0])
+                setSelectedBoard(BOARDS[0])
+                handleStartCheckout(BOARDS[0])
+              }}
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-xs shadow-md shadow-cyan-500/20 hover:brightness-110 active:scale-95 transition"
             >
-              <Zap className="w-3.5 h-3.5 text-purple-400 animate-pulse" />
-              <span className="hidden sm:inline">Tatum Infra</span>
+              <Zap className="w-4 h-4 fill-current text-amber-300" />
+              <span>Surf Now</span>
             </button>
 
             <button
+              onClick={() => setShowInfraModal(true)}
+              className="hidden lg:flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#131826] hover:bg-slate-800 border border-slate-700 text-slate-200 text-xs font-semibold transition"
+            >
+              <Activity className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Tatum Infra</span>
+            </button>
+
+            {/* Connect Wallet Button */}
+            <button
               onClick={() => setShowWalletModal(true)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition shadow-sm ${
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl border text-xs font-semibold transition ${
                 walletConnected
-                  ? 'bg-cyan-950/80 border border-cyan-700/60 text-cyan-300 hover:bg-cyan-900/60'
-                  : 'bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white shadow-cyan-600/20'
+                  ? 'bg-emerald-950/50 border-emerald-500/50 text-emerald-300 hover:bg-emerald-900/60'
+                  : 'bg-[#182032] border-cyan-500/40 text-cyan-300 hover:bg-cyan-950/40 shadow-sm'
               }`}
             >
               <Wallet className="w-3.5 h-3.5" />
-              <span>{walletConnected ? walletAddress : 'Connect Wallet'}</span>
+              <span className="font-mono">{walletConnected ? walletAddress : 'Connect Wallet'}</span>
             </button>
           </div>
         </div>
       </header>
 
-      {/* MAIN CONTENT */}
+      {/* MAIN CONTENT CONTAINER */}
       <main className="max-w-7xl mx-auto px-4 py-6">
-        {/* TAB 1: HOME */}
+        {/* --- TAB: HOME --- */}
         {activeTab === 'home' && (
           <div className="space-y-8">
-            {/* HERO */}
-            <div className="relative rounded-3xl overflow-hidden border border-slate-800 bg-gradient-to-b from-[#0F1420] to-[#07090E] p-6 sm:p-10 shadow-2xl">
-              <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-cyan-500/10 via-purple-500/5 to-transparent rounded-full blur-3xl pointer-events-none" />
-              
-              <div className="max-w-2xl space-y-4 relative z-10">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-800/60 text-cyan-400 text-xs font-semibold">
-                  <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>Nationwide Mobile Surfboard Rental Network</span>
+            {/* HERO SECTION */}
+            <div className="relative rounded-3xl overflow-hidden border border-slate-800 bg-gradient-to-b from-[#0F172A] to-[#090D16] p-6 md:p-10 shadow-2xl">
+              <div className="relative z-10 max-w-3xl space-y-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-semibold">
+                  <Waves className="w-3.5 h-3.5" />
+                  <span>Roaming Van Fleet • Nationwide Surf Discovery</span>
                 </div>
 
-                <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
+                <h1 className="text-3xl md:text-5xl font-black tracking-tight text-white leading-tight">
                   Rent the perfect board for today’s surf.
                 </h1>
 
-                <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                <p className="text-slate-300 text-sm md:text-base leading-relaxed">
                   Live surf conditions, nearby mobile rental vans, and instant reservations. Pay with USDC on Solana, Bitcoin, or Apple Pay.
                 </p>
 
-                <p className="text-xs font-medium text-cyan-400/80 tracking-wide uppercase">
-                  Find waves. Find a board. Go surf.
-                </p>
+                {/* Slogan */}
+                <div className="pt-1 flex items-center gap-3 text-xs font-bold uppercase tracking-wider text-cyan-400/90">
+                  <span>Find waves</span>
+                  <span>•</span>
+                  <span>Find a board</span>
+                  <span>•</span>
+                  <span>Go surf</span>
+                </div>
 
-                <div className="pt-2 flex flex-wrap items-center gap-3">
-                  <button
-                    onClick={() => {
-                      setSelectedBeach(BEACHES[0])
-                      setShowBeachModal(true)
-                    }}
-                    className="px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm shadow-lg shadow-cyan-500/25 flex items-center gap-2 transition transform active:scale-95"
-                  >
-                    <Waves className="w-4 h-4" />
-                    <span>View Today’s Waves</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-
+                {/* Primary Action Buttons */}
+                <div className="flex flex-wrap items-center gap-3 pt-2">
                   <button
                     onClick={() => setActiveTab('explore')}
-                    className="px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-semibold text-sm transition flex items-center gap-2"
+                    className="px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm shadow-lg shadow-cyan-500/25 flex items-center gap-2 transition"
                   >
-                    <Compass className="w-4 h-4 text-purple-400" />
-                    <span>Explore All Beaches</span>
+                    <Search className="w-4 h-4" />
+                    <span>Find a Beach</span>
                   </button>
-
                   <button
-                    onClick={() => setShowTravelerModal(true)}
-                    className="px-4 py-3 rounded-xl bg-[#121824] hover:bg-slate-800 border border-cyan-900/40 text-cyan-300 font-semibold text-xs transition flex items-center gap-1.5"
+                    onClick={() => setActiveTab('map')}
+                    className="px-5 py-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold text-sm flex items-center gap-2 transition"
                   >
-                    <Plane className="w-3.5 h-3.5" />
-                    <span>Traveling?</span>
+                    <MapPin className="w-4 h-4 text-cyan-400" />
+                    <span>View Mobile Vans Map</span>
+                  </button>
+                  <button
+                    onClick={() => setShowTravelModal(true)}
+                    className="px-4 py-3 rounded-xl bg-[#131826] hover:bg-slate-800 border border-slate-700 text-slate-300 text-sm font-semibold flex items-center gap-1.5 transition"
+                  >
+                    <Plane className="w-4 h-4 text-purple-400" />
+                    <span>Traveling to Surf?</span>
                   </button>
                 </div>
               </div>
             </div>
 
-            {/* BEST MATCH RIGHT NOW */}
-            <div className="rounded-2xl border border-cyan-800/40 bg-gradient-to-br from-[#0D1422] via-[#0B0F17] to-[#0A0D14] p-5 sm:p-6 shadow-xl relative overflow-hidden">
-              <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-white">
-                    <Zap className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-black uppercase tracking-wider text-cyan-400">Best Match Right Now</h3>
-                    <p className="text-xs text-slate-400">Automated surf condition & nearby van inventory match</p>
-                  </div>
-                </div>
-                <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-950 border border-emerald-800/60 text-emerald-400 font-bold">
-                  Optimal: 8:30 AM – 11:30 AM
+            {/* 5-STEP SURFPASS WORKFLOW BAR */}
+            <div className="rounded-2xl bg-[#0E1320] border border-slate-800 p-4 md:p-5 shadow-lg">
+              <div className="flex items-center justify-between mb-3 px-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                  How SurfPass Works
                 </span>
+                <span className="text-xs text-cyan-400 font-medium">Van-to-water in 3 minutes</span>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-[#0F1420] p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+                <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-xs">1</div>
                   <div>
-                    <div className="flex items-center justify-between text-xs text-slate-400 mb-1">
-                      <span>Location & Surf</span>
-                      <span className="text-emerald-400 font-bold">GOOD</span>
-                    </div>
-                    <h4 className="text-base font-bold text-white">Rockaway Beach, NY</h4>
-                    <p className="text-xs text-cyan-300 font-medium mt-0.5">2–3 ft • Clean peeling lines</p>
-                    <p className="text-xs text-slate-400 mt-2 line-clamp-2">
-                      NW 6 mph light offshore with rising tide. Cleanest before afternoon wind shift.
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => {
-                      setSelectedBeach(BEACHES[0])
-                      setShowBeachModal(true)
-                    }}
-                    className="mt-3 text-xs text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1"
-                  >
-                    <span>View Forecast Details</span>
-                    <ChevronRight className="w-3 h-3" />
-                  </button>
-                </div>
-
-                <div className="bg-[#0F1420] p-4 rounded-xl border border-slate-800 flex gap-3">
-                  <div className="w-12 h-24 bg-slate-900/80 rounded-lg flex items-center justify-center p-1 border border-slate-800">
-                    <BoardSilhouette shapeType="long" className="w-8 h-20" />
-                  </div>
-                  <div className="flex-1 flex flex-col justify-between">
-                    <div>
-                      <span className="text-[10px] uppercase font-bold text-purple-400">Recommended Board</span>
-                      <h4 className="text-sm font-bold text-white">9'0 Dawn Patrol Log</h4>
-                      <p className="text-xs text-slate-400">72 L • Single Fin • 1–4 ft</p>
-                      <p className="text-[11px] text-slate-300 mt-1 line-clamp-2">
-                        Extra volume glides through softer morning sandbar waves effortlessly.
-                      </p>
-                    </div>
-                    <span className="text-xs font-bold text-cyan-400 mt-1">$25 / 2 hours</span>
+                    <p className="text-xs font-bold text-white">1. Forecast</p>
+                    <p className="text-[10px] text-slate-400">Check waves</p>
                   </div>
                 </div>
-
-                <div className="bg-[#0F1420] p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
+                <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-xs">2</div>
                   <div>
-                    <div className="flex items-center justify-between text-xs text-slate-400 mb-1">
-                      <span>Nearest Mobile Van</span>
-                      <span className="text-emerald-400 font-bold">OPEN</span>
-                    </div>
-                    <h4 className="text-sm font-bold text-white">SurfPass Van #12</h4>
-                    <p className="text-xs text-purple-300 font-medium">Rockaway Runner • Beach 90th St</p>
-                    <p className="text-xs text-slate-400 mt-1">0.2 mi away • 3 longboards ready now</p>
+                    <p className="text-xs font-bold text-white">2. Van</p>
+                    <p className="text-[10px] text-slate-400">Locate fleet</p>
                   </div>
-                  <div className="mt-3 flex gap-2">
+                </div>
+                <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold text-xs">3</div>
+                  <div>
+                    <p className="text-xs font-bold text-white">3. Board</p>
+                    <p className="text-[10px] text-slate-400">Pick quiver</p>
+                  </div>
+                </div>
+                <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs">4</div>
+                  <div>
+                    <p className="text-xs font-bold text-white">4. Pay</p>
+                    <p className="text-[10px] text-slate-400">USDC / Card</p>
+                  </div>
+                </div>
+                <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center gap-2.5 col-span-2 sm:col-span-1">
+                  <div className="w-7 h-7 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-xs">5</div>
+                  <div>
+                    <p className="text-xs font-bold text-white">5. Pass & Surf</p>
+                    <p className="text-[10px] text-slate-400">QR van unlock</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* BEST MATCH RIGHT NOW (INTELLIGENT SURF + VAN + BOARD COMBO) */}
+            <div className="rounded-3xl bg-gradient-to-r from-[#0C1929] via-[#0F172A] to-[#1E1B4B] border border-cyan-500/30 p-6 shadow-xl relative overflow-hidden">
+              <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+                <div className="space-y-3 max-w-xl">
+                  <div className="flex items-center gap-2">
+                    <span className="px-2.5 py-0.5 rounded-full bg-cyan-500 text-slate-950 font-black text-[10px] uppercase tracking-wider">
+                      Best Match Right Now
+                    </span>
+                    <span className="text-xs text-slate-400">Rockaway Beach, NY</span>
+                  </div>
+
+                  <h3 className="text-2xl font-black text-white">
+                    Rockaway Beach • 2–3 ft (GOOD)
+                  </h3>
+
+                  <p className="text-slate-300 text-xs md:text-sm">
+                    {BEACHES[0].recommendation}
+                  </p>
+
+                  <div className="flex flex-wrap items-center gap-3 pt-1">
+                    <div className="flex items-center gap-2 bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800">
+                      <Car className="w-3.5 h-3.5 text-cyan-400" />
+                      <span className="text-xs text-slate-200">Van #12 (Rockaway Runner) • 0.2 mi</span>
+                    </div>
+                    <div className="flex items-center gap-2 bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800">
+                      <Clock className="w-3.5 h-3.5 text-emerald-400" />
+                      <span className="text-xs text-slate-200">Best Window: 8:30 – 11:30 AM</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Recommended Board Preview Card */}
+                <div className="bg-slate-900/90 border border-slate-700/80 p-4 rounded-2xl flex items-center gap-4 w-full lg:w-auto min-w-[280px]">
+                  <BoardSilhouette shapeType="long" className="w-10 h-24 flex-shrink-0" />
+                  <div className="space-y-1">
+                    <span className="text-[10px] uppercase font-bold text-cyan-400 tracking-wider">Recommended Board</span>
+                    <h4 className="text-sm font-bold text-white leading-tight">9'0 Dawn Patrol Log</h4>
+                    <p className="text-[11px] text-slate-400">72L • Single Fin • 3 Available</p>
+                    <p className="text-xs font-black text-cyan-300 pt-1">$25 / 2 hrs</p>
                     <button
-                      onClick={() => {
-                        setSelectedBoard(boards[0])
-                        setSelectedVan(vans[0])
-                        setShowReserveModal(true)
-                      }}
-                      className="flex-1 py-2 px-3 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs shadow-md transition text-center"
+                      onClick={() => handleStartCheckout(BOARDS[0])}
+                      className="mt-2 w-full py-2 px-3 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-xs hover:brightness-110 active:scale-95 transition"
                     >
-                      Reserve Board ($25)
-                    </button>
-                    <button
-                      onClick={() => {
-                        setSelectedVan(vans[0])
-                        setShowVanModal(true)
-                      }}
-                      className="py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs transition"
-                    >
-                      Van Quiver
+                      Reserve This Board
                     </button>
                   </div>
                 </div>
@@ -1368,104 +1535,84 @@ export default function App() {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-xl font-black tracking-tight text-white">Good Surf Near You</h2>
-                  <p className="text-xs text-slate-400">Real-time condition forecasts with active mobile van fleets</p>
+                  <h2 className="text-lg md:text-xl font-black text-white tracking-tight">
+                    Good Surf Near You
+                  </h2>
+                  <p className="text-xs text-slate-400">Live wave conditions and roaming SurfPass van availability</p>
                 </div>
                 <button
                   onClick={() => setActiveTab('explore')}
-                  className="text-xs font-semibold text-cyan-400 hover:text-cyan-300 flex items-center gap-1"
+                  className="text-xs font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1 transition"
                 >
-                  <span>See all {BEACHES.length} breaks</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
+                  <span>View All Beaches</span>
+                  <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                {BEACHES.slice(0, 3).map((beach) => (
+              {/* Beach Cards Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {BEACHES.slice(0, 3).map(beach => (
                   <div
                     key={beach.id}
-                    className="group rounded-2xl border border-slate-800 bg-[#0D121D] hover:border-slate-700 transition overflow-hidden shadow-lg flex flex-col justify-between"
+                    className="rounded-2xl bg-[#0E1320] border border-slate-800 hover:border-cyan-500/40 transition overflow-hidden shadow-lg group flex flex-col justify-between"
                   >
-                    <div>
-                      <div className="relative h-44 overflow-hidden">
-                        <img
-                          src={beach.image}
-                          alt={beach.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0D121D] via-transparent to-black/40" />
-                        
-                        <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
-                          <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-black/60 backdrop-blur-md text-white border border-white/10">
-                            {beach.region}
-                          </span>
-                          <span
-                            className={`px-2.5 py-1 rounded-full text-xs font-black ${
-                              beach.quality === 'GOOD'
-                                ? 'bg-emerald-500 text-black shadow-lg shadow-emerald-500/20'
-                                : 'bg-amber-500 text-black'
-                            }`}
-                          >
-                            {beach.quality} • {beach.waveHeight}
-                          </span>
-                        </div>
-
-                        <div className="absolute bottom-2 left-3 right-3">
-                          <h3 className="text-lg font-black text-white leading-tight">{beach.name}</h3>
+                    <div className="relative h-44 overflow-hidden">
+                      <img
+                        src={beach.image}
+                        alt={beach.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0E1320] via-transparent to-transparent" />
+                      <div className="absolute top-3 left-3 flex items-center gap-2">
+                        <span className="px-2.5 py-1 rounded-full bg-emerald-500 text-slate-950 font-black text-[10px] uppercase tracking-wider">
+                          {beach.quality}
+                        </span>
+                        <span className="px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-sm text-white text-[10px] font-semibold">
+                          {beach.waveHeight}
+                        </span>
+                      </div>
+                      <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
+                        <div>
+                          <h3 className="text-base font-bold text-white drop-shadow">{beach.name}</h3>
                           <p className="text-xs text-slate-300">{beach.breakName} • {beach.city}, {beach.state}</p>
                         </div>
                       </div>
-
-                      <div className="p-4 space-y-3">
-                        <div className="grid grid-cols-3 gap-2 text-center bg-[#090C12] p-2.5 rounded-xl border border-slate-800/80">
-                          <div>
-                            <span className="text-[10px] text-slate-400 block uppercase">Wave</span>
-                            <span className="text-xs font-bold text-cyan-400">{beach.waveHeight}</span>
-                          </div>
-                          <div>
-                            <span className="text-[10px] text-slate-400 block uppercase">Wind</span>
-                            <span className="text-xs font-bold text-purple-400">{beach.windMph} mph</span>
-                          </div>
-                          <div>
-                            <span className="text-[10px] text-slate-400 block uppercase">Water</span>
-                            <span className="text-xs font-bold text-slate-200">{beach.waterTemp}</span>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center justify-between text-xs text-slate-300 px-1">
-                          <div className="flex items-center gap-1.5 text-cyan-400 font-medium">
-                            <Car className="w-3.5 h-3.5" />
-                            <span>{beach.vanCount} SurfPass vans nearby</span>
-                          </div>
-                          <span className="text-purple-300 font-semibold">{beach.boardCount} boards ready</span>
-                        </div>
-
-                        <p className="text-xs text-slate-400 line-clamp-2">
-                          {beach.description}
-                        </p>
-                      </div>
                     </div>
 
-                    <div className="p-4 pt-0 flex gap-2">
+                    <div className="p-4 space-y-3">
+                      {/* Telemetry row */}
+                      <div className="grid grid-cols-3 gap-2 py-2 border-y border-slate-800/80 text-center">
+                        <div>
+                          <p className="text-[10px] text-slate-400 uppercase font-semibold">Wind</p>
+                          <p className="text-xs font-bold text-slate-200">{beach.wind.split(' ')[0]} {beach.windMph}mph</p>
+                        </div>
+                        <div>
+                          <p className="text-[10px] text-slate-400 uppercase font-semibold">Tide</p>
+                          <p className="text-xs font-bold text-slate-200">{beach.tide}</p>
+                        </div>
+                        <div>
+                          <p className="text-[10px] text-slate-400 uppercase font-semibold">Water</p>
+                          <p className="text-xs font-bold text-slate-200">{beach.waterTemp}</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between text-xs text-slate-300">
+                        <span className="flex items-center gap-1.5 text-cyan-400 font-medium">
+                          <Car className="w-3.5 h-3.5" />
+                          {beach.vanCount} Vans Nearby
+                        </span>
+                        <span>{beach.boardCount} boards ready</span>
+                      </div>
+
                       <button
                         onClick={() => {
                           setSelectedBeach(beach)
                           setShowBeachModal(true)
                         }}
-                        className="flex-1 py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition text-center"
+                        className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-cyan-600 hover:text-white text-slate-200 font-bold text-xs transition flex items-center justify-center gap-1.5"
                       >
-                        View Conditions
-                      </button>
-                      <button
-                        onClick={() => {
-                          const van = vans.find(v => v.beachId === beach.id) || vans[0]
-                          setSelectedBeach(beach)
-                          setSelectedVan(van)
-                          setShowVanModal(true)
-                        }}
-                        className="py-2 px-3 rounded-xl bg-cyan-600/20 hover:bg-cyan-600/30 border border-cyan-500/40 text-cyan-300 font-bold text-xs transition"
-                      >
-                        Find Board
+                        <span>View Forecast & Van Quiver</span>
+                        <ChevronRight className="w-4 h-4" />
                       </button>
                     </div>
                   </div>
@@ -1473,137 +1620,154 @@ export default function App() {
               </div>
             </div>
 
-            {/* WHAT SHOULD I RIDE BANNER */}
-            <div className="rounded-2xl border border-purple-800/40 bg-gradient-to-r from-[#140F24] via-[#0E121E] to-[#0A1624] p-6 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="space-y-1 text-center sm:text-left">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-950 text-purple-300 border border-purple-800 text-[11px] font-bold">
-                  <Zap className="w-3 h-3 text-purple-400" />
-                  <span>Instant Quiver Match</span>
+            {/* AVAILABLE BOARDS (TAILORED QUIVER) */}
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-lg md:text-xl font-black text-white tracking-tight">
+                    Van #12 Quiver (Rockaway Beach)
+                  </h2>
+                  <p className="text-xs text-slate-400">Real-time surfboard inventory with dimensions and refundable deposits</p>
                 </div>
-                <h3 className="text-xl font-black text-white">Not sure which board to ride today?</h3>
-                <p className="text-xs text-slate-300 max-w-lg">
-                  Our recommendation engine pairs real-time wave period, wind, tide, and your skill level with immediately available boards in nearby vans.
-                </p>
+                <button
+                  onClick={() => setShowVanModal(true)}
+                  className="text-xs font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1 transition"
+                >
+                  <span>View Van Details</span>
+                  <ChevronRight className="w-4 h-4" />
+                </button>
               </div>
-              <button
-                onClick={() => {
-                  setSelectedBeach(BEACHES[0])
-                  setShowRideRecommender(true)
-                }}
-                className="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-500 hover:to-cyan-400 text-white font-bold text-xs shadow-lg shadow-purple-600/30 flex items-center gap-2 whitespace-nowrap transition transform active:scale-95"
-              >
-                <Sparkles className="w-4 h-4" />
-                <span>What Should I Ride?</span>
-              </button>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {BOARDS.slice(0, 4).map(board => (
+                  <div
+                    key={board.id}
+                    className="rounded-2xl bg-[#0E1320] border border-slate-800 p-4 flex flex-col justify-between space-y-3 hover:border-slate-700 transition"
+                  >
+                    <div className="flex items-start justify-between">
+                      <span className="px-2 py-0.5 rounded-md bg-slate-800 text-slate-300 text-[10px] font-bold uppercase tracking-wider">
+                        {board.type}
+                      </span>
+                      <span className="text-[11px] font-bold text-emerald-400">
+                        {boardInventories[board.id] || 0} in stock
+                      </span>
+                    </div>
+
+                    <div className="py-2 flex items-center justify-center">
+                      <BoardSilhouette shapeType={board.shapeType} className="w-12 h-28" />
+                    </div>
+
+                    <div>
+                      <h4 className="text-sm font-bold text-white">{board.name}</h4>
+                      <p className="text-[11px] text-slate-400">{board.dimensions} • {board.volume}</p>
+                      <p className="text-[10px] text-slate-500 italic mt-0.5">{board.personality}</p>
+                    </div>
+
+                    <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between">
+                      <div>
+                        <span className="text-xs font-black text-white">${board.pricing.twoHours}</span>
+                        <span className="text-[10px] text-slate-400"> / 2 hrs</span>
+                      </div>
+                      <button
+                        onClick={() => handleStartCheckout(board)}
+                        className="py-1.5 px-3 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs transition"
+                      >
+                        Reserve
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         )}
 
-        {/* TAB 2: EXPLORE */}
+        {/* --- TAB: EXPLORE --- */}
         {activeTab === 'explore' && (
           <div className="space-y-6">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-              <div>
-                <h2 className="text-2xl font-black tracking-tight text-white">Nationwide Surf Discovery</h2>
-                <p className="text-xs text-slate-400">Explore active surf breaks and mobile surfboard vans across all major US surf regions</p>
+            <div>
+              <h1 className="text-2xl md:text-3xl font-black text-white tracking-tight">
+                Explore Surf Destinations
+              </h1>
+              <p className="text-xs md:text-sm text-slate-400">
+                Browse surf breaks, live conditions, and mobile van inventory across the United States.
+              </p>
+            </div>
+
+            {/* Filters Bar */}
+            <div className="flex flex-wrap items-center gap-3 p-4 rounded-2xl bg-[#0E1320] border border-slate-800">
+              <div className="flex-1 min-w-[200px] relative">
+                <Search className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                <input
+                  type="text"
+                  placeholder="Search by beach, city, or state..."
+                  value={searchQuery}
+                  onChange={e => setSearchQuery(e.target.value)}
+                  className="w-full bg-[#131826] border border-slate-700 rounded-xl pl-9 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500"
+                />
               </div>
 
-              <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
-                {['All', 'New York', 'New Jersey', 'California', 'Florida', 'Hawaii'].map((region) => (
+              {/* Region Select */}
+              <div className="flex items-center gap-1.5 overflow-x-auto pb-1 max-w-full">
+                {['All', 'New York', 'New Jersey', 'California', 'Florida', 'Hawaii', 'North Carolina'].map(r => (
                   <button
-                    key={region}
-                    onClick={() => setSelectedRegion(region)}
+                    key={r}
+                    onClick={() => setRegionFilter(r)}
                     className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition ${
-                      selectedRegion === region
-                        ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow'
-                        : 'bg-[#0F141E] text-slate-400 hover:text-white border border-slate-800'
+                      regionFilter === r
+                        ? 'bg-cyan-500 text-slate-950 font-bold'
+                        : 'bg-[#131826] text-slate-300 hover:bg-slate-800'
                     }`}
                   >
-                    {region}
+                    {r}
                   </button>
                 ))}
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredBeaches.map((beach) => (
+            {/* Beaches Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {filteredBeaches.map(beach => (
                 <div
                   key={beach.id}
-                  className="rounded-2xl border border-slate-800 bg-[#0D121D] hover:border-slate-700 transition overflow-hidden shadow-lg flex flex-col justify-between"
+                  className="rounded-2xl bg-[#0E1320] border border-slate-800 overflow-hidden hover:border-cyan-500/40 transition shadow-lg flex flex-col justify-between"
                 >
-                  <div>
-                    <div className="relative h-48 overflow-hidden">
-                      <img src={beach.image} alt={beach.name} className="w-full h-full object-cover" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0D121D] via-transparent to-black/40" />
-                      
-                      <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
-                        <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-black/60 backdrop-blur-md text-white border border-white/10">
-                          {beach.state}
-                        </span>
-                        <span
-                          className={`px-2.5 py-1 rounded-full text-xs font-black ${
-                            beach.quality === 'GOOD'
-                              ? 'bg-emerald-500 text-black shadow-lg shadow-emerald-500/20'
-                              : 'bg-amber-500 text-black'
-                          }`}
-                        >
-                          {beach.quality} • {beach.waveHeight}
-                        </span>
-                      </div>
-
-                      <div className="absolute bottom-2 left-3 right-3">
-                        <h3 className="text-lg font-black text-white leading-tight">{beach.name}</h3>
-                        <p className="text-xs text-slate-300">{beach.breakName}</p>
-                      </div>
+                  <div className="relative h-48">
+                    <img src={beach.image} alt={beach.name} className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E1320] via-transparent to-transparent" />
+                    <div className="absolute top-3 left-3 flex items-center gap-2">
+                      <span className="px-2.5 py-1 rounded-full bg-emerald-500 text-slate-950 font-black text-[10px] uppercase tracking-wider">
+                        {beach.quality}
+                      </span>
+                      <span className="px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-sm text-white text-[10px] font-semibold">
+                        {beach.waveHeight}
+                      </span>
                     </div>
-
-                    <div className="p-4 space-y-3">
-                      <div className="grid grid-cols-3 gap-2 text-center bg-[#090C12] p-2.5 rounded-xl border border-slate-800/80">
-                        <div>
-                          <span className="text-[10px] text-slate-400 block uppercase">Wave</span>
-                          <span className="text-xs font-bold text-cyan-400">{beach.waveHeight}</span>
-                        </div>
-                        <div>
-                          <span className="text-[10px] text-slate-400 block uppercase">Wind</span>
-                          <span className="text-xs font-bold text-purple-400">{beach.windMph} mph</span>
-                        </div>
-                        <div>
-                          <span className="text-[10px] text-slate-400 block uppercase">Swell</span>
-                          <span className="text-xs font-bold text-slate-200">{beach.swellPeriod}</span>
-                        </div>
-                      </div>
-
-                      <p className="text-xs text-slate-400 line-clamp-2">
-                        {beach.description}
-                      </p>
-
-                      <div className="flex items-center justify-between text-xs text-slate-300 pt-1 border-t border-slate-800/60">
-                        <span className="text-cyan-400 font-medium">{beach.vanCount} active vans</span>
-                        <span className="text-purple-300 font-medium">{beach.boardCount} boards available</span>
-                      </div>
+                    <div className="absolute bottom-3 left-3 right-3">
+                      <h3 className="text-base font-bold text-white">{beach.name}</h3>
+                      <p className="text-xs text-slate-300">{beach.breakName} • {beach.city}, {beach.state}</p>
                     </div>
                   </div>
 
-                  <div className="p-4 pt-0 flex gap-2">
+                  <div className="p-4 space-y-3">
+                    <p className="text-xs text-slate-400 line-clamp-2">{beach.description}</p>
+
+                    <div className="flex items-center justify-between text-xs text-slate-300 pt-2 border-t border-slate-800">
+                      <span className="flex items-center gap-1 text-cyan-400">
+                        <Car className="w-3.5 h-3.5" />
+                        {beach.vanCount} Mobile Vans
+                      </span>
+                      <span>{beach.boardCount} boards available</span>
+                    </div>
+
                     <button
                       onClick={() => {
                         setSelectedBeach(beach)
                         setShowBeachModal(true)
                       }}
-                      className="flex-1 py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition text-center"
+                      className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-cyan-600 hover:text-white text-slate-200 font-bold text-xs transition"
                     >
-                      12h Forecast
-                    </button>
-                    <button
-                      onClick={() => {
-                        const van = vans.find(v => v.beachId === beach.id) || vans[0]
-                        setSelectedBeach(beach)
-                        setSelectedVan(van)
-                        setShowVanModal(true)
-                      }}
-                      className="py-2 px-3 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold text-xs transition"
-                    >
-                      Browse Van
+                      View Conditions & Board Quiver
                     </button>
                   </div>
                 </div>
@@ -1612,231 +1776,182 @@ export default function App() {
           </div>
         )}
 
-        {/* TAB 3: LIVE MAP */}
+        {/* --- TAB: MAP --- */}
         {activeTab === 'map' && (
           <div className="space-y-6">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
+            <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-2xl font-black tracking-tight text-white">Live Van Fleet Map</h2>
-                <p className="text-xs text-slate-400">Real-time GPS tracking of mobile rental vans and live beach break conditions</p>
-              </div>
-              <div className="flex items-center gap-3 text-xs text-slate-300">
-                <span className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-sm shadow-cyan-400 animate-ping" />
-                  <span>SurfPass Van</span>
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-purple-400" />
-                  <span>Surf Break</span>
-                </span>
+                <h1 className="text-2xl md:text-3xl font-black text-white tracking-tight">
+                  Live SurfPass Van Fleet Map
+                </h1>
+                <p className="text-xs md:text-sm text-slate-400">
+                  Track mobile surfboard rental vans parked right by active surf breaks.
+                </p>
               </div>
             </div>
 
-            <div className="relative rounded-3xl border border-slate-800 bg-[#0B0F19] overflow-hidden h-[540px] shadow-2xl">
-              <svg className="w-full h-full object-cover" viewBox="0 0 1000 600">
-                <defs>
-                  <linearGradient id="waterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#061325" />
-                    <stop offset="100%" stopColor="#020b17" />
-                  </linearGradient>
-                  <linearGradient id="sandGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#1a2436" />
-                    <stop offset="100%" stopColor="#101726" />
-                  </linearGradient>
-                </defs>
-
-                <rect width="1000" height="600" fill="url(#waterGrad)" />
-                <path d="M 0 0 L 1000 0 L 1000 280 C 850 260 700 310 550 330 C 400 350 200 310 0 340 Z" fill="url(#sandGrad)" stroke="#2e3d56" strokeWidth="2" />
-                <path d="M 0 325 C 200 295 400 335 550 315 C 700 295 850 245 1000 265" fill="none" stroke="#38bdf8" strokeWidth="1.5" strokeDasharray="4 4" strokeOpacity="0.4" />
-                <line x1="220" y1="100" x2="220" y2="320" stroke="#334155" strokeWidth="1" strokeOpacity="0.4" />
-                <line x1="420" y1="80" x2="420" y2="330" stroke="#334155" strokeWidth="1" strokeOpacity="0.4" />
-                <line x1="740" y1="100" x2="740" y2="290" stroke="#334155" strokeWidth="1" strokeOpacity="0.4" />
-                <text x="225" y="150" fill="#64748b" fontSize="11" fontFamily="sans-serif">Beach 92nd St</text>
-                <text x="425" y="150" fill="#64748b" fontSize="11" fontFamily="sans-serif">Beach 90th St</text>
-                <text x="745" y="150" fill="#64748b" fontSize="11" fontFamily="sans-serif">Beach 67th St</text>
-                <text x="80" y="520" fill="#0284c7" fontSize="18" fontWeight="bold" fillOpacity="0.2" fontFamily="sans-serif">ATLANTIC OCEAN</text>
-              </svg>
-
-              <div
-                className="absolute top-[48%] left-[45%] -translate-x-1/2 -translate-y-1/2 cursor-pointer group"
-                onClick={() => {
-                  setSelectedBeach(BEACHES[0])
-                  setShowBeachModal(true)
-                }}
-              >
-                <div className="flex flex-col items-center">
-                  <div className="px-2 py-1 rounded-md bg-purple-900/90 border border-purple-500 text-[10px] font-bold text-purple-200 shadow-lg mb-1 whitespace-nowrap">
-                    Rockaway 90th • 2–3 ft GOOD
+            {/* Map Container */}
+            <div className="relative h-[550px] rounded-3xl overflow-hidden border border-slate-800 bg-[#0B111E] shadow-2xl">
+              {/* Coastal Map Simulation */}
+              <div className="absolute inset-0 bg-[#071324] flex flex-col justify-between p-6 opacity-90">
+                <div className="h-2/3 bg-[#0A1A2F] rounded-2xl border border-cyan-900/30 relative overflow-hidden">
+                  {/* Ocean Lines */}
+                  <div className="absolute inset-0 flex flex-col justify-around opacity-15">
+                    <div className="border-b border-cyan-400 border-dashed" />
+                    <div className="border-b border-cyan-400 border-dashed" />
+                    <div className="border-b border-cyan-400 border-dashed" />
                   </div>
-                  <div className="w-7 h-7 rounded-full bg-purple-600 border-2 border-white flex items-center justify-center text-white shadow-lg shadow-purple-600/50 group-hover:scale-110 transition">
-                    <Waves className="w-4 h-4" />
-                  </div>
-                </div>
-              </div>
 
-              <div
-                className="absolute top-[42%] left-[42%] -translate-x-1/2 -translate-y-1/2 cursor-pointer group"
-                onClick={() => {
-                  setSelectedVan(vans[0])
-                  setShowVanModal(true)
-                }}
-              >
-                <div className="flex flex-col items-center">
-                  <div className="px-2.5 py-1 rounded-md bg-cyan-950/95 border border-cyan-400 text-xs font-bold text-cyan-300 shadow-xl mb-1 whitespace-nowrap flex items-center gap-1.5">
-                    <Car className="w-3.5 h-3.5 text-cyan-400" />
-                    <span>Van #12 (8 boards ready)</span>
+                  {/* Coastline visual */}
+                  <div className="absolute bottom-0 left-0 right-0 h-16 bg-[#162032] border-t-2 border-amber-300/30 flex items-center justify-center">
+                    <span className="text-xs font-bold uppercase tracking-widest text-slate-400">
+                      Rockaway Beach Boardwalk & Ocean Parkway
+                    </span>
                   </div>
-                  <div className="relative">
-                    <div className="w-9 h-9 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 border-2 border-white flex items-center justify-center text-white shadow-xl shadow-cyan-500/50 group-hover:scale-110 transition">
-                      <Car className="w-5 h-5" />
+
+                  {/* Van Marker 1 */}
+                  <div
+                    onClick={() => {
+                      setSelectedVan(VANS[0])
+                      setShowVanModal(true)
+                    }}
+                    className="absolute top-1/3 left-1/3 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group"
+                  >
+                    <div className="flex items-center gap-2 bg-[#0E1320] border-2 border-cyan-400 px-3 py-1.5 rounded-full shadow-lg shadow-cyan-500/30 group-hover:scale-110 transition">
+                      <Car className="w-4 h-4 text-cyan-400" />
+                      <span className="text-xs font-bold text-white">Van #12 (Rockaway Runner)</span>
+                      <span className="text-[10px] bg-emerald-500 text-slate-950 font-black px-1.5 py-0.5 rounded-full">8 Boards</span>
                     </div>
-                    <span className="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-black animate-pulse" />
                   </div>
-                </div>
-              </div>
 
-              <div
-                className="absolute top-[38%] left-[74%] -translate-x-1/2 -translate-y-1/2 cursor-pointer group"
-                onClick={() => {
-                  setSelectedVan(vans[1])
-                  setShowVanModal(true)
-                }}
-              >
-                <div className="flex flex-col items-center">
-                  <div className="px-2 py-1 rounded-md bg-slate-900/90 border border-slate-700 text-[11px] font-bold text-slate-200 shadow-lg mb-1 whitespace-nowrap">
-                    Van #07 (9 boards ready)
-                  </div>
-                  <div className="w-8 h-8 rounded-xl bg-slate-800 border-2 border-cyan-400 flex items-center justify-center text-cyan-300 shadow-lg group-hover:scale-110 transition">
-                    <Car className="w-4 h-4" />
+                  {/* Van Marker 2 */}
+                  <div
+                    onClick={() => {
+                      setSelectedVan(VANS[1])
+                      setShowVanModal(true)
+                    }}
+                    className="absolute top-1/2 right-1/4 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group"
+                  >
+                    <div className="flex items-center gap-2 bg-[#0E1320] border-2 border-blue-400 px-3 py-1.5 rounded-full shadow-lg group-hover:scale-110 transition">
+                      <Car className="w-4 h-4 text-blue-400" />
+                      <span className="text-xs font-bold text-white">Van #07 (Boardwalk Cruiser)</span>
+                      <span className="text-[10px] bg-emerald-500 text-slate-950 font-black px-1.5 py-0.5 rounded-full">9 Boards</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="absolute bottom-4 left-4 right-4 max-w-md mx-auto bg-[#0A0E18]/95 backdrop-blur-md border border-slate-800 p-4 rounded-2xl shadow-2xl flex items-center justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white font-black text-xs">
-                    #12
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-white">SurfPass Van #12 — Rockaway Runner</h4>
-                    <p className="text-[11px] text-cyan-300 font-medium">Beach 90th St • 0.2 mi away (3 min walk)</p>
-                  </div>
+                {/* Van Summary Bottom Dock */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {VANS.slice(0, 2).map(van => (
+                    <div
+                      key={van.id}
+                      onClick={() => {
+                        setSelectedVan(van)
+                        setShowVanModal(true)
+                      }}
+                      className="p-4 rounded-2xl bg-[#0E1320]/90 backdrop-blur-md border border-slate-800 hover:border-cyan-500/50 cursor-pointer transition flex items-center justify-between"
+                    >
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <h4 className="text-sm font-bold text-white">{van.fleetNumber}</h4>
+                          <span className="text-xs text-cyan-400 font-medium">({van.nickname})</span>
+                        </div>
+                        <p className="text-xs text-slate-400">{van.spot}</p>
+                        <p className="text-[11px] text-emerald-400 font-semibold">{van.boardsAvailable} boards available right now</p>
+                      </div>
+                      <ChevronRight className="w-5 h-5 text-slate-400" />
+                    </div>
+                  ))}
                 </div>
-                <button
-                  onClick={() => {
-                    setSelectedVan(vans[0])
-                    setShowVanModal(true)
-                  }}
-                  className="px-3 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs transition whitespace-nowrap"
-                >
-                  View Boards
-                </button>
               </div>
             </div>
           </div>
         )}
 
-        {/* TAB 4: RENTALS */}
+        {/* --- TAB: RENTALS --- */}
         {activeTab === 'rentals' && (
-          <div className="space-y-6 max-w-3xl mx-auto">
+          <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-black tracking-tight text-white">My Rentals & Active Passes</h2>
-              <p className="text-xs text-slate-400">Manage active surfboard sessions, digital rental passes, and refundable deposits</p>
+              <h1 className="text-2xl md:text-3xl font-black text-white tracking-tight">
+                My Rentals & Passes
+              </h1>
+              <p className="text-xs md:text-sm text-slate-400">
+                Active surf passes, van pickup check-in, and automated deposit refund receipts.
+              </p>
             </div>
 
             {rentals.length === 0 ? (
-              <div className="rounded-2xl border border-slate-800 bg-[#0F1420] p-12 text-center space-y-4">
+              <div className="rounded-3xl bg-[#0E1320] border border-slate-800 p-12 text-center space-y-4">
                 <Ticket className="w-12 h-12 text-slate-600 mx-auto" />
-                <h3 className="text-lg font-bold text-white">No active rentals right now</h3>
+                <h3 className="text-lg font-bold text-white">No active rentals</h3>
                 <p className="text-xs text-slate-400 max-w-sm mx-auto">
-                  Browse nearby mobile vans and reserve a board in seconds with USDC on Solana, BTC, or Apple Pay.
+                  Check out today's waves and reserve a board from the nearest mobile SurfPass van.
                 </p>
                 <button
                   onClick={() => setActiveTab('home')}
-                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold text-xs shadow-md"
+                  className="px-5 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-bold text-xs"
                 >
-                  Rent a Board
+                  Find Waves & Boards
                 </button>
               </div>
             ) : (
               <div className="space-y-4">
-                {rentals.map((pass) => (
+                {rentals.map(rental => (
                   <div
-                    key={pass.id}
-                    className="rounded-2xl border border-cyan-800/40 bg-gradient-to-b from-[#0F1524] to-[#0A0D15] p-5 shadow-xl space-y-4"
+                    key={rental.id}
+                    className="rounded-3xl bg-[#0E1320] border border-slate-800 p-6 space-y-4 shadow-xl"
                   >
-                    <div className="flex items-center justify-between pb-3 border-b border-slate-800/80">
-                      <div className="flex items-center gap-2.5">
-                        <div className="w-9 h-9 rounded-xl bg-cyan-950 border border-cyan-700/60 flex items-center justify-center text-cyan-400">
-                          <Ticket className="w-5 h-5" />
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-800">
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider ${
+                            rental.status === 'ACTIVE'
+                              ? 'bg-emerald-500 text-slate-950'
+                              : 'bg-slate-800 text-slate-400'
+                          }`}>
+                            {rental.status}
+                          </span>
+                          <span className="text-xs font-mono text-slate-400">{rental.id}</span>
                         </div>
-                        <div>
-                          <span className="text-[10px] uppercase font-bold text-cyan-400 tracking-wider">SurfPass Rental Pass</span>
-                          <h4 className="text-sm font-black text-white">{pass.id}</h4>
-                        </div>
+                        <h3 className="text-lg font-bold text-white mt-1">{rental.boardName}</h3>
+                        <p className="text-xs text-slate-400">{rental.location} • {rental.vanName} ({rental.vanNickname})</p>
+                      </div>
+
+                      <div className="text-right">
+                        <p className="text-xs text-slate-400">Payment: <span className="font-bold text-white">{rental.paymentMethod}</span></p>
+                        <p className="text-xs text-emerald-400 font-semibold">
+                          Deposit: ${rental.deposit} ({rental.depositStatus})
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
+                      <div className="flex items-center gap-2 text-xs text-slate-300">
+                        <Clock className="w-4 h-4 text-cyan-400" />
+                        <span>Rental Duration: {rental.durationLabel} ({rental.startTime} – {rental.endTime})</span>
                       </div>
 
                       <div className="flex items-center gap-2">
-                        {pass.status === 'ACTIVE' && (
-                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-950 border border-emerald-700 text-emerald-400 flex items-center gap-1">
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                            SESSION ACTIVE
-                          </span>
-                        )}
-                        {pass.status === 'COMPLETED' && (
-                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-300">
-                            RETURNED & SETTLED
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-                      <div>
-                        <span className="text-slate-400 block text-[10px]">Board Model</span>
-                        <span className="font-bold text-white block truncate">{pass.boardName}</span>
-                        <span className="text-[10px] text-slate-400">{pass.boardVolume} • {pass.boardType}</span>
-                      </div>
-                      <div>
-                        <span className="text-slate-400 block text-[10px]">Van Location</span>
-                        <span className="font-bold text-white block truncate">{pass.vanNickname}</span>
-                        <span className="text-[10px] text-cyan-300">{pass.spot}</span>
-                      </div>
-                      <div>
-                        <span className="text-slate-400 block text-[10px]">Rental Window</span>
-                        <span className="font-bold text-white block">{pass.startTime} – {pass.endTime}</span>
-                        <span className="text-[10px] text-slate-400">{pass.durationLabel}</span>
-                      </div>
-                      <div>
-                        <span className="text-slate-400 block text-[10px]">Security Deposit</span>
-                        <span className={`font-bold block ${pass.depositStatus === 'HELD' ? 'text-amber-400' : 'text-emerald-400'}`}>
-                          ${pass.deposit} {pass.depositStatus === 'HELD' ? 'HELD' : 'RELEASED ✓'}
-                        </span>
-                        <span className="text-[10px] text-slate-400">Paid via {pass.paymentMethod}</span>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/80">
-                      <button
-                        onClick={() => {
-                          setViewingPass(pass)
-                          setShowPassModal(true)
-                        }}
-                        className="flex-1 py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition flex items-center justify-center gap-1.5"
-                      >
-                        <QrCode className="w-3.5 h-3.5 text-cyan-400" />
-                        <span>Show Rental Pass QR</span>
-                      </button>
-
-                      {pass.status === 'ACTIVE' && (
                         <button
-                          onClick={() => handleReturnBoard(pass.id)}
-                          className="flex-1 py-2 px-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs transition flex items-center justify-center gap-1.5 shadow-md"
+                          onClick={() => {
+                            setActiveRentalPass(rental)
+                            setShowPassModal(true)
+                          }}
+                          className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition flex items-center gap-1.5"
                         >
-                          <RotateCcw className="w-3.5 h-3.5" />
-                          <span>Return Board & Release ${pass.deposit} Deposit</span>
+                          <QrCode className="w-4 h-4 text-cyan-400" />
+                          <span>View Digital Pass</span>
                         </button>
-                      )}
+
+                        {rental.status === 'ACTIVE' && (
+                          <button
+                            onClick={() => handleReturnBoard(rental.id)}
+                            className="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-slate-950 font-bold text-xs hover:brightness-110 transition"
+                          >
+                            Return Board & Release ${rental.deposit} Deposit
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -1845,77 +1960,49 @@ export default function App() {
           </div>
         )}
 
-        {/* TAB 5: PROFILE */}
+        {/* --- TAB: PROFILE --- */}
         {activeTab === 'profile' && (
-          <div className="max-w-2xl mx-auto space-y-6">
-            <div className="rounded-2xl border border-slate-800 bg-[#0F1420] p-6 shadow-xl space-y-4">
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-cyan-500/20">
-                  P
-                </div>
-                <div>
-                  <h3 className="text-xl font-black text-white">Patrick</h3>
-                  <p className="text-xs text-slate-400">Home Break: Rockaway Beach, NY</p>
-                  <div className="mt-1 flex items-center gap-2">
-                    <span className="px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800 text-[10px] font-bold">
-                      Intermediate Surfer
-                    </span>
-                    <span className="px-2 py-0.5 rounded bg-purple-950 text-purple-300 border border-purple-800 text-[10px] font-bold">
-                      SurfPass Score 94/100
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-3 gap-3 text-center bg-[#090C12] p-3 rounded-xl border border-slate-800">
-                <div>
-                  <span className="text-[10px] text-slate-400 uppercase block">Sessions</span>
-                  <span className="text-base font-extrabold text-white">17</span>
-                </div>
-                <div>
-                  <span className="text-[10px] text-slate-400 uppercase block">Boards Rented</span>
-                  <span className="text-base font-extrabold text-cyan-400">12</span>
-                </div>
-                <div>
-                  <span className="text-[10px] text-slate-400 uppercase block">Beaches Visited</span>
-                  <span className="text-base font-extrabold text-purple-400">6</span>
-                </div>
-              </div>
+          <div className="space-y-6 max-w-3xl mx-auto">
+            <div>
+              <h1 className="text-2xl md:text-3xl font-black text-white tracking-tight">
+                Surfer Profile
+              </h1>
+              <p className="text-xs md:text-sm text-slate-400">
+                Your SurfPass reputation, connected settlement wallet, and rental history.
+              </p>
             </div>
 
-            <div className="rounded-2xl border border-slate-800 bg-[#0F1420] p-6 shadow-xl space-y-4">
-              <h4 className="text-sm font-bold text-white uppercase tracking-wider">Payment & Wallet Rails</h4>
-              
-              <div className="space-y-2">
-                <div className="p-3 rounded-xl bg-[#090C12] border border-slate-800 flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-lg bg-cyan-950 flex items-center justify-center text-cyan-400">
-                      <Wallet className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <span className="text-xs font-bold text-white block">Solana Wallet (USDC)</span>
-                      <span className="text-[10px] text-slate-400">{walletConnected ? walletAddress : 'Not connected'}</span>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => setShowWalletModal(true)}
-                    className="px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-cyan-300 transition"
-                  >
-                    {walletConnected ? 'Manage' : 'Connect'}
-                  </button>
+            <div className="rounded-3xl bg-[#0E1320] border border-slate-800 p-6 space-y-6">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-black text-xl shadow-lg">
+                  SP
                 </div>
+                <div>
+                  <h3 className="text-lg font-bold text-white">Patrick (Surfer)</h3>
+                  <p className="text-xs text-slate-400">Home Break: Rockaway Beach, NY</p>
+                  <p className="text-xs text-cyan-400 font-semibold mt-0.5">SurfPass Reputation Score: 98/100</p>
+                </div>
+              </div>
 
-                <div className="p-3 rounded-xl bg-[#090C12] border border-slate-800 flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-lg bg-amber-950 flex items-center justify-center text-amber-400">
-                      <Zap className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <span className="text-xs font-bold text-white block">Bitcoin Payment Rail</span>
-                      <span className="text-[10px] text-slate-400">Settled via Tatum Blockchain Gateway</span>
-                    </div>
+              {/* Wallet Balances Card */}
+              <div className="p-4 rounded-2xl bg-[#131826] border border-slate-700/80 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Connected Wallet</span>
+                  <span className="text-xs font-mono text-emerald-400">{walletConnected ? walletAddress : 'Disconnected'}</span>
+                </div>
+                <div className="grid grid-cols-3 gap-2 text-center pt-1">
+                  <div className="p-2 rounded-xl bg-slate-900 border border-slate-800">
+                    <p className="text-[10px] text-slate-400">USDC (Solana)</p>
+                    <p className="text-sm font-bold text-white">${walletBalanceUsdc.toFixed(2)}</p>
                   </div>
-                  <span className="text-[10px] font-bold text-emerald-400">ACTIVE</span>
+                  <div className="p-2 rounded-xl bg-slate-900 border border-slate-800">
+                    <p className="text-[10px] text-slate-400">SOL</p>
+                    <p className="text-sm font-bold text-white">{walletBalanceSol.toFixed(2)} SOL</p>
+                  </div>
+                  <div className="p-2 rounded-xl bg-slate-900 border border-slate-800">
+                    <p className="text-[10px] text-slate-400">Bitcoin</p>
+                    <p className="text-sm font-bold text-white">{walletBalanceBtc.toFixed(4)} BTC</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1923,864 +2010,555 @@ export default function App() {
         )}
       </main>
 
-      {/* PERSISTENT BOTTOM NAVIGATION */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#07090E]/95 backdrop-blur-lg border-t border-slate-800/90 py-2 px-4">
-        <div className="max-w-md mx-auto flex items-center justify-between text-[11px] font-semibold">
+      {/* --- PERSISTENT MOBILE / FLOATING BOTTOM NAV BAR --- */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#0B0F19]/95 backdrop-blur-lg border-t border-slate-800 py-2.5 px-4 shadow-2xl">
+        <div className="max-w-md mx-auto flex items-center justify-around">
           <button
-            onClick={() => {
-              setActiveTab('home')
-              window.scrollTo({ top: 0, behavior: 'smooth' })
-            }}
+            onClick={() => setActiveTab('home')}
             className={`flex flex-col items-center gap-1 transition ${
-              activeTab === 'home' ? 'text-cyan-400' : 'text-slate-400 hover:text-slate-200'
+              activeTab === 'home' ? 'text-cyan-400 font-bold' : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             <Waves className="w-5 h-5" />
-            <span>Home</span>
+            <span className="text-[10px] tracking-wider uppercase">Home</span>
           </button>
-
           <button
-            onClick={() => {
-              setActiveTab('explore')
-              window.scrollTo({ top: 0, behavior: 'smooth' })
-            }}
+            onClick={() => setActiveTab('explore')}
             className={`flex flex-col items-center gap-1 transition ${
-              activeTab === 'explore' ? 'text-cyan-400' : 'text-slate-400 hover:text-slate-200'
+              activeTab === 'explore' ? 'text-cyan-400 font-bold' : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             <Compass className="w-5 h-5" />
-            <span>Explore</span>
+            <span className="text-[10px] tracking-wider uppercase">Explore</span>
           </button>
-
           <button
-            onClick={() => {
-              setActiveTab('map')
-              window.scrollTo({ top: 0, behavior: 'smooth' })
-            }}
+            onClick={() => setActiveTab('map')}
             className={`flex flex-col items-center gap-1 transition ${
-              activeTab === 'map' ? 'text-cyan-400' : 'text-slate-400 hover:text-slate-200'
+              activeTab === 'map' ? 'text-cyan-400 font-bold' : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             <MapPin className="w-5 h-5" />
-            <span>Live Map</span>
+            <span className="text-[10px] tracking-wider uppercase">Live Map</span>
           </button>
-
           <button
-            onClick={() => {
-              setActiveTab('rentals')
-              window.scrollTo({ top: 0, behavior: 'smooth' })
-            }}
-            className={`flex flex-col items-center gap-1 relative transition ${
-              activeTab === 'rentals' ? 'text-cyan-400' : 'text-slate-400 hover:text-slate-200'
+            onClick={() => setActiveTab('rentals')}
+            className={`flex flex-col items-center gap-1 transition relative ${
+              activeTab === 'rentals' ? 'text-cyan-400 font-bold' : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             <Ticket className="w-5 h-5" />
-            <span>Rentals</span>
-            {rentals.filter(r => r.status === 'ACTIVE').length > 0 && (
-              <span className="absolute -top-1 -right-1.5 w-4 h-4 bg-cyan-400 text-black text-[9px] font-black rounded-full flex items-center justify-center">
-                {rentals.filter(r => r.status === 'ACTIVE').length}
-              </span>
+            <span className="text-[10px] tracking-wider uppercase">Rentals</span>
+            {rentals.some(r => r.status === 'ACTIVE') && (
+              <span className="absolute top-0 right-1 w-2 h-2 rounded-full bg-cyan-400" />
             )}
           </button>
-
           <button
-            onClick={() => {
-              setActiveTab('profile')
-              window.scrollTo({ top: 0, behavior: 'smooth' })
-            }}
+            onClick={() => setActiveTab('profile')}
             className={`flex flex-col items-center gap-1 transition ${
-              activeTab === 'profile' ? 'text-cyan-400' : 'text-slate-400 hover:text-slate-200'
+              activeTab === 'profile' ? 'text-cyan-400 font-bold' : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             <User className="w-5 h-5" />
-            <span>Profile</span>
+            <span className="text-[10px] tracking-wider uppercase">Profile</span>
           </button>
         </div>
       </div>
 
-      {/* MODAL 1: BEACH DETAIL */}
+      {/* ========================================================================= */}
+      {/* MODALS & OVERLAYS (WITH VISIBLE TOP-RIGHT 'X' & ESCAPE HANDLERS) */}
+      {/* ========================================================================= */}
+
+      {/* 1. BEACH DETAIL MODAL */}
       {showBeachModal && selectedBeach && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-[#0D121D] border border-slate-800 rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl relative my-8">
-            <div className="relative h-56 overflow-hidden">
-              <img src={selectedBeach.image} alt={selectedBeach.name} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0D121D] via-black/40 to-transparent" />
-              
-              <button
-                onClick={() => setShowBeachModal(false)}
-                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center border border-white/20 transition"
-              >
-                <X className="w-5 h-5" />
-              </button>
+          <div className="bg-[#0E1320] border border-slate-800 rounded-3xl max-w-2xl w-full p-6 space-y-6 relative max-h-[90vh] overflow-y-auto">
+            <button
+              onClick={() => setShowBeachModal(false)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
+            >
+              <X className="w-5 h-5" />
+            </button>
 
-              <div className="absolute bottom-3 left-4 right-4">
-                <span className="px-2.5 py-1 rounded-full text-xs font-black bg-emerald-500 text-black">
-                  {selectedBeach.quality} • {selectedBeach.waveHeight}
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-black text-white mt-1">{selectedBeach.name}</h2>
-                <p className="text-xs text-slate-300">{selectedBeach.breakName} • {selectedBeach.city}, {selectedBeach.state}</p>
+            <div>
+              <span className="px-2.5 py-1 rounded-full bg-emerald-500 text-slate-950 font-black text-[10px] uppercase tracking-wider">
+                {selectedBeach.quality} Surf Conditions
+              </span>
+              <h2 className="text-2xl font-black text-white mt-2">{selectedBeach.name}</h2>
+              <p className="text-xs text-slate-400">{selectedBeach.breakName} • {selectedBeach.city}, {selectedBeach.state}</p>
+            </div>
+
+            {/* 12-Hour Forecast Curve */}
+            <div className="space-y-2 p-4 rounded-2xl bg-[#131826] border border-slate-800">
+              <div className="flex items-center justify-between text-xs">
+                <span className="font-bold text-slate-300">12-Hour Wave Forecast (ft)</span>
+                <span className="text-cyan-400 font-semibold">Best: {selectedBeach.bestWindow}</span>
+              </div>
+              <div className="h-32 w-full pt-2">
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={selectedBeach.hourly}>
+                    <defs>
+                      <linearGradient id="waveCurve" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.4} />
+                        <stop offset="95%" stopColor="#06b6d4" stopOpacity={0} />
+                      </linearGradient>
+                    </defs>
+                    <XAxis dataKey="time" stroke="#64748b" fontSize={10} />
+                    <YAxis stroke="#64748b" fontSize={10} domain={[0, 6]} />
+                    <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px' }} />
+                    <Area type="monotone" dataKey="heightFt" stroke="#06b6d4" strokeWidth={2} fill="url(#waveCurve)" />
+                  </AreaChart>
+                </ResponsiveContainer>
               </div>
             </div>
 
-            <div className="p-5 space-y-5">
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center bg-[#07090E] p-3 rounded-2xl border border-slate-800">
-                <div>
-                  <span className="text-[10px] text-slate-400 block uppercase">Wave Height</span>
-                  <span className="text-base font-extrabold text-white">{selectedBeach.waveHeight}</span>
-                  <span className="text-[10px] text-cyan-400 block">{selectedBeach.waveSub}</span>
-                </div>
-                <div>
-                  <span className="text-[10px] text-slate-400 block uppercase">Wind</span>
-                  <span className="text-base font-extrabold text-white">{selectedBeach.windMph} mph</span>
-                  <span className="text-[10px] text-purple-400 block">{selectedBeach.windSub}</span>
-                </div>
-                <div>
-                  <span className="text-[10px] text-slate-400 block uppercase">Tide</span>
-                  <span className="text-base font-extrabold text-white">{selectedBeach.tide}</span>
-                  <span className="text-[10px] text-slate-400 block">{selectedBeach.tideSub}</span>
-                </div>
-                <div>
-                  <span className="text-[10px] text-slate-400 block uppercase">Water Temp</span>
-                  <span className="text-base font-extrabold text-white">{selectedBeach.waterTemp}</span>
-                  <span className="text-[10px] text-emerald-400 block">Air {selectedBeach.airTemp}</span>
-                </div>
-              </div>
-
-              <div className="bg-[#07090E] p-4 rounded-2xl border border-slate-800 space-y-2">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="font-bold text-white flex items-center gap-1.5">
-                    <Activity className="w-3.5 h-3.5 text-cyan-400" />
-                    12-Hour Wave Height & Forecast Curve
-                  </span>
-                  <span className="text-[11px] text-emerald-400 font-semibold">
-                    Best Window: {selectedBeach.bestWindow}
-                  </span>
-                </div>
-
-                <div className="h-36 w-full pt-2">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={selectedBeach.hourly} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                      <defs>
-                        <linearGradient id="waveCurve" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.4} />
-                          <stop offset="95%" stopColor="#06b6d4" stopOpacity={0.0} />
-                        </linearGradient>
-                      </defs>
-                      <XAxis dataKey="time" stroke="#475569" fontSize={10} tickLine={false} />
-                      <YAxis stroke="#475569" fontSize={10} tickLine={false} domain={[0, 'dataMax + 1']} />
-                      <Tooltip
-                        contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px', fontSize: '11px' }}
-                        formatter={(val: number) => [`${val} ft`, 'Wave Height']}
-                      />
-                      <Area type="monotone" dataKey="heightFt" stroke="#06b6d4" strokeWidth={2.5} fill="url(#waveCurve)" />
-                    </AreaChart>
-                  </ResponsiveContainer>
-                </div>
-                <p className="text-[11px] text-slate-400 text-center">
-                  {selectedBeach.bestWindowSub}
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-300">
-                  SurfPass Vans at {selectedBeach.name}
-                </h4>
-                
-                <div className="space-y-2">
-                  {vans.filter(v => v.beachId === selectedBeach.id).map(van => (
-                    <div
-                      key={van.id}
-                      className="p-3.5 rounded-xl bg-[#07090E] border border-slate-800 hover:border-slate-700 transition flex items-center justify-between gap-3"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-xl bg-cyan-950 border border-cyan-800 text-cyan-400 flex items-center justify-center font-bold text-xs">
-                          {van.fleetNumber.replace('Van ', '')}
-                        </div>
-                        <div>
-                          <h5 className="text-xs font-bold text-white">{van.fleetNumber} — {van.nickname}</h5>
-                          <p className="text-[11px] text-slate-400">{van.spot} • {van.distance} ({van.walkTime})</p>
-                        </div>
-                      </div>
-
-                      <button
-                        onClick={() => {
-                          setSelectedVan(van)
-                          setShowBeachModal(false)
-                          setShowVanModal(true)
-                        }}
-                        className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold text-xs transition whitespace-nowrap"
-                      >
-                        View {van.boardsAvailable} Boards
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="p-4 bg-[#07090E] border-t border-slate-800/80 flex justify-between items-center">
-              <button
-                onClick={() => setShowBeachModal(false)}
-                className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs transition"
-              >
-                Close
-              </button>
-              <button
-                onClick={() => {
-                  setShowBeachModal(false)
-                  setShowRideRecommender(true)
-                }}
-                className="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition flex items-center gap-1.5"
-              >
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>What Should I Ride?</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* MODAL 2: VAN QUIVER */}
-      {showVanModal && selectedVan && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-[#0D121D] border border-slate-800 rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl relative my-8">
-            <div className="p-5 bg-gradient-to-r from-[#0F1524] to-[#0A0D15] border-b border-slate-800/80 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white">
-                  <Car className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-black text-white">{selectedVan.fleetNumber} — {selectedVan.nickname}</h3>
-                  <p className="text-xs text-cyan-300 font-medium">{selectedVan.spot} • {selectedVan.distance} ({selectedVan.walkTime})</p>
-                </div>
-              </div>
-              <button
-                onClick={() => setShowVanModal(false)}
-                className="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center transition"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-
-            <div className="p-5 space-y-4 max-h-[60vh] overflow-y-auto">
-              <div className="flex items-center justify-between text-xs text-slate-400 pb-1 border-b border-slate-800">
-                <span>Available Quiver ({selectedVan.boardsAvailable} boards ready)</span>
-                <span>Operating {selectedVan.hours}</span>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {boards.filter(b => b.vanId === selectedVan.id).map(board => (
+            {/* Van Fleet at this beach */}
+            <div className="space-y-3">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400">
+                Nearby Mobile Vans ({selectedBeach.vanCount})
+              </h3>
+              <div className="space-y-2">
+                {VANS.filter(v => v.beachId === selectedBeach.id || v.beachId === 'rockaway').map(van => (
                   <div
-                    key={board.id}
-                    className="p-4 rounded-2xl bg-[#07090E] border border-slate-800 flex flex-col justify-between space-y-3"
+                    key={van.id}
+                    onClick={() => {
+                      setSelectedVan(van)
+                      setShowBeachModal(false)
+                      setShowVanModal(true)
+                    }}
+                    className="p-3.5 rounded-xl bg-slate-900 hover:bg-slate-800/80 border border-slate-800 cursor-pointer flex items-center justify-between transition"
                   >
-                    <div className="flex gap-3">
-                      <div className="w-12 h-28 bg-slate-900/90 rounded-xl flex items-center justify-center p-1 border border-slate-800/80">
-                        <BoardSilhouette shapeType={board.shapeType} className="w-8 h-24" />
-                      </div>
-                      <div className="flex-1">
-                        <span className="text-[10px] uppercase font-bold text-cyan-400 block">{board.type}</span>
-                        <h4 className="text-sm font-bold text-white leading-tight">{board.name}</h4>
-                        <p className="text-[11px] text-slate-400 mt-0.5">{board.dimensions} • {board.volume}</p>
-                        <p className="text-[10px] text-purple-300 mt-1">{board.finSetup}</p>
-                      </div>
+                    <div>
+                      <h4 className="text-xs font-bold text-white">{van.fleetNumber} — {van.nickname}</h4>
+                      <p className="text-[11px] text-slate-400">{van.spot}</p>
                     </div>
-
-                    <div className="pt-2 border-t border-slate-800 flex items-center justify-between">
-                      <div>
-                        <span className="text-xs font-black text-cyan-400 block">${board.pricing.twoHours} / 2h</span>
-                        <span className="text-[10px] text-slate-400">+${board.deposit} deposit</span>
-                      </div>
-                      <button
-                        disabled={board.availableCount === 0}
-                        onClick={() => {
-                          setSelectedBoard(board)
-                          setShowVanModal(false)
-                          setShowReserveModal(true)
-                        }}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${
-                          board.availableCount > 0
-                            ? 'bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white shadow'
-                            : 'bg-slate-800 text-slate-500 cursor-not-allowed'
-                        }`}
-                      >
-                        {board.availableCount > 0 ? 'Reserve' : 'Reserved'}
-                      </button>
+                    <div className="text-right">
+                      <span className="text-xs font-bold text-emerald-400">{van.boardsAvailable} Boards</span>
+                      <p className="text-[10px] text-slate-500">{van.distance}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+      )}
 
-            <div className="p-4 bg-[#07090E] border-t border-slate-800/80 flex justify-end">
-              <button
-                onClick={() => setShowVanModal(false)}
-                className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs transition"
-              >
-                Back
-              </button>
+      {/* 2. VAN DETAIL MODAL */}
+      {showVanModal && selectedVan && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-[#0E1320] border border-slate-800 rounded-3xl max-w-xl w-full p-6 space-y-5 relative max-h-[90vh] overflow-y-auto">
+            <button
+              onClick={() => setShowVanModal(false)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-cyan-400">Mobile Rental Van</span>
+              <h2 className="text-2xl font-black text-white">{selectedVan.fleetNumber} ({selectedVan.nickname})</h2>
+              <p className="text-xs text-slate-400">{selectedVan.spot} • {selectedVan.hours}</p>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">Van Inventory Quiver</h4>
+              <div className="space-y-2">
+                {BOARDS.map(board => (
+                  <div
+                    key={board.id}
+                    className="p-3 rounded-xl bg-[#131826] border border-slate-800 flex items-center justify-between"
+                  >
+                    <div className="flex items-center gap-3">
+                      <BoardSilhouette shapeType={board.shapeType} className="w-8 h-16" />
+                      <div>
+                        <p className="text-xs font-bold text-white">{board.name}</p>
+                        <p className="text-[10px] text-slate-400">{board.dimensions} • ${board.pricing.twoHours}/2h</p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => handleStartCheckout(board)}
+                      className="py-1.5 px-3 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs transition"
+                    >
+                      Reserve
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* MODAL 3: CHECKOUT */}
-      {showReserveModal && selectedBoard && (
+      {/* 3. CHECKOUT & PAYMENT MODAL (WITH TATUM TRANSACTION DETECTION) */}
+      {showCheckoutModal && selectedBoard && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-[#0D121D] border border-slate-800 rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl relative my-8">
-            <div className="p-5 bg-gradient-to-r from-[#0F1524] to-[#0A0D15] border-b border-slate-800/80 flex items-center justify-between">
-              <div>
-                <span className="text-[10px] uppercase font-bold text-cyan-400">Instant Reservation</span>
-                <h3 className="text-lg font-black text-white">Reserve {selectedBoard.name}</h3>
-              </div>
-              <button
-                onClick={() => {
-                  setShowReserveModal(false)
-                  setPaymentStep('SELECT')
-                }}
-                className="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center transition"
-              >
-                <X className="w-4 h-4" />
-              </button>
+          <div className="bg-[#0E1320] border border-slate-800 rounded-3xl max-w-lg w-full p-6 space-y-6 relative max-h-[90vh] overflow-y-auto shadow-2xl">
+            <button
+              onClick={() => setShowCheckoutModal(false)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div>
+              <span className="text-[10px] uppercase font-bold text-cyan-400 tracking-wider">Fast Checkout</span>
+              <h2 className="text-xl font-black text-white mt-0.5">Reserve {selectedBoard.name}</h2>
+              <p className="text-xs text-slate-400">{selectedVan.fleetNumber} ({selectedVan.nickname}) • {selectedBeach.name}</p>
             </div>
 
-            <div className="p-5 space-y-4">
-              <div>
-                <label className="text-xs font-bold text-slate-300 block mb-2">Select Rental Duration</label>
-                <div className="grid grid-cols-3 gap-2">
-                  {[ 
-                    { id: '2hr', label: '2 Hours', price: selectedBoard.pricing.twoHours },
-                    { id: '4hr', label: '4 Hours', price: selectedBoard.pricing.fourHours },
-                    { id: 'full', label: 'Full Day', price: selectedBoard.pricing.fullDay }
-                  ].map(d => (
-                    <button
-                      key={d.id}
-                      onClick={() => setRentalDuration(d.id as any)}
-                      className={`p-2.5 rounded-xl border text-center transition ${
-                        rentalDuration === d.id
-                          ? 'bg-cyan-950/80 border-cyan-500 text-white'
-                          : 'bg-[#07090E] border-slate-800 text-slate-400 hover:text-white'
-                      }`}
-                    >
-                      <span className="text-xs font-bold block">{d.label}</span>
-                      <span className="text-[11px] text-cyan-400 font-semibold">${d.price}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="bg-[#07090E] p-3.5 rounded-xl border border-slate-800 space-y-1.5 text-xs">
-                <div className="flex justify-between text-slate-300">
-                  <span>Board Rental ({rentalDuration === '2hr' ? '2 Hours' : rentalDuration === '4hr' ? '4 Hours' : 'Full Day'})</span>
-                  <span className="font-semibold text-white">${currentPricing.rental}</span>
-                </div>
-                <div className="flex justify-between text-slate-300">
-                  <span>Damage & Ding Protection</span>
-                  <span className="font-semibold text-white">${currentPricing.protection}</span>
-                </div>
-                <div className="flex justify-between text-amber-400 font-medium">
-                  <span>Refundable Security Deposit</span>
-                  <span>${currentPricing.deposit} (Returned at drop-off)</span>
-                </div>
-                <div className="pt-2 border-t border-slate-800 flex justify-between font-black text-sm text-white">
-                  <span>Total Authorization</span>
-                  <span className="text-cyan-400">${currentPricing.total}</span>
-                </div>
-              </div>
-
-              <div>
-                <label className="text-xs font-bold text-slate-300 block mb-2">Choose Payment Method</label>
-                <div className="space-y-2">
-                  <div
-                    onClick={() => setPaymentRail('USDC')}
-                    className={`p-3 rounded-xl border cursor-pointer transition flex items-center justify-between ${
-                      paymentRail === 'USDC'
-                        ? 'bg-cyan-950/60 border-cyan-400 text-white'
-                        : 'bg-[#07090E] border-slate-800 text-slate-400 hover:border-slate-700'
+            {/* Duration Selector */}
+            <div className="space-y-2">
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-400">Select Duration</label>
+              <div className="grid grid-cols-3 gap-2">
+                {[
+                  { dur: 2 as const, label: '2 Hours', price: selectedBoard.pricing.twoHours },
+                  { dur: 4 as const, label: '4 Hours', price: selectedBoard.pricing.fourHours },
+                  { dur: 24 as const, label: 'Full Day', price: selectedBoard.pricing.fullDay }
+                ].map(item => (
+                  <button
+                    key={item.dur}
+                    onClick={() => setRentalDuration(item.dur)}
+                    className={`p-2.5 rounded-xl border text-center transition ${
+                      rentalDuration === item.dur
+                        ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300 font-bold'
+                        : 'bg-slate-900 border-slate-800 text-slate-300 hover:bg-slate-800'
                     }`}
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-cyan-900/80 flex items-center justify-center text-cyan-300 font-black text-xs">
-                        $
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-xs font-bold text-white">USDC on Solana</span>
-                          <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-cyan-400 text-black">RECOMMENDED</span>
-                        </div>
-                        <span className="text-[10px] text-slate-400">Instant settlement via Tatum multi-chain gateway</span>
-                      </div>
-                    </div>
-                    <span className="text-xs font-black text-cyan-400">{currentPricing.total} USDC</span>
-                  </div>
-
-                  <div
-                    onClick={() => setPaymentRail('BTC')}
-                    className={`p-3 rounded-xl border cursor-pointer transition flex items-center justify-between ${
-                      paymentRail === 'BTC'
-                        ? 'bg-amber-950/60 border-amber-400 text-white'
-                        : 'bg-[#07090E] border-slate-800 text-slate-400 hover:border-slate-700'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-amber-900/80 flex items-center justify-center text-amber-300 font-black text-xs">
-                        ₿
-                      </div>
-                      <div>
-                        <span className="text-xs font-bold text-white block">Bitcoin (BTC)</span>
-                        <span className="text-[10px] text-slate-400">Tatum mempool monitoring</span>
-                      </div>
-                    </div>
-                    <span className="text-xs font-black text-amber-400">0.00078 BTC</span>
-                  </div>
-
-                  <div
-                    onClick={() => setPaymentRail('CARD')}
-                    className={`p-3 rounded-xl border cursor-pointer transition flex items-center justify-between ${
-                      paymentRail === 'CARD'
-                        ? 'bg-purple-950/60 border-purple-400 text-white'
-                        : 'bg-[#07090E] border-slate-800 text-slate-400 hover:border-slate-700'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-purple-900/80 flex items-center justify-center text-purple-300">
-                        <CreditCard className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <span className="text-xs font-bold text-white block">Credit Card / Apple Pay</span>
-                        <span className="text-[10px] text-slate-400">Traditional consumer payment rail</span>
-                      </div>
-                    </div>
-                    <span className="text-xs font-black text-white">${currentPricing.total}</span>
-                  </div>
-                </div>
+                    <p className="text-xs">{item.label}</p>
+                    <p className="text-sm font-black mt-0.5">${item.price}</p>
+                  </button>
+                ))}
               </div>
+            </div>
 
-              {paymentStep !== 'SELECT' && (
-                <div className="p-4 rounded-xl bg-[#07090E] border border-cyan-500/50 space-y-2 text-center animate-fadeIn">
-                  {paymentStep === 'WAITING' && (
-                    <div className="space-y-1">
-                      <RefreshCw className="w-5 h-5 text-cyan-400 animate-spin mx-auto" />
-                      <p className="text-xs font-bold text-white">Waiting for payment broadcast...</p>
-                      <p className="text-[10px] text-slate-400">Listening on Tatum node listener</p>
-                    </div>
-                  )}
-                  {paymentStep === 'DETECTED' && (
-                    <div className="space-y-1">
-                      <CheckCircle2 className="w-5 h-5 text-cyan-400 mx-auto animate-bounce" />
-                      <p className="text-xs font-bold text-cyan-300">Transaction detected via Tatum</p>
-                      <p className="text-[10px] text-slate-400">Routing through Solana validator network</p>
-                    </div>
-                  )}
-                  {paymentStep === 'CONFIRMING' && (
-                    <div className="space-y-1">
-                      <Activity className="w-5 h-5 text-purple-400 animate-pulse mx-auto" />
-                      <p className="text-xs font-bold text-purple-300">Confirming on Solana block finality...</p>
-                      <p className="text-[10px] text-slate-400">Deposit held in escrow lock</p>
-                    </div>
-                  )}
-                  {paymentStep === 'CONFIRMED' && (
-                    <div className="space-y-1">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-400 mx-auto" />
-                      <p className="text-xs font-bold text-emerald-400">Payment confirmed ✓</p>
-                      <p className="text-[10px] text-slate-400">SurfPass Rental Pass generated!</p>
-                    </div>
-                  )}
+            {/* Payment Method Selector */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-400">Payment Rail</label>
+                <span className="text-[10px] text-cyan-400 font-medium">Powered by Tatum</span>
+              </div>
+              <div className="grid grid-cols-3 gap-2">
+                <button
+                  onClick={() => setPaymentMethod('USDC')}
+                  className={`p-3 rounded-xl border text-center transition ${
+                    paymentMethod === 'USDC'
+                      ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300 font-bold'
+                      : 'bg-slate-900 border-slate-800 text-slate-300 hover:bg-slate-800'
+                  }`}
+                >
+                  <p className="text-xs font-black">USDC</p>
+                  <p className="text-[10px] text-slate-400">Solana (Instant)</p>
+                </button>
+                <button
+                  onClick={() => setPaymentMethod('BTC')}
+                  className={`p-3 rounded-xl border text-center transition ${
+                    paymentMethod === 'BTC'
+                      ? 'bg-amber-500/20 border-amber-400 text-amber-300 font-bold'
+                      : 'bg-slate-900 border-slate-800 text-slate-300 hover:bg-slate-800'
+                  }`}
+                >
+                  <p className="text-xs font-black">Bitcoin</p>
+                  <p className="text-[10px] text-slate-400">BTC Rail</p>
+                </button>
+                <button
+                  onClick={() => setPaymentMethod('CARD')}
+                  className={`p-3 rounded-xl border text-center transition ${
+                    paymentMethod === 'CARD'
+                      ? 'bg-blue-500/20 border-blue-400 text-blue-300 font-bold'
+                      : 'bg-slate-900 border-slate-800 text-slate-300 hover:bg-slate-800'
+                  }`}
+                >
+                  <p className="text-xs font-black">Apple Pay</p>
+                  <p className="text-[10px] text-slate-400">Card Auth</p>
+                </button>
+              </div>
+            </div>
+
+            {/* Pricing Summary */}
+            <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2 text-xs">
+              <div className="flex justify-between text-slate-300">
+                <span>Surfboard Rental ({rentalDuration === 24 ? 'Full Day' : `${rentalDuration}h`})</span>
+                <span className="font-bold text-white">${currentRentalCost}</span>
+              </div>
+              <div className="flex justify-between text-slate-300">
+                <span>Damage Protection</span>
+                <span className="font-bold text-white">${protectionTotal}</span>
+              </div>
+              <div className="flex justify-between text-emerald-400 font-medium">
+                <span>Refundable Deposit (Returned on board return)</span>
+                <span className="font-bold">${depositTotal}</span>
+              </div>
+              <div className="pt-2 border-t border-slate-800 flex justify-between text-sm font-black text-white">
+                <span>Total Authorization</span>
+                <span className="text-cyan-400">${totalAuthorization}</span>
+              </div>
+            </div>
+
+            {/* Dynamic Tatum Settlement State Flow */}
+            {paymentStep !== 'SELECT' && (
+              <div className="p-4 rounded-2xl bg-cyan-950/40 border border-cyan-500/50 space-y-2 text-center">
+                {paymentStep === 'WAITING' && (
+                  <p className="text-xs font-bold text-cyan-300 flex items-center justify-center gap-2">
+                    <RefreshCw className="w-4 h-4 animate-spin" />
+                    Waiting for {paymentMethod} payment...
+                  </p>
+                )}
+                {paymentStep === 'DETECTED' && (
+                  <p className="text-xs font-bold text-cyan-300 flex items-center justify-center gap-2">
+                    <Activity className="w-4 h-4 text-emerald-400" />
+                    Payment detected <span className="text-[10px] bg-cyan-500/20 px-2 py-0.5 rounded text-cyan-300">via Tatum</span>
+                  </p>
+                )}
+                {paymentStep === 'CONFIRMING' && (
+                  <p className="text-xs font-bold text-cyan-300 flex items-center justify-center gap-2">
+                    <RefreshCw className="w-4 h-4 animate-spin" />
+                    Confirming on {paymentMethod === 'USDC' ? 'Solana' : 'Bitcoin'}...
+                  </p>
+                )}
+                {paymentStep === 'CONFIRMED' && (
+                  <p className="text-xs font-bold text-emerald-400 flex items-center justify-center gap-2">
+                    <CheckCircle2 className="w-4 h-4" />
+                    Payment confirmed! Generating pass...
+                  </p>
+                )}
+              </div>
+            )}
+
+            <button
+              onClick={handleExecutePayment}
+              disabled={paymentStep !== 'SELECT'}
+              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm shadow-lg shadow-cyan-500/25 transition disabled:opacity-50"
+            >
+              {paymentMethod === 'USDC'
+                ? `Pay ${totalAuthorization} USDC on Solana`
+                : paymentMethod === 'BTC'
+                ? `Pay ${totalAuthorization} USD (BTC equivalent)`
+                : `Authorize $${totalAuthorization} with Apple Pay / Card`}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* 4. DIGITAL SURFPASS RENTAL PASS MODAL */}
+      {showPassModal && activeRentalPass && (
+        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-[#0E1320] border border-cyan-500/40 rounded-3xl max-w-md w-full p-6 space-y-6 relative shadow-2xl">
+            <button
+              onClick={() => setShowPassModal(false)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Pass Card Header */}
+            <div className="text-center space-y-1">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>SURFPASS RENTAL PASS • ACTIVE</span>
+              </div>
+              <h2 className="text-2xl font-black text-white tracking-tight">{activeRentalPass.boardName}</h2>
+              <p className="text-xs text-slate-400">{activeRentalPass.location}</p>
+            </div>
+
+            {/* QR Code section */}
+            <div className="p-6 rounded-2xl bg-white text-slate-950 flex flex-col items-center justify-center space-y-2 shadow-inner">
+              <QrCode className="w-36 h-36" />
+              <span className="font-mono text-xs font-bold tracking-wider">{activeRentalPass.id}</span>
+              <span className="text-[10px] text-slate-500 uppercase font-semibold">Scan at Van for Instant Board Pickup</span>
+            </div>
+
+            {/* Pickup & Van info */}
+            <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2 text-xs">
+              <div className="flex justify-between text-slate-300">
+                <span>Pickup Location</span>
+                <span className="font-bold text-white">{activeRentalPass.spot}</span>
+              </div>
+              <div className="flex justify-between text-slate-300">
+                <span>Mobile Van</span>
+                <span className="font-bold text-cyan-400">{activeRentalPass.vanName} ({activeRentalPass.vanNickname})</span>
+              </div>
+              <div className="flex justify-between text-slate-300">
+                <span>Deposit Status</span>
+                <span className="font-bold text-emerald-400">${activeRentalPass.deposit} HELD (Refundable)</span>
+              </div>
+            </div>
+
+            {/* Expandable Onchain Details */}
+            <div className="space-y-2">
+              <button
+                onClick={() => setExpandedOnchainDetails(!expandedOnchainDetails)}
+                className="w-full text-center text-xs text-slate-400 hover:text-cyan-400 font-semibold py-1 transition flex items-center justify-center gap-1"
+              >
+                <span>{expandedOnchainDetails ? 'Hide' : 'View'} Onchain Details</span>
+                {expandedOnchainDetails ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+              </button>
+
+              {expandedOnchainDetails && (
+                <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 font-mono text-[10px] space-y-1.5 text-slate-400">
+                  <div className="flex justify-between">
+                    <span>Settlement Network</span>
+                    <span className="text-white">Solana Mainnet</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Infrastructure</span>
+                    <span className="text-cyan-400">Tatum RPC & Events</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Tx Reference</span>
+                    <span className="text-slate-300">{activeRentalPass.txHash || '5Kz2...9Lm4'}</span>
+                  </div>
                 </div>
               )}
             </div>
 
-            <div className="p-4 bg-[#07090E] border-t border-slate-800/80 flex items-center justify-between">
-              <button
-                onClick={() => setShowReserveModal(false)}
-                className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs transition"
-              >
-                Cancel
-              </button>
-
-              <button
-                onClick={handleStartCheckout}
-                disabled={paymentStep !== 'SELECT'}
-                className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs shadow-lg shadow-cyan-500/25 transition disabled:opacity-50"
-              >
-                {paymentRail === 'USDC' ? `Pay ${currentPricing.total} USDC` : paymentRail === 'BTC' ? 'Pay with Bitcoin' : `Pay $${currentPricing.total}`}
-              </button>
-            </div>
+            <button
+              onClick={() => {
+                setShowPassModal(false)
+                setActiveTab('map')
+              }}
+              className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-xs shadow-lg transition"
+            >
+              Navigate to Van on Map
+            </button>
           </div>
         </div>
       )}
 
-      {/* MODAL 4: RENTAL PASS */}
-      {showPassModal && viewingPass && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-gradient-to-b from-[#0D1526] to-[#080B12] border border-cyan-500/40 rounded-3xl max-w-md w-full overflow-hidden shadow-2xl relative my-8">
-            <div className="p-5 bg-gradient-to-r from-cyan-900/60 to-blue-900/60 border-b border-cyan-500/30 flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-cyan-400 text-black flex items-center justify-center font-black">
-                  <Waves className="w-4 h-4" />
-                </div>
-                <div>
-                  <span className="text-[9px] uppercase font-black tracking-widest text-cyan-300 block">DIGITAL RENTAL PASS</span>
-                  <h3 className="text-sm font-black text-white">{viewingPass.id}</h3>
-                </div>
-              </div>
-              <button
-                onClick={() => setShowPassModal(false)}
-                className="w-8 h-8 rounded-full bg-black/50 hover:bg-black text-white flex items-center justify-center transition"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-
-            <div className="p-6 space-y-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <span className="text-[10px] text-slate-400 block uppercase">Board Model</span>
-                  <h4 className="text-base font-black text-white">{viewingPass.boardName}</h4>
-                  <p className="text-xs text-cyan-400 font-medium">{viewingPass.boardDimensions} • {viewingPass.boardVolume}</p>
-                </div>
-                <div className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-950 border border-emerald-700 text-emerald-400">
-                  ACTIVE PASS
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3 text-xs bg-[#06080F] p-3 rounded-2xl border border-slate-800">
-                <div>
-                  <span className="text-slate-400 block text-[10px]">Pickup Location</span>
-                  <span className="font-bold text-white block">{viewingPass.location}</span>
-                  <span className="text-[10px] text-cyan-300">{viewingPass.spot}</span>
-                </div>
-                <div>
-                  <span className="text-slate-400 block text-[10px]">Van</span>
-                  <span className="font-bold text-white block">{viewingPass.vanNickname}</span>
-                  <span className="text-[10px] text-purple-300">{viewingPass.vanName}</span>
-                </div>
-                <div>
-                  <span className="text-slate-400 block text-[10px]">Session Window</span>
-                  <span className="font-bold text-white block">{viewingPass.startTime} – {viewingPass.endTime}</span>
-                </div>
-                <div>
-                  <span className="text-slate-400 block text-[10px]">Security Deposit</span>
-                  <span className="font-bold text-amber-400 block">${viewingPass.deposit} HELD</span>
-                </div>
-              </div>
-
-              <div className="bg-white p-4 rounded-2xl flex flex-col items-center justify-center space-y-2 shadow-xl">
-                <QrCode className="w-36 h-36 text-black" />
-                <p className="text-[11px] font-mono font-bold text-slate-800 text-center">
-                  Scan at {viewingPass.vanName} to pick up board
-                </p>
-              </div>
-
-              <div className="pt-2 border-t border-slate-800">
-                <button
-                  onClick={() => setShowOnchainDetails(!showOnchainDetails)}
-                  className="w-full flex items-center justify-between text-xs text-slate-400 hover:text-white transition py-1"
-                >
-                  <span className="flex items-center gap-1.5">
-                    <Zap className="w-3.5 h-3.5 text-purple-400" />
-                    Onchain Settlement Details
-                  </span>
-                  {showOnchainDetails ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                </button>
-
-                {showOnchainDetails && (
-                  <div className="mt-2 p-3 rounded-xl bg-[#06080F] border border-slate-800 text-xs space-y-1 font-mono text-slate-300">
-                    <div className="flex justify-between">
-                      <span className="text-slate-400">Network:</span>
-                      <span className="text-cyan-400">Solana Mainnet</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-slate-400">Settlement Rail:</span>
-                      <span className="text-purple-300">Tatum Multi-Chain Gateway</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-slate-400">Tx Signature:</span>
-                      <span className="text-white">{viewingPass.txHash || '5UxQ...9mKz'}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-slate-400">Deposit Escrow:</span>
-                      <span className="text-amber-400">50 USDC Verified</span>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            <div className="p-4 bg-[#06080F] border-t border-slate-800 flex gap-2">
-              <button
-                onClick={() => {
-                  setShowPassModal(false)
-                  setActiveTab('map')
-                }}
-                className="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-1.5"
-              >
-                <Navigation className="w-3.5 h-3.5" />
-                <span>Navigate to Van</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* MODAL 5: WHAT SHOULD I RIDE */}
-      {showRideRecommender && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-[#0D121D] border border-slate-800 rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl relative my-8">
-            <div className="p-5 bg-gradient-to-r from-purple-900/60 to-cyan-900/60 border-b border-slate-800 flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <Sparkles className="w-5 h-5 text-cyan-400" />
-                <h3 className="text-base font-black text-white">What Should I Ride?</h3>
-              </div>
-              <button
-                onClick={() => setShowRideRecommender(false)}
-                className="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-
-            <div className="p-5 space-y-4 text-xs">
-              <p className="text-slate-300 leading-relaxed">
-                Based on <strong>Rockaway Beach</strong>’s 2–3 ft clean wave shape and rising tide, here is your customized match:
-              </p>
-
-              <div className="p-4 rounded-2xl bg-[#07090E] border border-cyan-500/40 flex gap-3">
-                <div className="w-12 h-24 bg-slate-900 rounded-lg flex items-center justify-center p-1">
-                  <BoardSilhouette shapeType="long" className="w-8 h-20" />
-                </div>
-                <div className="flex-1 space-y-1">
-                  <span className="text-[10px] uppercase font-bold text-cyan-400">Top Recommendation</span>
-                  <h4 className="text-sm font-bold text-white">9'0 Dawn Patrol Log</h4>
-                  <p className="text-slate-300">72 L • 1–4 ft wave range</p>
-                  <p className="text-[11px] text-slate-400">
-                    Clean, softer morning conditions make this higher-volume noserider the easiest option to glide through every set wave.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-4 bg-[#07090E] border-t border-slate-800 flex justify-between">
-              <button
-                onClick={() => setShowRideRecommender(false)}
-                className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 font-semibold text-xs"
-              >
-                Close
-              </button>
-              <button
-                onClick={() => {
-                  setShowRideRecommender(false)
-                  setSelectedBoard(boards[0])
-                  setShowReserveModal(true)
-                }}
-                className="px-5 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-xs shadow-md"
-              >
-                Reserve Board ($25)
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* MODAL 6: TRAVELER MODE */}
-      {showTravelerModal && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-[#0D121D] border border-slate-800 rounded-3xl max-w-md w-full overflow-hidden shadow-2xl relative my-8">
-            <div className="p-5 bg-gradient-to-r from-[#0F1524] to-[#0A0D15] border-b border-slate-800 flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <Plane className="w-5 h-5 text-cyan-400" />
-                <h3 className="text-base font-black text-white">Traveling to Surf?</h3>
-              </div>
-              <button
-                onClick={() => setShowTravelerModal(false)}
-                className="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-
-            <div className="p-5 space-y-3 text-xs">
-              <p className="text-slate-300 leading-relaxed">
-                Avoid costly airline board fees ($150+ each way) and the hassle of lugging surfboards through airport terminals. Reserve your board online and have it waiting in a mobile SurfPass van right at the break.
-              </p>
-              
-              <div className="p-3 rounded-xl bg-[#07090E] border border-slate-800 space-y-1.5">
-                <span className="text-[10px] uppercase font-bold text-purple-400">Supported Travel Markets</span>
-                <p className="text-slate-200">• California: Huntington Beach & Lower Trestles</p>
-                <p className="text-slate-200">• Hawaii: Waikiki & Oahu South Shore</p>
-                <p className="text-slate-200">• New York: Rockaway Beach & Montauk</p>
-                <p className="text-slate-200">• Florida: Cocoa Beach Pier</p>
-              </div>
-            </div>
-
-            <div className="p-4 bg-[#07090E] border-t border-slate-800 flex justify-end">
-              <button
-                onClick={() => {
-                  setShowTravelerModal(false)
-                  setActiveTab('explore')
-                }}
-                className="px-5 py-2 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold text-xs shadow-md"
-              >
-                Explore Travel Destinations
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* MODAL 7: WALLET CONNECTION */}
-      {showWalletModal && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-[#0D121D] border border-slate-800 rounded-3xl max-w-md w-full overflow-hidden shadow-2xl relative my-8">
-            <div className="p-5 bg-gradient-to-r from-[#0F1524] to-[#0A0D15] border-b border-slate-800 flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <Wallet className="w-5 h-5 text-cyan-400" />
-                <h3 className="text-base font-black text-white">Connect Wallet</h3>
-              </div>
-              <button
-                onClick={() => setShowWalletModal(false)}
-                className="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-
-            <div className="p-5 space-y-3">
-              <p className="text-xs text-slate-300">
-                Connect your preferred wallet for fast USDC on Solana payments and automated deposit settlement:
-              </p>
-
-              <div className="space-y-2">
-                <button
-                  onClick={handleConnectWallet}
-                  className="w-full p-3 rounded-xl bg-[#07090E] border border-slate-800 hover:border-cyan-500 transition flex items-center justify-between text-xs font-bold text-white"
-                >
-                  <span className="flex items-center gap-2.5">
-                    <div className="w-6 h-6 rounded-md bg-purple-900 flex items-center justify-center text-purple-300 font-bold">
-                      P
-                    </div>
-                    <span>Phantom (Solana)</span>
-                  </span>
-                  <span className="text-[10px] text-cyan-400 font-semibold">Connect</span>
-                </button>
-
-                <button
-                  onClick={handleConnectWallet}
-                  className="w-full p-3 rounded-xl bg-[#07090E] border border-slate-800 hover:border-cyan-500 transition flex items-center justify-between text-xs font-bold text-white"
-                >
-                  <span className="flex items-center gap-2.5">
-                    <div className="w-6 h-6 rounded-md bg-blue-900 flex items-center justify-center text-blue-300 font-bold">
-                      S
-                    </div>
-                    <span>Solflare (Solana)</span>
-                  </span>
-                  <span className="text-[10px] text-cyan-400 font-semibold">Connect</span>
-                </button>
-
-                <button
-                  onClick={handleConnectWallet}
-                  className="w-full p-3 rounded-xl bg-[#07090E] border border-slate-800 hover:border-cyan-500 transition flex items-center justify-between text-xs font-bold text-white"
-                >
-                  <span className="flex items-center gap-2.5">
-                    <div className="w-6 h-6 rounded-md bg-cyan-900 flex items-center justify-center text-cyan-300 font-bold">
-                      SP
-                    </div>
-                    <span>SurfPass Smart Account (Embedded)</span>
-                  </span>
-                  <span className="text-[10px] text-purple-400 font-semibold">No seed phrase</span>
-                </button>
-              </div>
-            </div>
-
-            <div className="p-4 bg-[#07090E] border-t border-slate-800 flex justify-between">
-              {walletConnected ? (
-                <button
-                  onClick={handleDisconnectWallet}
-                  className="px-4 py-2 rounded-xl bg-red-950/80 border border-red-800 text-red-300 text-xs font-bold"
-                >
-                  Disconnect
-                </button>
-              ) : <div />}
-              <button
-                onClick={() => setShowWalletModal(false)}
-                className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 font-semibold text-xs"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* MODAL 8: INFRASTRUCTURE */}
+      {/* 5. TATUM INFRASTRUCTURE MODAL */}
       {showInfraModal && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-[#0D121D] border border-purple-500/40 rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl relative my-8">
-            <div className="p-5 bg-gradient-to-r from-purple-950/80 to-[#0A0D15] border-b border-purple-800/60 flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <Zap className="w-5 h-5 text-purple-400" />
-                <div>
-                  <h3 className="text-base font-black text-white">Tatum Multi-Chain Infrastructure</h3>
-                  <p className="text-xs text-purple-300">Solana RPC + real-time blockchain event monitoring</p>
-                </div>
+          <div className="bg-[#0E1320] border border-slate-800 rounded-3xl max-w-xl w-full p-6 space-y-6 relative max-h-[90vh] overflow-y-auto">
+            <button
+              onClick={() => setShowInfraModal(false)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-400 text-xs font-bold">
+                  Powered by Tatum
+                </span>
+                <span className="text-xs text-emerald-400 font-semibold">• Live Multi-Chain Gateway</span>
               </div>
+              <h2 className="text-2xl font-black text-white mt-1">Tatum Blockchain Infrastructure</h2>
+              <p className="text-xs text-slate-400">
+                Multi-chain settlement, real-time transaction detection, and automated deposit collateral routing.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3 text-xs">
+              <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+                <h4 className="font-bold text-white">Solana RPC Gateway</h4>
+                <p className="text-[11px] text-slate-400">Sub-second USDC settlement & rental pass authorization.</p>
+              </div>
+              <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+                <h4 className="font-bold text-white">Bitcoin Node Access</h4>
+                <p className="text-[11px] text-slate-400">BTC rental payments monitored via Tatum blockchain data.</p>
+              </div>
+              <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+                <h4 className="font-bold text-white">Real-Time Events</h4>
+                <p className="text-[11px] text-slate-400">Instant deposit unlock & automated return collateral release.</p>
+              </div>
+              <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+                <h4 className="font-bold text-white">Smart Accounts</h4>
+                <p className="text-[11px] text-slate-400">Seamless non-custodial onboarding for mainstream consumers.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 6. TRAVELER MODE MODAL */}
+      {showTravelModal && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-[#0E1320] border border-slate-800 rounded-3xl max-w-lg w-full p-6 space-y-5 relative max-h-[90vh] overflow-y-auto">
+            <button
+              onClick={() => setShowTravelModal(false)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-purple-400">Traveling Surfer</span>
+              <h2 className="text-2xl font-black text-white">Traveling Without a Board?</h2>
+              <p className="text-xs text-slate-400">
+                Reserve your quiver before landing. Your board will be waiting at the beachside SurfPass van.
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              {['Huntington Beach, CA', 'Waikiki, Hawaii', 'Montauk, NY', 'Cocoa Beach, FL'].map(dest => (
+                <button
+                  key={dest}
+                  onClick={() => {
+                    setShowTravelModal(false)
+                    setActiveTab('explore')
+                  }}
+                  className="w-full p-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-left flex items-center justify-between transition"
+                >
+                  <span className="text-xs font-bold text-white">{dest}</span>
+                  <ChevronRight className="w-4 h-4 text-slate-400" />
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 7. CONNECT WALLET MODAL */}
+      {showWalletModal && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-[#0E1320] border border-slate-800 rounded-3xl max-w-md w-full p-6 space-y-5 relative max-h-[90vh] overflow-y-auto">
+            <button
+              onClick={() => setShowWalletModal(false)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-cyan-400">Web3 Settlement</span>
+              <h2 className="text-xl font-black text-white">Connect Wallet</h2>
+              <p className="text-xs text-slate-400">
+                Connect your preferred Solana or Bitcoin wallet for automated USDC reservations and deposit release:
+              </p>
+            </div>
+
+            <div className="space-y-2.5">
               <button
-                onClick={() => setShowInfraModal(false)}
-                className="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center"
+                onClick={handleConnectWallet}
+                className="w-full p-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 flex items-center justify-between text-xs font-bold text-white transition"
               >
-                <X className="w-4 h-4" />
+                <span>Phantom Wallet</span>
+                <span className="text-[10px] text-cyan-400">Solana</span>
+              </button>
+              <button
+                onClick={handleConnectWallet}
+                className="w-full p-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 flex items-center justify-between text-xs font-bold text-white transition"
+              >
+                <span>Solflare</span>
+                <span className="text-[10px] text-cyan-400">Solana</span>
+              </button>
+              <button
+                onClick={handleConnectWallet}
+                className="w-full p-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 flex items-center justify-between text-xs font-bold text-white transition"
+              >
+                <span>SurfPass Smart Account (Embedded)</span>
+                <span className="text-[10px] text-purple-400">Social Login</span>
               </button>
             </div>
 
-            <div className="p-5 space-y-4 text-xs">
-              <div className="grid grid-cols-2 gap-3">
-                <div className="p-3 rounded-xl bg-[#07090E] border border-slate-800 flex items-center justify-between">
-                  <div>
-                    <span className="text-slate-400 block text-[10px]">Network #1</span>
-                    <span className="font-bold text-white">Solana (USDC)</span>
-                  </div>
-                  <span className="text-emerald-400 font-bold text-[10px] px-2 py-0.5 rounded bg-emerald-950 border border-emerald-800">
-                    CONNECTED
-                  </span>
-                </div>
-                <div className="p-3 rounded-xl bg-[#07090E] border border-slate-800 flex items-center justify-between">
-                  <div>
-                    <span className="text-slate-400 block text-[10px]">Network #2</span>
-                    <span className="font-bold text-white">Bitcoin (BTC)</span>
-                  </div>
-                  <span className="text-emerald-400 font-bold text-[10px] px-2 py-0.5 rounded bg-emerald-950 border border-emerald-800">
-                    CONNECTED
-                  </span>
-                </div>
-              </div>
-
-              <div className="p-4 rounded-2xl bg-[#07090E] border border-slate-800 space-y-2">
-                <span className="text-[10px] uppercase font-bold text-cyan-400 block">Payment & Settlement Flow</span>
-                <p className="text-slate-300 font-mono text-[11px] leading-relaxed">
-                  Surfer initiates payment → SurfPass Checkout → Tatum Infrastructure → Solana / Bitcoin → Real-Time Detection → Reservation Confirmed
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="p-3 rounded-xl bg-[#07090E] border border-slate-800">
-                  <span className="font-bold text-white block mb-1">RPC Gateway</span>
-                  <p className="text-slate-400 text-[11px]">Direct blockchain connectivity and transaction broadcasting through node infrastructure.</p>
-                </div>
-                <div className="p-3 rounded-xl bg-[#07090E] border border-slate-800">
-                  <span className="font-bold text-white block mb-1">Real-Time Events</span>
-                  <p className="text-slate-400 text-[11px]">Instant payment detection and deposit release without manual user polling.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-4 bg-[#07090E] border-t border-slate-800 flex justify-end">
+            {walletConnected && (
               <button
-                onClick={() => setShowInfraModal(false)}
-                className="px-5 py-2 rounded-xl bg-slate-800 text-slate-300 font-semibold text-xs"
+                onClick={handleDisconnectWallet}
+                className="w-full py-2.5 rounded-xl bg-rose-950/40 border border-rose-500/40 text-rose-300 text-xs font-bold hover:bg-rose-900/60 transition"
               >
-                Close
+                Disconnect Current Wallet
               </button>
-            </div>
+            )}
           </div>
         </div>
       )}
