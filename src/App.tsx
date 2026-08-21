@@ -57,6 +57,7 @@ import {
   Tooltip,
   ResponsiveContainer
 } from 'recharts'
+import { FleetGpsMap } from './FleetGpsMap'
 
 // --- DATA TYPES ---
 interface Beach {
@@ -91,6 +92,7 @@ interface Beach {
   vanCount: number
   boardCount: number
   image: string
+  imageFallback: string
   description: string
   recommendation: string
   bestWindow: string
@@ -250,9 +252,10 @@ const BEACHES: Beach[] = [
     swellAngle: '142° SE',
     skill: 'Intermediate',
     distance: '0.2 mi',
-    vanCount: 3,
+    vanCount: 2,
     boardCount: 22,
     image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1200&q=80',
+    imageFallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1200&q=80',
     description: 'Urban beach-break surfing with multiple jetty sandbar peaks and easy boardwalk access from New York City.',
     recommendation: 'Cleanest conditions before the afternoon wind shift. Longboards, classic mid-lengths, and forgiving fish are catching everything on the incoming push.',
     bestWindow: '8:30 AM – 11:30 AM',
@@ -304,9 +307,10 @@ const BEACHES: Beach[] = [
     swellAngle: '210° SW',
     skill: 'Intermediate',
     distance: 'San Diego Market',
-    vanCount: 2,
-    boardCount: 18,
-    image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80',
+    vanCount: 1,
+    boardCount: 14,
+    image: 'https://images.unsplash.com/photo-1529553815871-df205a9a2891?auto=format&fit=crop&w=1200&q=80',
+    imageFallback: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?auto=format&fit=crop&w=1200&q=80',
     description: 'Iconic sandstone cliff reef break with long rolling lefts, cobblestone shoulders, and dramatic California coastal vistas.',
     recommendation: 'Groundswell firing on the reef with light morning offshore wind. Performance fish and refined mid-lengths are carrying momentum through every section.',
     bestWindow: '7:30 AM – 11:30 AM',
@@ -352,9 +356,10 @@ const BEACHES: Beach[] = [
     swellAngle: '95° E',
     skill: 'Intermediate',
     distance: '118 mi',
-    vanCount: 2,
-    boardCount: 19,
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
+    vanCount: 1,
+    boardCount: 12,
+    image: 'https://images.unsplash.com/photo-1414609245224-afa02bfb3fda?auto=format&fit=crop&w=1200&q=80',
+    imageFallback: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?auto=format&fit=crop&w=1200&q=80',
     description: 'Longer peeling waves and classic Long Island cobblestone point-break character framed by dramatic bluffs.',
     recommendation: 'Cobblestone point breaking clean. High-volume mid-lengths and traditional noseriders are gliding through the full section.',
     bestWindow: '8:00 AM – 1:00 PM',
@@ -400,9 +405,10 @@ const BEACHES: Beach[] = [
     swellAngle: '112° ESE',
     skill: 'Beginner',
     distance: '48 mi',
-    vanCount: 2,
-    boardCount: 15,
-    image: 'https://images.unsplash.com/photo-1520116468418-042c9497e6be?auto=format&fit=crop&w=1200&q=80',
+    vanCount: 1,
+    boardCount: 11,
+    image: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1200&q=80',
+    imageFallback: 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?auto=format&fit=crop&w=1200&q=80',
     description: 'New Jersey boardwalk, historic stone jetties, and classic East Coast beach-town vibe with punchy inside peaks.',
     recommendation: 'Soft waves right next to the 8th Avenue stone jetty. Perfect for high-volume soft-tops and stable logs.',
     bestWindow: '9:00 AM – 11:30 AM',
@@ -446,9 +452,10 @@ const BEACHES: Beach[] = [
     swellAngle: '198° SSW',
     skill: 'Intermediate',
     distance: 'West Coast Market',
-    vanCount: 4,
-    boardCount: 38,
+    vanCount: 1,
+    boardCount: 16,
     image: 'https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?auto=format&fit=crop&w=1200&q=80',
+    imageFallback: 'https://images.unsplash.com/photo-1516815231560-8f41ec531527?auto=format&fit=crop&w=1200&q=80',
     description: 'High-energy Southern California beach breaks with iconic pier backdrop and consistent year-round surf culture.',
     recommendation: 'Consistent pier bowls with good shoulder taper. Twin fish and high-performance daily drivers are ripping.',
     bestWindow: '6:30 AM – 10:30 AM',
@@ -493,9 +500,10 @@ const BEACHES: Beach[] = [
     swellAngle: '185° S',
     skill: 'Advanced',
     distance: 'West Coast Market',
-    vanCount: 3,
-    boardCount: 26,
-    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80',
+    vanCount: 1,
+    boardCount: 13,
+    image: 'https://images.unsplash.com/photo-1504681869696-d977211a5f4c?auto=format&fit=crop&w=1200&q=80',
+    imageFallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1200&q=80',
     description: 'World-famous cobblestone skatepark wave with peeling lefts and rippable rights inside San Onofre State Park.',
     recommendation: 'A-frame perfection with wide open faces. Performance shortboards, step-downs, and refined fish are the weapon of choice.',
     bestWindow: '7:00 AM – 11:30 AM',
@@ -539,9 +547,10 @@ const BEACHES: Beach[] = [
     swellAngle: '70° ENE',
     skill: 'Beginner',
     distance: 'East Coast Market',
-    vanCount: 2,
-    boardCount: 24,
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
+    vanCount: 1,
+    boardCount: 14,
+    image: 'https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=1200&q=80',
+    imageFallback: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
     description: 'Warm-water Florida surf capital with approachable beach-break sandbars, vibrant pier energy, and beginner-friendly waves.',
     recommendation: 'Soft, playful wave shoulders peeling right off the pier. Perfect for longboards, soft-tops, and relaxed cruising.',
     bestWindow: '8:00 AM – 12:00 PM',
@@ -586,9 +595,10 @@ const BEACHES: Beach[] = [
     swellAngle: '190° S',
     skill: 'All Levels',
     distance: 'Hawaii Market',
-    vanCount: 3,
-    boardCount: 32,
+    vanCount: 1,
+    boardCount: 15,
     image: 'https://images.unsplash.com/photo-1542259009477-d625272157b7?auto=format&fit=crop&w=1200&q=80',
+    imageFallback: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
     description: 'Long rolling waves, crystal-clear warm water, Diamond Head backdrop, and the world birthplace of modern board-riding.',
     recommendation: 'Endless 150-yard rights rolling across the outer reef into Queens bay. Pure noserider and classic log paradise.',
     bestWindow: '7:00 AM – 1:30 PM',
@@ -633,9 +643,10 @@ const BEACHES: Beach[] = [
     swellAngle: '90° E',
     skill: 'Intermediate',
     distance: 'Atlantic Market',
-    vanCount: 2,
-    boardCount: 16,
+    vanCount: 1,
+    boardCount: 10,
     image: 'https://images.unsplash.com/photo-1509233725247-49e657c54213?auto=format&fit=crop&w=1200&q=80',
+    imageFallback: 'https://images.unsplash.com/photo-1414609245224-afa02bfb3fda?auto=format&fit=crop&w=1200&q=80',
     description: 'Dynamic barrier island surf destination with powerful shifting sandbars and deep open-ocean swell access.',
     recommendation: 'Fast breaking peaks with hollow reform sections. Fast twin fish and responsive shortboards are ideal.',
     bestWindow: '7:30 AM – 10:30 AM',
@@ -827,12 +838,194 @@ const VANS: Van[] = [
     mapX: 60,
     mapY: 40,
     image: 'https://images.unsplash.com/photo-1527786356703-4b100091cd2c?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'van-22',
+    fleetNumber: 'Van #22',
+    nickname: 'Ditch Plains Scout',
+    beachId: 'montauk',
+    beachName: 'Montauk - Ditch Plains, NY',
+    spot: 'Ditch Plains Beach Lot',
+    streetAddress: 'Ditch Plains Rd, Montauk, NY 11954',
+    phone: '+1 (631) 555-0122',
+    status: 'ACTIVE',
+    distance: '118 mi',
+    walkTime: '4 min walk',
+    driveTime: '1 min drive',
+    hours: '6:30 AM – 6:30 PM Daily',
+    boardsAvailable: 7,
+    longboards: 3,
+    midsAndFun: 2,
+    softTops: 1,
+    shortboards: 1,
+    fish: 1,
+    nextLocation: 'Amagansett Main Beach',
+    eta: 'Tomorrow 7:00 AM',
+    waitMin: 0,
+    lat: 41.0395,
+    lng: -71.9078,
+    mapX: 55,
+    mapY: 48,
+    image: 'https://images.unsplash.com/photo-1527786356703-4b100091cd2c?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'van-18',
+    fleetNumber: 'Van #18',
+    nickname: 'Asbury Jetty',
+    beachId: 'asbury-park',
+    beachName: 'Asbury Park, NJ',
+    spot: '8th Avenue Jetty Lot',
+    streetAddress: '8th Ave & Ocean Ave, Asbury Park, NJ 07712',
+    phone: '+1 (732) 555-0118',
+    status: 'ACTIVE',
+    distance: '48 mi',
+    walkTime: '3 min walk',
+    driveTime: '1 min drive',
+    hours: '7:00 AM – 7:00 PM Daily',
+    boardsAvailable: 6,
+    longboards: 2,
+    midsAndFun: 1,
+    softTops: 2,
+    shortboards: 1,
+    fish: 1,
+    nextLocation: 'Belmar Inlet',
+    eta: 'Today 4:00 PM',
+    waitMin: 1,
+    lat: 40.2206,
+    lng: -74.0007,
+    mapX: 52,
+    mapY: 50,
+    image: 'https://images.unsplash.com/photo-1527786356703-4b100091cd2c?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'van-28',
+    fleetNumber: 'Van #28',
+    nickname: 'Lowers Local',
+    beachId: 'trestles',
+    beachName: 'Lower Trestles, San Clemente, CA',
+    spot: 'Trailhead Staging Lot',
+    streetAddress: 'San Onofre State Beach Access, San Clemente, CA 92672',
+    phone: '+1 (949) 555-0128',
+    status: 'ACTIVE',
+    distance: 'West Coast Market',
+    walkTime: '8 min walk',
+    driveTime: '2 min drive',
+    hours: '6:00 AM – 7:00 PM Daily',
+    boardsAvailable: 8,
+    longboards: 1,
+    midsAndFun: 2,
+    softTops: 1,
+    shortboards: 3,
+    fish: 2,
+    nextLocation: 'San Onofre Trails',
+    eta: 'Tomorrow 6:00 AM',
+    waitMin: 0,
+    lat: 33.3853,
+    lng: -117.5898,
+    mapX: 48,
+    mapY: 52,
+    image: 'https://images.unsplash.com/photo-1527786356703-4b100091cd2c?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'van-55',
+    fleetNumber: 'Van #55',
+    nickname: 'Hatteras Hauler',
+    beachId: 'outer-banks',
+    beachName: 'Cape Hatteras, NC',
+    spot: 'Lighthouse Beach Access',
+    streetAddress: '46368 Lighthouse Rd, Buxton, NC 27920',
+    phone: '+1 (252) 555-0155',
+    status: 'ACTIVE',
+    distance: 'Atlantic Market',
+    walkTime: '5 min walk',
+    driveTime: '2 min drive',
+    hours: '6:30 AM – 6:30 PM Daily',
+    boardsAvailable: 6,
+    longboards: 1,
+    midsAndFun: 2,
+    softTops: 1,
+    shortboards: 2,
+    fish: 1,
+    nextLocation: 'Avon Pier',
+    eta: 'Tomorrow 7:30 AM',
+    waitMin: 0,
+    lat: 35.2532,
+    lng: -75.5204,
+    mapX: 50,
+    mapY: 50,
+    image: 'https://images.unsplash.com/photo-1527786356703-4b100091cd2c?auto=format&fit=crop&w=800&q=80'
   }
 ]
 
+type BoardSeed = {
+  id: string
+  code: string
+  name: string
+  nickname: string
+  type: Board['type']
+  dimensions: string
+  length: string
+  width: string
+  thickness: string
+  volume: string
+  finSetup: string
+  skill: Board['skill']
+  recommendedWaves: string
+  vanId: string
+  vanName: string
+  beachId: string
+  beachName: string
+  availableCount: number
+  personality: string
+  whyMatch: string
+  twoHours: number
+  fourHours: number
+  fullDay: number
+  tag: string
+  shapeType: Board['shapeType']
+  condition?: Board['condition']
+}
+
+function createBoard(seed: BoardSeed): Board {
+  return {
+    id: seed.id,
+    code: seed.code,
+    name: seed.name,
+    nickname: seed.nickname,
+    type: seed.type,
+    dimensions: seed.dimensions,
+    length: seed.length,
+    width: seed.width,
+    thickness: seed.thickness,
+    volume: seed.volume,
+    finSetup: seed.finSetup,
+    skill: seed.skill,
+    recommendedWaves: seed.recommendedWaves,
+    condition: seed.condition ?? 'Excellent',
+    vanId: seed.vanId,
+    vanName: seed.vanName,
+    beachId: seed.beachId,
+    beachName: seed.beachName,
+    availableCount: seed.availableCount,
+    totalInVan: seed.availableCount,
+    personality: seed.personality,
+    whyMatch: seed.whyMatch,
+    pricing: {
+      twoHours: seed.twoHours,
+      fourHours: seed.fourHours,
+      fullDay: seed.fullDay
+    },
+    deposit: 50,
+    protectionFee: 3,
+    tag: seed.tag,
+    shapeType: seed.shapeType
+  }
+}
+
 // --- HIGH-QUALITY SURFBOARD INVENTORY (With Real Shaper / Model Names) ---
 const INITIAL_BOARDS: Board[] = [
-  {
+  // Rockaway — Van #12
+  createBoard({
     id: 'b-bing-94',
     code: 'SP-CL-94-0821',
     name: '9\'4 BING Continental Classic',
@@ -846,26 +1039,21 @@ const INITIAL_BOARDS: Board[] = [
     finSetup: 'Single Fin Box 10"',
     skill: 'All Levels',
     recommendedWaves: '1–4 ft',
-    condition: 'Mint',
     vanId: 'van-12',
     vanName: 'Van #12 (Rockaway Runner)',
     beachId: 'rockaway',
     beachName: 'Rockaway Beach',
     availableCount: 3,
-    totalInVan: 3,
     personality: 'Effortless trim, smooth rail-to-rail transitions, and stable tip-time noseriding.',
     whyMatch: 'The waves are 2–3 ft and clean this morning. The 74.5L volume lets you catch soft peelers 20 yards outside everyone else.',
-    pricing: {
-      twoHours: 25,
-      fourHours: 38,
-      fullDay: 48
-    },
-    deposit: 50,
-    protectionFee: 3,
+    twoHours: 25,
+    fourHours: 38,
+    fullDay: 48,
     tag: 'Best Match for Today',
-    shapeType: 'long'
-  },
-  {
+    shapeType: 'long',
+    condition: 'Mint'
+  }),
+  createBoard({
     id: 'b-hypto-510',
     code: 'SP-HK-510-1092',
     name: '5\'10 Haydenshapes Hypto Krypto',
@@ -879,26 +1067,20 @@ const INITIAL_BOARDS: Board[] = [
     finSetup: 'FCS II Tri-Quad Setup',
     skill: 'Intermediate',
     recommendedWaves: '2–6 ft',
-    condition: 'Excellent',
     vanId: 'van-12',
     vanName: 'Van #12 (Rockaway Runner)',
     beachId: 'rockaway',
     beachName: 'Rockaway Beach',
     availableCount: 2,
-    totalInVan: 2,
     personality: 'Lightning-fast down the line with incredible paddle power and versatile curved outline.',
     whyMatch: 'Waist-to-chest high punchy inside reform. The wide forward outline gives instant speed over flat sections.',
-    pricing: {
-      twoHours: 30,
-      fourHours: 42,
-      fullDay: 54
-    },
-    deposit: 50,
-    protectionFee: 3,
+    twoHours: 30,
+    fourHours: 42,
+    fullDay: 54,
     tag: 'Speed Weapon',
     shapeType: 'fish'
-  },
-  {
+  }),
+  createBoard({
     id: 'b-odysea-66',
     code: 'SP-CS-66-3021',
     name: '6\'6 Catch Surf Odysea Skipper',
@@ -912,26 +1094,20 @@ const INITIAL_BOARDS: Board[] = [
     finSetup: 'High-Performance Thruster Soft',
     skill: 'Beginner',
     recommendedWaves: '1–4 ft',
-    condition: 'Excellent',
     vanId: 'van-12',
     vanName: 'Van #12 (Rockaway Runner)',
     beachId: 'rockaway',
     beachName: 'Rockaway Beach',
     availableCount: 2,
-    totalInVan: 2,
     personality: 'Indestructible, ultra-fun, stable, and forgiving soft construction that carves like a real board.',
     whyMatch: 'Zero stress, high float, and totally safe in crowded beach-break lineups.',
-    pricing: {
-      twoHours: 22,
-      fourHours: 32,
-      fullDay: 42
-    },
-    deposit: 50,
-    protectionFee: 3,
+    twoHours: 22,
+    fourHours: 32,
+    fullDay: 42,
     tag: 'Max Fun / Zero Stress',
     shapeType: 'soft'
-  },
-  {
+  }),
+  createBoard({
     id: 'b-sunday-72',
     code: 'SP-SUN-72-4011',
     name: '7\'2 Firewire Rob Machado Sunday',
@@ -945,26 +1121,21 @@ const INITIAL_BOARDS: Board[] = [
     finSetup: 'Single Fin or Twin Keel',
     skill: 'All Levels',
     recommendedWaves: '2–5 ft',
-    condition: 'Mint',
     vanId: 'van-12',
     vanName: 'Van #12 (Rockaway Runner)',
     beachId: 'rockaway',
     beachName: 'Rockaway Beach',
     availableCount: 2,
-    totalInVan: 2,
     personality: 'Silky smooth glide, effortless wave catching, and buttery high-line speed.',
     whyMatch: 'Perfect balance of paddle ease and flowing turns on mid-tide Atlantic waves.',
-    pricing: {
-      twoHours: 28,
-      fourHours: 40,
-      fullDay: 50
-    },
-    deposit: 50,
-    protectionFee: 3,
+    twoHours: 28,
+    fourHours: 40,
+    fullDay: 50,
     tag: 'All-Around Favorite',
-    shapeType: 'mid'
-  },
-  {
+    shapeType: 'mid',
+    condition: 'Mint'
+  }),
+  createBoard({
     id: 'b-ci-60',
     code: 'SP-CI-60-5091',
     name: '6\'0 Channel Islands Happy Everyday',
@@ -978,25 +1149,886 @@ const INITIAL_BOARDS: Board[] = [
     finSetup: 'Futures Thruster',
     skill: 'Advanced',
     recommendedWaves: '3–6 ft',
-    condition: 'Excellent',
     vanId: 'van-12',
     vanName: 'Van #12 (Rockaway Runner)',
     beachId: 'rockaway',
     beachName: 'Rockaway Beach',
     availableCount: 1,
-    totalInVan: 1,
     personality: 'Crisp pocket snaps, tight rail turns, and explosive pop on beach-break sections.',
     whyMatch: 'When waves hit the sandbar shelf at 10 AM, this board turns on for vertical snaps.',
-    pricing: {
-      twoHours: 32,
-      fourHours: 45,
-      fullDay: 58
-    },
-    deposit: 50,
-    protectionFee: 3,
+    twoHours: 32,
+    fourHours: 45,
+    fullDay: 58,
     tag: 'Performance Ripper',
     shapeType: 'short'
-  }
+  }),
+  // Rockaway — Van #07
+  createBoard({
+    id: 'b-rkw07-soft',
+    code: 'SP-RK07-SOFT-1',
+    name: '8\'0 Soft Top Cruiser',
+    nickname: 'Boardwalk Floater',
+    type: 'Soft-Top',
+    dimensions: '8\'0 × 22 × 3 1/4',
+    length: '8\'0',
+    width: '22"',
+    thickness: '3 1/4"',
+    volume: '68 L',
+    finSetup: 'Soft Thruster',
+    skill: 'Beginner',
+    recommendedWaves: '1–3 ft',
+    vanId: 'van-07',
+    vanName: 'Van #07 (Boardwalk Cruiser)',
+    beachId: 'rockaway',
+    beachName: 'Rockaway Beach',
+    availableCount: 3,
+    personality: 'Big, buoyant, and friendly for first sessions near Beach 67th.',
+    whyMatch: 'Soft morning peelers at Rockaway — max float, zero ding anxiety.',
+    twoHours: 20,
+    fourHours: 30,
+    fullDay: 40,
+    tag: 'Beginner Pick',
+    shapeType: 'soft'
+  }),
+  createBoard({
+    id: 'b-rkw07-mid',
+    code: 'SP-RK07-MID-2',
+    name: '7\'0 Mid-Length Twin',
+    nickname: 'Jetty Glider',
+    type: 'Mid-Length',
+    dimensions: '7\'0 × 21 × 2 7/8',
+    length: '7\'0',
+    width: '21"',
+    thickness: '2 7/8"',
+    volume: '48 L',
+    finSetup: 'Twin Keel',
+    skill: 'Intermediate',
+    recommendedWaves: '2–4 ft',
+    vanId: 'van-07',
+    vanName: 'Van #07 (Boardwalk Cruiser)',
+    beachId: 'rockaway',
+    beachName: 'Rockaway Beach',
+    availableCount: 2,
+    personality: 'Fast trim with easy rail engagement for sandbar rights.',
+    whyMatch: 'Ideal for Rockaway’s mid-tide shoulders without going full shortboard.',
+    twoHours: 27,
+    fourHours: 39,
+    fullDay: 49,
+    tag: 'Local Favorite',
+    shapeType: 'mid'
+  }),
+  // Sunset Cliffs — Van #01
+  createBoard({
+    id: 'b-sd-fish',
+    code: 'SP-SD01-FISH-1',
+    name: '5\'8 Almond Fish',
+    nickname: 'Cliff Runner',
+    type: 'Fish',
+    dimensions: '5\'8 × 20 1/2 × 2 1/2',
+    length: '5\'8',
+    width: '20 1/2"',
+    thickness: '2 1/2"',
+    volume: '34 L',
+    finSetup: 'Twin Keel',
+    skill: 'Intermediate',
+    recommendedWaves: '3–6 ft',
+    vanId: 'van-01-sd',
+    vanName: 'Van #01 (Sunset Nomad)',
+    beachId: 'sunset-cliffs',
+    beachName: 'Sunset Cliffs',
+    availableCount: 2,
+    personality: 'Speedy down-the-line fish tuned for reef shoulders.',
+    whyMatch: 'Perfect for Sunset Cliffs’ rolling lefts on SW groundswell.',
+    twoHours: 32,
+    fourHours: 46,
+    fullDay: 58,
+    tag: 'Reef Ready',
+    shapeType: 'fish'
+  }),
+  createBoard({
+    id: 'b-sd-mid',
+    code: 'SP-SD01-MID-2',
+    name: '7\'4 Egg Mid',
+    nickname: 'Osprey Egg',
+    type: 'Mid-Length',
+    dimensions: '7\'4 × 21 3/4 × 2 7/8',
+    length: '7\'4',
+    width: '21 3/4"',
+    thickness: '2 7/8"',
+    volume: '52 L',
+    finSetup: '2+1',
+    skill: 'All Levels',
+    recommendedWaves: '2–5 ft',
+    vanId: 'van-01-sd',
+    vanName: 'Van #01 (Sunset Nomad)',
+    beachId: 'sunset-cliffs',
+    beachName: 'Sunset Cliffs',
+    availableCount: 2,
+    personality: 'Forgiving paddle with enough rail for cliff-line carve turns.',
+    whyMatch: 'Morning offshore glass at Osprey Point loves mid-length glide.',
+    twoHours: 30,
+    fourHours: 44,
+    fullDay: 55,
+    tag: 'Crowd Beater',
+    shapeType: 'mid'
+  }),
+  createBoard({
+    id: 'b-sd-short',
+    code: 'SP-SD01-SH-3',
+    name: '6\'1 Performance Short',
+    nickname: 'Point Sniper',
+    type: 'Shortboard',
+    dimensions: '6\'1 × 19 1/4 × 2 7/16',
+    length: '6\'1',
+    width: '19 1/4"',
+    thickness: '2 7/16"',
+    volume: '29.8 L',
+    finSetup: 'Thruster',
+    skill: 'Advanced',
+    recommendedWaves: '4–7 ft',
+    vanId: 'van-01-sd',
+    vanName: 'Van #01 (Sunset Nomad)',
+    beachId: 'sunset-cliffs',
+    beachName: 'Sunset Cliffs',
+    availableCount: 1,
+    personality: 'Tight pocket turns when sets jack on the reef.',
+    whyMatch: 'For when Sunset Cliffs hits head-high and you want full control.',
+    twoHours: 34,
+    fourHours: 48,
+    fullDay: 60,
+    tag: 'Advanced Only',
+    shapeType: 'short'
+  }),
+  // Montauk — Van #22
+  createBoard({
+    id: 'b-mtk-log',
+    code: 'SP-MT22-LOG-1',
+    name: '9\'2 Traditional Log',
+    nickname: 'Ditch Noserider',
+    type: 'Longboard',
+    dimensions: '9\'2 × 23 × 3 1/8',
+    length: '9\'2',
+    width: '23"',
+    thickness: '3 1/8"',
+    volume: '72 L',
+    finSetup: 'Single Fin 9"',
+    skill: 'All Levels',
+    recommendedWaves: '2–5 ft',
+    vanId: 'van-22',
+    vanName: 'Van #22 (Ditch Plains Scout)',
+    beachId: 'montauk',
+    beachName: 'Montauk - Ditch Plains',
+    availableCount: 2,
+    personality: 'Classic tip time on cobblestone point rights.',
+    whyMatch: 'Montauk’s longer lines reward traditional log trim.',
+    twoHours: 28,
+    fourHours: 42,
+    fullDay: 52,
+    tag: 'Point Break Classic',
+    shapeType: 'long',
+    condition: 'Mint'
+  }),
+  createBoard({
+    id: 'b-mtk-mid',
+    code: 'SP-MT22-MID-2',
+    name: '7\'6 Mid Twin',
+    nickname: 'Bluff Cruiser',
+    type: 'Mid-Length',
+    dimensions: '7\'6 × 21 1/2 × 2 3/4',
+    length: '7\'6',
+    width: '21 1/2"',
+    thickness: '2 3/4"',
+    volume: '50 L',
+    finSetup: 'Twin + Trailer',
+    skill: 'Intermediate',
+    recommendedWaves: '2–5 ft',
+    vanId: 'van-22',
+    vanName: 'Van #22 (Ditch Plains Scout)',
+    beachId: 'montauk',
+    beachName: 'Montauk - Ditch Plains',
+    availableCount: 2,
+    personality: 'Flows through Montauk’s mid-tide windows with speed.',
+    whyMatch: 'Best all-rounder when Ditch is chest-high and clean.',
+    twoHours: 29,
+    fourHours: 43,
+    fullDay: 54,
+    tag: 'East End Pick',
+    shapeType: 'mid'
+  }),
+  createBoard({
+    id: 'b-mtk-soft',
+    code: 'SP-MT22-SOFT-3',
+    name: '8\' Soft Top',
+    nickname: 'Camp Hero Softie',
+    type: 'Soft-Top',
+    dimensions: '8\'0 × 22 × 3',
+    length: '8\'0',
+    width: '22"',
+    thickness: '3"',
+    volume: '65 L',
+    finSetup: 'Soft Thruster',
+    skill: 'Beginner',
+    recommendedWaves: '1–3 ft',
+    vanId: 'van-22',
+    vanName: 'Van #22 (Ditch Plains Scout)',
+    beachId: 'montauk',
+    beachName: 'Montauk - Ditch Plains',
+    availableCount: 2,
+    personality: 'Safe, floaty intro board for Montauk first-timers.',
+    whyMatch: 'Smaller days at Ditch Plains — easy catch rate.',
+    twoHours: 22,
+    fourHours: 34,
+    fullDay: 44,
+    tag: 'Traveler Soft',
+    shapeType: 'soft'
+  }),
+  // Asbury Park — Van #18
+  createBoard({
+    id: 'b-asb-soft',
+    code: 'SP-AP18-SOFT-1',
+    name: '7\' Soft Top Funboard',
+    nickname: 'Convention Softie',
+    type: 'Soft-Top',
+    dimensions: '7\'0 × 21 1/2 × 3',
+    length: '7\'0',
+    width: '21 1/2"',
+    thickness: '3"',
+    volume: '58 L',
+    finSetup: 'Soft Thruster',
+    skill: 'Beginner',
+    recommendedWaves: '1–3 ft',
+    vanId: 'van-18',
+    vanName: 'Van #18 (Asbury Jetty)',
+    beachId: 'asbury-park',
+    beachName: 'Asbury Park',
+    availableCount: 3,
+    personality: 'Stable and soft for Asbury’s mellow beach-break peaks.',
+    whyMatch: 'Perfect next to the 8th Avenue jetty on FAIR-GOOD mornings.',
+    twoHours: 20,
+    fourHours: 30,
+    fullDay: 40,
+    tag: 'Boardwalk Beginner',
+    shapeType: 'soft'
+  }),
+  createBoard({
+    id: 'b-asb-long',
+    code: 'SP-AP18-LOG-2',
+    name: '9\'0 Soft-Rail Log',
+    nickname: 'Stone Pony Log',
+    type: 'Longboard',
+    dimensions: '9\'0 × 22 3/4 × 3',
+    length: '9\'0',
+    width: '22 3/4"',
+    thickness: '3"',
+    volume: '70 L',
+    finSetup: 'Single Fin',
+    skill: 'All Levels',
+    recommendedWaves: '1–3 ft',
+    vanId: 'van-18',
+    vanName: 'Van #18 (Asbury Jetty)',
+    beachId: 'asbury-park',
+    beachName: 'Asbury Park',
+    availableCount: 2,
+    personality: 'Easy noserides on soft NJ windswell.',
+    whyMatch: 'Asbury’s knee-to-waist peaks love volume and length.',
+    twoHours: 24,
+    fourHours: 36,
+    fullDay: 46,
+    tag: 'NJ Classic',
+    shapeType: 'long'
+  }),
+  createBoard({
+    id: 'b-asb-fish',
+    code: 'SP-AP18-FISH-3',
+    name: '5\'10 Retro Fish',
+    nickname: 'Jetty Twin',
+    type: 'Fish',
+    dimensions: '5\'10 × 20 3/4 × 2 1/2',
+    length: '5\'10',
+    width: '20 3/4"',
+    thickness: '2 1/2"',
+    volume: '36 L',
+    finSetup: 'Twin Keel',
+    skill: 'Intermediate',
+    recommendedWaves: '2–4 ft',
+    vanId: 'van-18',
+    vanName: 'Van #18 (Asbury Jetty)',
+    beachId: 'asbury-park',
+    beachName: 'Asbury Park',
+    availableCount: 1,
+    personality: 'Quick acceleration off the soft NJ sandbar.',
+    whyMatch: 'When Asbury gets a bit more punch, this fish lights up.',
+    twoHours: 26,
+    fourHours: 38,
+    fullDay: 48,
+    tag: 'Punchy Peaks',
+    shapeType: 'fish'
+  }),
+  // Huntington — Van #31
+  createBoard({
+    id: 'b-hb-short',
+    code: 'SP-HB31-SH-1',
+    name: '6\'0 CI Dumpster Diver',
+    nickname: 'Pier Sniper',
+    type: 'Shortboard',
+    dimensions: '6\'0 × 19 1/8 × 2 7/16',
+    length: '6\'0',
+    width: '19 1/8"',
+    thickness: '2 7/16"',
+    volume: '30.5 L',
+    finSetup: 'Thruster',
+    skill: 'Advanced',
+    recommendedWaves: '3–6 ft',
+    vanId: 'van-31',
+    vanName: 'Van #31 (Huntington Nomad)',
+    beachId: 'huntington',
+    beachName: 'Huntington Beach',
+    availableCount: 2,
+    personality: 'Tight turns for HB pier bowls and inside reform.',
+    whyMatch: 'When southside is waist-to-head, this is the daily driver.',
+    twoHours: 33,
+    fourHours: 47,
+    fullDay: 59,
+    tag: 'Surf City Pro',
+    shapeType: 'short'
+  }),
+  createBoard({
+    id: 'b-hb-fish',
+    code: 'SP-HB31-FISH-2',
+    name: '5\'9 Twin Fish',
+    nickname: 'PCH Twin',
+    type: 'Fish',
+    dimensions: '5\'9 × 20 1/4 × 2 1/2',
+    length: '5\'9',
+    width: '20 1/4"',
+    thickness: '2 1/2"',
+    volume: '34 L',
+    finSetup: 'Twin Keel',
+    skill: 'Intermediate',
+    recommendedWaves: '2–5 ft',
+    vanId: 'van-31',
+    vanName: 'Van #31 (Huntington Nomad)',
+    beachId: 'huntington',
+    beachName: 'Huntington Beach',
+    availableCount: 2,
+    personality: 'Speed for Huntington’s punchy beach-break sections.',
+    whyMatch: 'Great when HB is fun but not quite shortboard-critical.',
+    twoHours: 31,
+    fourHours: 45,
+    fullDay: 56,
+    tag: 'Pier Speed',
+    shapeType: 'fish'
+  }),
+  createBoard({
+    id: 'b-hb-soft',
+    code: 'SP-HB31-SOFT-3',
+    name: '7\' Soft Top',
+    nickname: 'Main St Softie',
+    type: 'Soft-Top',
+    dimensions: '7\'0 × 21 × 3',
+    length: '7\'0',
+    width: '21"',
+    thickness: '3"',
+    volume: '56 L',
+    finSetup: 'Soft Thruster',
+    skill: 'Beginner',
+    recommendedWaves: '1–3 ft',
+    vanId: 'van-31',
+    vanName: 'Van #31 (Huntington Nomad)',
+    beachId: 'huntington',
+    beachName: 'Huntington Beach',
+    availableCount: 3,
+    personality: 'Easy catch rate for Surf City first sessions.',
+    whyMatch: 'Soft mornings south of the pier — max fun, min stress.',
+    twoHours: 22,
+    fourHours: 34,
+    fullDay: 44,
+    tag: 'Family Friendly',
+    shapeType: 'soft'
+  }),
+  // Lower Trestles — Van #28
+  createBoard({
+    id: 'b-lt-short',
+    code: 'SP-LT28-SH-1',
+    name: '5\'11 JS Monsta Box',
+    nickname: 'Lowers Weapon',
+    type: 'Shortboard',
+    dimensions: '5\'11 × 18 3/4 × 2 5/16',
+    length: '5\'11',
+    width: '18 3/4"',
+    thickness: '2 5/16"',
+    volume: '27.5 L',
+    finSetup: 'Thruster',
+    skill: 'Advanced',
+    recommendedWaves: '4–7 ft',
+    vanId: 'van-28',
+    vanName: 'Van #28 (Lowers Local)',
+    beachId: 'trestles',
+    beachName: 'Lower Trestles',
+    availableCount: 2,
+    personality: 'Competition outline for A-frame rights and lefts.',
+    whyMatch: 'When Lowers is firing, this is the board that keeps up.',
+    twoHours: 38,
+    fourHours: 54,
+    fullDay: 68,
+    tag: 'World-Class Only',
+    shapeType: 'short',
+    condition: 'Mint'
+  }),
+  createBoard({
+    id: 'b-lt-fish',
+    code: 'SP-LT28-FISH-2',
+    name: '5\'10 Step-Up Fish',
+    nickname: 'Trail Twin',
+    type: 'Fish',
+    dimensions: '5\'10 × 19 3/4 × 2 7/16',
+    length: '5\'10',
+    width: '19 3/4"',
+    thickness: '2 7/16"',
+    volume: '31 L',
+    finSetup: 'Quad',
+    skill: 'Advanced',
+    recommendedWaves: '3–6 ft',
+    vanId: 'van-28',
+    vanName: 'Van #28 (Lowers Local)',
+    beachId: 'trestles',
+    beachName: 'Lower Trestles',
+    availableCount: 2,
+    personality: 'Holds speed through Lowers’ long open faces.',
+    whyMatch: 'Slightly softer days at Lowers still reward a refined fish.',
+    twoHours: 35,
+    fourHours: 50,
+    fullDay: 62,
+    tag: 'Performance Fish',
+    shapeType: 'fish'
+  }),
+  createBoard({
+    id: 'b-lt-mid',
+    code: 'SP-LT28-MID-3',
+    name: '6\'8 Mid Step-Down',
+    nickname: 'Cobble Mid',
+    type: 'Mid-Length',
+    dimensions: '6\'8 × 20 1/2 × 2 5/8',
+    length: '6\'8',
+    width: '20 1/2"',
+    thickness: '2 5/8"',
+    volume: '42 L',
+    finSetup: '2+1',
+    skill: 'Intermediate',
+    recommendedWaves: '2–5 ft',
+    vanId: 'van-28',
+    vanName: 'Van #28 (Lowers Local)',
+    beachId: 'trestles',
+    beachName: 'Lower Trestles',
+    availableCount: 1,
+    personality: 'More paddle for San Onofre days that aren’t full Lowers.',
+    whyMatch: 'When the rivermouth is fun but not critical.',
+    twoHours: 32,
+    fourHours: 46,
+    fullDay: 58,
+    tag: 'Trail All-Rounder',
+    shapeType: 'mid'
+  }),
+  // Cocoa Beach — Van #45
+  createBoard({
+    id: 'b-cb-long',
+    code: 'SP-CB45-LOG-1',
+    name: '9\' Soft-Rail Longboard',
+    nickname: 'Pier Noserider',
+    type: 'Longboard',
+    dimensions: '9\'0 × 23 × 3 1/8',
+    length: '9\'0',
+    width: '23"',
+    thickness: '3 1/8"',
+    volume: '73 L',
+    finSetup: 'Single Fin',
+    skill: 'All Levels',
+    recommendedWaves: '1–3 ft',
+    vanId: 'van-45',
+    vanName: 'Van #45 (Cocoa Cruiser)',
+    beachId: 'cocoa-beach',
+    beachName: 'Cocoa Beach',
+    availableCount: 3,
+    personality: 'Warm-water glide for Cocoa’s gentle peelers.',
+    whyMatch: 'Classic Cocoa Beach pier rights on trade swell.',
+    twoHours: 24,
+    fourHours: 36,
+    fullDay: 46,
+    tag: 'Florida Classic',
+    shapeType: 'long'
+  }),
+  createBoard({
+    id: 'b-cb-soft',
+    code: 'SP-CB45-SOFT-2',
+    name: '8\' Soft Top',
+    nickname: 'Space Coast Softie',
+    type: 'Soft-Top',
+    dimensions: '8\'0 × 22 × 3 1/4',
+    length: '8\'0',
+    width: '22"',
+    thickness: '3 1/4"',
+    volume: '67 L',
+    finSetup: 'Soft Thruster',
+    skill: 'Beginner',
+    recommendedWaves: '1–3 ft',
+    vanId: 'van-45',
+    vanName: 'Van #45 (Cocoa Cruiser)',
+    beachId: 'cocoa-beach',
+    beachName: 'Cocoa Beach',
+    availableCount: 3,
+    personality: 'Ultra-stable for warm Atlantic beginners.',
+    whyMatch: 'Cocoa’s thigh-to-waist mornings — catch everything.',
+    twoHours: 20,
+    fourHours: 30,
+    fullDay: 40,
+    tag: 'Warm Water Fun',
+    shapeType: 'soft'
+  }),
+  createBoard({
+    id: 'b-cb-mid',
+    code: 'SP-CB45-MID-3',
+    name: '7\'2 Fun Mid',
+    nickname: 'Meade Ave Mid',
+    type: 'Mid-Length',
+    dimensions: '7\'2 × 21 1/4 × 2 3/4',
+    length: '7\'2',
+    width: '21 1/4"',
+    thickness: '2 3/4"',
+    volume: '49 L',
+    finSetup: '2+1',
+    skill: 'Intermediate',
+    recommendedWaves: '2–4 ft',
+    vanId: 'van-45',
+    vanName: 'Van #45 (Cocoa Cruiser)',
+    beachId: 'cocoa-beach',
+    beachName: 'Cocoa Beach',
+    availableCount: 2,
+    personality: 'More drive than a softie when Cocoa gets a bump.',
+    whyMatch: 'When the pier sandbar stands up a little taller.',
+    twoHours: 26,
+    fourHours: 38,
+    fullDay: 48,
+    tag: 'Step-Up Fun',
+    shapeType: 'mid'
+  }),
+  // Waikiki — Van #61
+  createBoard({
+    id: 'b-wk-long',
+    code: 'SP-WK61-LOG-1',
+    name: '10\' Soft Longboard',
+    nickname: 'Queens Glider',
+    type: 'Longboard',
+    dimensions: '10\'0 × 24 × 3 1/2',
+    length: '10\'0',
+    width: '24"',
+    thickness: '3 1/2"',
+    volume: '95 L',
+    finSetup: 'Single Fin',
+    skill: 'All Levels',
+    recommendedWaves: '2–4 ft',
+    vanId: 'van-61',
+    vanName: 'Van #61 (Waikiki Nomad)',
+    beachId: 'waikiki',
+    beachName: 'Waikiki',
+    availableCount: 4,
+    personality: 'The classic Waikiki rental experience — endless rights.',
+    whyMatch: 'Queens & Canoes rolling southern swell paradise.',
+    twoHours: 30,
+    fourHours: 45,
+    fullDay: 60,
+    tag: 'Island Classic',
+    shapeType: 'long',
+    condition: 'Mint'
+  }),
+  createBoard({
+    id: 'b-wk-soft',
+    code: 'SP-WK61-SOFT-2',
+    name: '8\' Soft Top',
+    nickname: 'Diamond Softie',
+    type: 'Soft-Top',
+    dimensions: '8\'0 × 22 1/2 × 3 1/4',
+    length: '8\'0',
+    width: '22 1/2"',
+    thickness: '3 1/4"',
+    volume: '70 L',
+    finSetup: 'Soft Thruster',
+    skill: 'Beginner',
+    recommendedWaves: '1–3 ft',
+    vanId: 'van-61',
+    vanName: 'Van #61 (Waikiki Nomad)',
+    beachId: 'waikiki',
+    beachName: 'Waikiki',
+    availableCount: 3,
+    personality: 'Safe tropical intro board under Diamond Head.',
+    whyMatch: 'First Hawaiian session — floaty and forgiving.',
+    twoHours: 24,
+    fourHours: 36,
+    fullDay: 48,
+    tag: 'Aloha Beginner',
+    shapeType: 'soft'
+  }),
+  createBoard({
+    id: 'b-wk-mid',
+    code: 'SP-WK61-MID-3',
+    name: '8\' Mid-Length',
+    nickname: 'Canoes Cruiser',
+    type: 'Mid-Length',
+    dimensions: '8\'0 × 22 × 3',
+    length: '8\'0',
+    width: '22"',
+    thickness: '3"',
+    volume: '62 L',
+    finSetup: '2+1',
+    skill: 'Intermediate',
+    recommendedWaves: '2–4 ft',
+    vanId: 'van-61',
+    vanName: 'Van #61 (Waikiki Nomad)',
+    beachId: 'waikiki',
+    beachName: 'Waikiki',
+    availableCount: 2,
+    personality: 'More rail than a softie for longer Waikiki walls.',
+    whyMatch: 'When you want classic Waikiki rides with a bit more performance.',
+    twoHours: 28,
+    fourHours: 42,
+    fullDay: 55,
+    tag: 'Reef Glide',
+    shapeType: 'mid'
+  }),
+  // Outer Banks — Van #55
+  createBoard({
+    id: 'b-obx-short',
+    code: 'SP-OB55-SH-1',
+    name: '6\'2 Step-Up',
+    nickname: 'Lighthouse Step-Up',
+    type: 'Shortboard',
+    dimensions: '6\'2 × 18 7/8 × 2 3/8',
+    length: '6\'2',
+    width: '18 7/8"',
+    thickness: '2 3/8"',
+    volume: '28.5 L',
+    finSetup: 'Thruster',
+    skill: 'Advanced',
+    recommendedWaves: '4–7 ft',
+    vanId: 'van-55',
+    vanName: 'Van #55 (Hatteras Hauler)',
+    beachId: 'outer-banks',
+    beachName: 'Outer Banks - Cape Hatteras',
+    availableCount: 2,
+    personality: 'Holds in punchy Hatteras A-frames.',
+    whyMatch: 'When Buxton sandbars start spitting, bring the step-up.',
+    twoHours: 34,
+    fourHours: 48,
+    fullDay: 60,
+    tag: 'OBX Power',
+    shapeType: 'short'
+  }),
+  createBoard({
+    id: 'b-obx-fish',
+    code: 'SP-OB55-FISH-2',
+    name: '5\'10 Groveler Fish',
+    nickname: 'Buxton Groveler',
+    type: 'Fish',
+    dimensions: '5\'10 × 20 1/2 × 2 5/8',
+    length: '5\'10',
+    width: '20 1/2"',
+    thickness: '2 5/8"',
+    volume: '36 L',
+    finSetup: 'Quad',
+    skill: 'Intermediate',
+    recommendedWaves: '2–5 ft',
+    vanId: 'van-55',
+    vanName: 'Van #55 (Hatteras Hauler)',
+    beachId: 'outer-banks',
+    beachName: 'Outer Banks - Cape Hatteras',
+    availableCount: 2,
+    personality: 'Gets you into slower OBX reform sections early.',
+    whyMatch: 'Smaller Hatteras days still reward a wide fish.',
+    twoHours: 30,
+    fourHours: 44,
+    fullDay: 55,
+    tag: 'Sandbar Speed',
+    shapeType: 'fish'
+  }),
+  createBoard({
+    id: 'b-obx-mid',
+    code: 'SP-OB55-MID-3',
+    name: '7\'0 Mid',
+    nickname: 'Cape Mid',
+    type: 'Mid-Length',
+    dimensions: '7\'0 × 21 × 2 3/4',
+    length: '7\'0',
+    width: '21"',
+    thickness: '2 3/4"',
+    volume: '47 L',
+    finSetup: '2+1',
+    skill: 'All Levels',
+    recommendedWaves: '2–4 ft',
+    vanId: 'van-55',
+    vanName: 'Van #55 (Hatteras Hauler)',
+    beachId: 'outer-banks',
+    beachName: 'Outer Banks - Cape Hatteras',
+    availableCount: 2,
+    personality: 'Versatile paddle power for shifting barrier-island peaks.',
+    whyMatch: 'The safest all-rounder when OBX conditions bounce around.',
+    twoHours: 28,
+    fourHours: 40,
+    fullDay: 50,
+    tag: 'Barrier Island All-Rounder',
+    shapeType: 'mid'
+  }),
+  // --- Fill every van with a full quiver (Longboard / Mid / Fish / Soft / Short) ---
+  createBoard({
+    id: 'b-rkw07-long', code: 'SP-RK07-LOG-3', name: '9\'0 Classic Log', nickname: '67th Log',
+    type: 'Longboard', dimensions: '9\'0 × 22 3/4 × 3', length: '9\'0', width: '22 3/4"', thickness: '3"', volume: '70 L',
+    finSetup: 'Single Fin', skill: 'All Levels', recommendedWaves: '1–3 ft',
+    vanId: 'van-07', vanName: 'Van #07 (Boardwalk Cruiser)', beachId: 'rockaway', beachName: 'Rockaway Beach',
+    availableCount: 2, personality: 'Easy glide near Beach 67th for mellow morning peelers.', whyMatch: 'Rockaway soft days love length and volume.',
+    twoHours: 24, fourHours: 36, fullDay: 46, tag: 'Boardwalk Log', shapeType: 'long'
+  }),
+  createBoard({
+    id: 'b-rkw07-fish', code: 'SP-RK07-FISH-4', name: '5\'9 Twin Fish', nickname: 'Subway Twin',
+    type: 'Fish', dimensions: '5\'9 × 20 1/4 × 2 1/2', length: '5\'9', width: '20 1/4"', thickness: '2 1/2"', volume: '34 L',
+    finSetup: 'Twin Keel', skill: 'Intermediate', recommendedWaves: '2–4 ft',
+    vanId: 'van-07', vanName: 'Van #07 (Boardwalk Cruiser)', beachId: 'rockaway', beachName: 'Rockaway Beach',
+    availableCount: 2, personality: 'Quick acceleration off Rockaway sandbars.', whyMatch: 'When Beach 67th gets a bit more punch.',
+    twoHours: 28, fourHours: 40, fullDay: 50, tag: 'Speed Twin', shapeType: 'fish'
+  }),
+  createBoard({
+    id: 'b-rkw07-short', code: 'SP-RK07-SH-5', name: '6\'0 Daily Shortboard', nickname: 'Queens Shorty',
+    type: 'Shortboard', dimensions: '6\'0 × 19 1/4 × 2 7/16', length: '6\'0', width: '19 1/4"', thickness: '2 7/16"', volume: '30 L',
+    finSetup: 'Thruster', skill: 'Advanced', recommendedWaves: '3–5 ft',
+    vanId: 'van-07', vanName: 'Van #07 (Boardwalk Cruiser)', beachId: 'rockaway', beachName: 'Rockaway Beach',
+    availableCount: 1, personality: 'Pocket snaps for punchier Rockaway sets.', whyMatch: 'Best when the jetty sandbar stands up.',
+    twoHours: 32, fourHours: 45, fullDay: 56, tag: 'Performance', shapeType: 'short'
+  }),
+  createBoard({
+    id: 'b-sd-long', code: 'SP-SD01-LOG-4', name: '9\'2 Cliff Log', nickname: 'Osprey Log',
+    type: 'Longboard', dimensions: '9\'2 × 23 × 3 1/8', length: '9\'2', width: '23"', thickness: '3 1/8"', volume: '72 L',
+    finSetup: 'Single Fin', skill: 'All Levels', recommendedWaves: '2–4 ft',
+    vanId: 'van-01-sd', vanName: 'Van #01 (Sunset Nomad)', beachId: 'sunset-cliffs', beachName: 'Sunset Cliffs',
+    availableCount: 2, personality: 'Long rolling trim along the cliff line.', whyMatch: 'Morning glass at Sunset Cliffs loves a traditional log.',
+    twoHours: 30, fourHours: 44, fullDay: 55, tag: 'Cliff Classic', shapeType: 'long', condition: 'Mint'
+  }),
+  createBoard({
+    id: 'b-sd-soft', code: 'SP-SD01-SOFT-5', name: '8\' Soft Top', nickname: 'Cliff Softie',
+    type: 'Soft-Top', dimensions: '8\'0 × 22 × 3 1/4', length: '8\'0', width: '22"', thickness: '3 1/4"', volume: '66 L',
+    finSetup: 'Soft Thruster', skill: 'Beginner', recommendedWaves: '1–3 ft',
+    vanId: 'van-01-sd', vanName: 'Van #01 (Sunset Nomad)', beachId: 'sunset-cliffs', beachName: 'Sunset Cliffs',
+    availableCount: 2, personality: 'Safe intro board for San Diego first sessions.', whyMatch: 'Smaller cliff days — max float, min stress.',
+    twoHours: 22, fourHours: 34, fullDay: 44, tag: 'Beginner Safe', shapeType: 'soft'
+  }),
+  createBoard({
+    id: 'b-mtk-fish', code: 'SP-MT22-FISH-4', name: '5\'10 Montauk Fish', nickname: 'Ditch Twin',
+    type: 'Fish', dimensions: '5\'10 × 20 1/2 × 2 1/2', length: '5\'10', width: '20 1/2"', thickness: '2 1/2"', volume: '35 L',
+    finSetup: 'Twin Keel', skill: 'Intermediate', recommendedWaves: '2–5 ft',
+    vanId: 'van-22', vanName: 'Van #22 (Ditch Plains Scout)', beachId: 'montauk', beachName: 'Montauk - Ditch Plains',
+    availableCount: 2, personality: 'Speedy down the cobblestone point.', whyMatch: 'When Ditch is chest-high and you want more drive than a log.',
+    twoHours: 30, fourHours: 44, fullDay: 54, tag: 'Point Speed', shapeType: 'fish'
+  }),
+  createBoard({
+    id: 'b-mtk-short', code: 'SP-MT22-SH-5', name: '6\'1 East End Short', nickname: 'Bluff Shorty',
+    type: 'Shortboard', dimensions: '6\'1 × 19 × 2 3/8', length: '6\'1', width: '19"', thickness: '2 3/8"', volume: '29 L',
+    finSetup: 'Thruster', skill: 'Advanced', recommendedWaves: '3–6 ft',
+    vanId: 'van-22', vanName: 'Van #22 (Ditch Plains Scout)', beachId: 'montauk', beachName: 'Montauk - Ditch Plains',
+    availableCount: 1, personality: 'Holds rail when Montauk jacks on groundswell.', whyMatch: 'Bigger East End days need a proper shortboard.',
+    twoHours: 34, fourHours: 48, fullDay: 58, tag: 'Advanced', shapeType: 'short'
+  }),
+  createBoard({
+    id: 'b-asb-mid', code: 'SP-AP18-MID-4', name: '7\'0 Asbury Mid', nickname: 'Convention Mid',
+    type: 'Mid-Length', dimensions: '7\'0 × 21 × 2 3/4', length: '7\'0', width: '21"', thickness: '2 3/4"', volume: '48 L',
+    finSetup: '2+1', skill: 'All Levels', recommendedWaves: '1–4 ft',
+    vanId: 'van-18', vanName: 'Van #18 (Asbury Jetty)', beachId: 'asbury-park', beachName: 'Asbury Park',
+    availableCount: 2, personality: 'Balanced paddle and turn for NJ beach-break.', whyMatch: 'Ideal when Asbury is soft but you want more rail than a softie.',
+    twoHours: 25, fourHours: 37, fullDay: 47, tag: 'NJ Mid', shapeType: 'mid'
+  }),
+  createBoard({
+    id: 'b-asb-short', code: 'SP-AP18-SH-5', name: '6\'0 Asbury Short', nickname: 'Jetty Shorty',
+    type: 'Shortboard', dimensions: '6\'0 × 19 1/4 × 2 7/16', length: '6\'0', width: '19 1/4"', thickness: '2 7/16"', volume: '30.5 L',
+    finSetup: 'Thruster', skill: 'Advanced', recommendedWaves: '2–5 ft',
+    vanId: 'van-18', vanName: 'Van #18 (Asbury Jetty)', beachId: 'asbury-park', beachName: 'Asbury Park',
+    availableCount: 1, personality: 'Quick redirects off the 8th Avenue sandbar.', whyMatch: 'When Asbury gets a real bump of swell.',
+    twoHours: 30, fourHours: 44, fullDay: 54, tag: 'Performance', shapeType: 'short'
+  }),
+  createBoard({
+    id: 'b-hb-long', code: 'SP-HB31-LOG-4', name: '9\'0 HB Log', nickname: 'Pier Log',
+    type: 'Longboard', dimensions: '9\'0 × 23 × 3 1/8', length: '9\'0', width: '23"', thickness: '3 1/8"', volume: '73 L',
+    finSetup: 'Single Fin', skill: 'All Levels', recommendedWaves: '1–4 ft',
+    vanId: 'van-31', vanName: 'Van #31 (Huntington Nomad)', beachId: 'huntington', beachName: 'Huntington Beach',
+    availableCount: 2, personality: 'Classic Surf City noserider for mellow pier mornings.', whyMatch: 'Soft HB days south of the pier.',
+    twoHours: 28, fourHours: 42, fullDay: 52, tag: 'Surf City Log', shapeType: 'long'
+  }),
+  createBoard({
+    id: 'b-hb-mid', code: 'SP-HB31-MID-5', name: '7\'2 HB Mid', nickname: 'PCH Mid',
+    type: 'Mid-Length', dimensions: '7\'2 × 21 1/4 × 2 3/4', length: '7\'2', width: '21 1/4"', thickness: '2 3/4"', volume: '49 L',
+    finSetup: '2+1', skill: 'Intermediate', recommendedWaves: '2–5 ft',
+    vanId: 'van-31', vanName: 'Van #31 (Huntington Nomad)', beachId: 'huntington', beachName: 'Huntington Beach',
+    availableCount: 2, personality: 'Flowing mid for Huntington’s all-day beach-break.', whyMatch: 'Waist-high HB with clean shoulders.',
+    twoHours: 29, fourHours: 43, fullDay: 54, tag: 'All-Day Mid', shapeType: 'mid'
+  }),
+  createBoard({
+    id: 'b-lt-long', code: 'SP-LT28-LOG-4', name: '9\'0 Trestles Log', nickname: 'Trail Log',
+    type: 'Longboard', dimensions: '9\'0 × 22 3/4 × 3', length: '9\'0', width: '22 3/4"', thickness: '3"', volume: '70 L',
+    finSetup: 'Single Fin', skill: 'All Levels', recommendedWaves: '2–4 ft',
+    vanId: 'van-28', vanName: 'Van #28 (Lowers Local)', beachId: 'trestles', beachName: 'Lower Trestles',
+    availableCount: 1, personality: 'Glide for softer San Onofre / Trestles days.', whyMatch: 'When Lowers is fun but not full competition size.',
+    twoHours: 32, fourHours: 46, fullDay: 58, tag: 'Trail Log', shapeType: 'long'
+  }),
+  createBoard({
+    id: 'b-lt-soft', code: 'SP-LT28-SOFT-5', name: '8\' Soft Top', nickname: 'SanO Softie',
+    type: 'Soft-Top', dimensions: '8\'0 × 22 × 3 1/4', length: '8\'0', width: '22"', thickness: '3 1/4"', volume: '66 L',
+    finSetup: 'Soft Thruster', skill: 'Beginner', recommendedWaves: '1–3 ft',
+    vanId: 'van-28', vanName: 'Van #28 (Lowers Local)', beachId: 'trestles', beachName: 'Lower Trestles',
+    availableCount: 2, personality: 'Safe option for first San Onofre sessions.', whyMatch: 'Smaller trail days before the hike feels intense.',
+    twoHours: 24, fourHours: 36, fullDay: 46, tag: 'Beginner Trail', shapeType: 'soft'
+  }),
+  createBoard({
+    id: 'b-cb-fish', code: 'SP-CB45-FISH-4', name: '5\'10 Cocoa Fish', nickname: 'Pier Twin',
+    type: 'Fish', dimensions: '5\'10 × 20 1/2 × 2 1/2', length: '5\'10', width: '20 1/2"', thickness: '2 1/2"', volume: '35 L',
+    finSetup: 'Twin Keel', skill: 'Intermediate', recommendedWaves: '2–4 ft',
+    vanId: 'van-45', vanName: 'Van #45 (Cocoa Cruiser)', beachId: 'cocoa-beach', beachName: 'Cocoa Beach',
+    availableCount: 2, personality: 'Speed for Cocoa sandbar sections.', whyMatch: 'When the pier gets a little more punch than softie weather.',
+    twoHours: 28, fourHours: 40, fullDay: 50, tag: 'Space Coast Twin', shapeType: 'fish'
+  }),
+  createBoard({
+    id: 'b-cb-short', code: 'SP-CB45-SH-5', name: '6\'0 Cocoa Short', nickname: 'Meade Shorty',
+    type: 'Shortboard', dimensions: '6\'0 × 19 1/4 × 2 7/16', length: '6\'0', width: '19 1/4"', thickness: '2 7/16"', volume: '30.5 L',
+    finSetup: 'Thruster', skill: 'Advanced', recommendedWaves: '2–5 ft',
+    vanId: 'van-45', vanName: 'Van #45 (Cocoa Cruiser)', beachId: 'cocoa-beach', beachName: 'Cocoa Beach',
+    availableCount: 1, personality: 'Quick turns when Florida stands up.', whyMatch: 'Better swell windows at Cocoa Beach Pier.',
+    twoHours: 30, fourHours: 44, fullDay: 54, tag: 'Florida Performance', shapeType: 'short'
+  }),
+  createBoard({
+    id: 'b-wk-fish', code: 'SP-WK61-FISH-4', name: '5\'10 Waikiki Fish', nickname: 'Canoes Twin',
+    type: 'Fish', dimensions: '5\'10 × 20 3/4 × 2 1/2', length: '5\'10', width: '20 3/4"', thickness: '2 1/2"', volume: '36 L',
+    finSetup: 'Twin Keel', skill: 'Intermediate', recommendedWaves: '2–4 ft',
+    vanId: 'van-61', vanName: 'Van #61 (Waikiki Nomad)', beachId: 'waikiki', beachName: 'Waikiki',
+    availableCount: 2, personality: 'Faster trim across Queens walls than a softie.', whyMatch: 'When you want more drive on rolling Waikiki rights.',
+    twoHours: 30, fourHours: 44, fullDay: 56, tag: 'Island Twin', shapeType: 'fish'
+  }),
+  createBoard({
+    id: 'b-wk-short', code: 'SP-WK61-SH-5', name: '6\'0 Hawaii Short', nickname: 'Diamond Shorty',
+    type: 'Shortboard', dimensions: '6\'0 × 19 × 2 3/8', length: '6\'0', width: '19"', thickness: '2 3/8"', volume: '29.5 L',
+    finSetup: 'Thruster', skill: 'Advanced', recommendedWaves: '3–5 ft',
+    vanId: 'van-61', vanName: 'Van #61 (Waikiki Nomad)', beachId: 'waikiki', beachName: 'Waikiki',
+    availableCount: 1, personality: 'For stronger south swell days beyond beginner Waikiki.', whyMatch: 'When Canoes / Queens has real size.',
+    twoHours: 34, fourHours: 48, fullDay: 60, tag: 'Island Performance', shapeType: 'short'
+  }),
+  createBoard({
+    id: 'b-obx-long', code: 'SP-OB55-LOG-4', name: '9\'0 OBX Log', nickname: 'Lighthouse Log',
+    type: 'Longboard', dimensions: '9\'0 × 23 × 3 1/8', length: '9\'0', width: '23"', thickness: '3 1/8"', volume: '72 L',
+    finSetup: 'Single Fin', skill: 'All Levels', recommendedWaves: '1–4 ft',
+    vanId: 'van-55', vanName: 'Van #55 (Hatteras Hauler)', beachId: 'outer-banks', beachName: 'Outer Banks - Cape Hatteras',
+    availableCount: 2, personality: 'Glide for softer Hatteras mornings.', whyMatch: 'When Buxton is playful rather than heavy.',
+    twoHours: 26, fourHours: 38, fullDay: 48, tag: 'OBX Log', shapeType: 'long'
+  }),
+  createBoard({
+    id: 'b-obx-soft', code: 'SP-OB55-SOFT-5', name: '8\' Soft Top', nickname: 'Hatteras Softie',
+    type: 'Soft-Top', dimensions: '8\'0 × 22 × 3 1/4', length: '8\'0', width: '22"', thickness: '3 1/4"', volume: '66 L',
+    finSetup: 'Soft Thruster', skill: 'Beginner', recommendedWaves: '1–3 ft',
+    vanId: 'van-55', vanName: 'Van #55 (Hatteras Hauler)', beachId: 'outer-banks', beachName: 'Outer Banks - Cape Hatteras',
+    availableCount: 2, personality: 'Safe intro board for Outer Banks first sessions.', whyMatch: 'Smaller barrier-island days — float and forgive.',
+    twoHours: 22, fourHours: 34, fullDay: 44, tag: 'Beginner OBX', shapeType: 'soft'
+  })
 ]
 
 // --- CLEAN VECTOR SURFBOARD SILHOUETTES ---
@@ -1063,6 +2095,28 @@ function BoardSilhouette({ type, className = "h-40" }: { type: 'long' | 'mid' | 
   }
 }
 
+/** Always show a full-color location photo — primary, then curated colorful fallback. */
+function BeachCoverImage({ beach, className = 'w-full h-full object-cover' }: { beach: Beach; className?: string }) {
+  const [src, setSrc] = useState(beach.image)
+
+  useEffect(() => {
+    setSrc(beach.image)
+  }, [beach.id, beach.image])
+
+  return (
+    <img
+      src={src}
+      alt={beach.name}
+      className={`${className} saturate-150`}
+      onError={() => {
+        if (src !== beach.imageFallback) {
+          setSrc(beach.imageFallback)
+        }
+      }}
+    />
+  )
+}
+
 // --- MAIN APP COMPONENT ---
 export default function App() {
   // Navigation State
@@ -1073,6 +2127,8 @@ export default function App() {
   const [selectedRegion, setSelectedRegion] = useState<string>('All')
   const [skillFilter, setSkillFilter] = useState<string>('All')
   const [boardTypeFilter, setBoardTypeFilter] = useState<string>('All')
+  const [quiverFilter, setQuiverFilter] = useState<string>('All')
+  const [showTravelerModal, setShowTravelerModal] = useState(false)
 
   // Core Data State
   const [beaches] = useState<Beach[]>(BEACHES)
@@ -1148,6 +2204,7 @@ export default function App() {
         setShowRideRecommender(false)
         setShowPassModal(false)
         setShowReturnModal(false)
+        setShowTravelerModal(false)
       }
     }
     window.addEventListener('keydown', handleKeyDown)
@@ -1188,22 +2245,53 @@ export default function App() {
   // Filtered Boards for Current Selected Van
   const currentVanBoards = useMemo(() => {
     return boards.filter(b => {
-      const matchesVan = b.vanId === selectedVan.id || selectedVan.id === 'van-12' // fallback to rockaway fleet
+      const matchesVan = b.vanId === selectedVan.id
       const matchesType = boardTypeFilter === 'All' || b.type === boardTypeFilter
       return matchesVan && matchesType
     })
   }, [boards, selectedVan, boardTypeFilter])
 
+  // Home quiver showcase (Van #12)
+  const filteredQuiverBoards = useMemo(() => {
+    return boards.filter(b => {
+      if (b.vanId !== 'van-12') return false
+      if (quiverFilter === 'All') return true
+      if (quiverFilter === 'Longboard') return b.type === 'Longboard' || b.type === 'Soft-Top'
+      if (quiverFilter === 'Mid-Length') return b.type === 'Mid-Length'
+      if (quiverFilter === 'Fish') return b.type === 'Fish'
+      if (quiverFilter === 'Shortboard') return b.type === 'Shortboard'
+      return true
+    })
+  }, [boards, quiverFilter])
+
+  // Live Map: vans for currently selected market only
+  const marketVans = useMemo(() => {
+    return vans.filter(v => v.beachId === selectedBeach.id)
+  }, [vans, selectedBeach])
+
+  const selectedBeachVans = marketVans
+
   // Handlers
   const handleSelectBeach = (beach: Beach) => {
     setSelectedBeach(beach)
-    const matchingVan = vans.find(v => v.beachId === beach.id) || vans[0]
-    setSelectedVan(matchingVan)
+    const matchingVan = vans.find(v => v.beachId === beach.id)
+    if (matchingVan) {
+      setSelectedVan(matchingVan)
+    }
     setShowBeachModal(true)
+  }
+
+  const openMarketOnMap = (beach: Beach) => {
+    setSelectedBeach(beach)
+    const matchingVan = vans.find(v => v.beachId === beach.id)
+    if (matchingVan) setSelectedVan(matchingVan)
+    setShowBeachModal(false)
+    setActiveTab('map')
   }
 
   const handleSelectVan = (van: Van) => {
     setSelectedVan(van)
+    setBoardTypeFilter('All')
     const matchingBeach = beaches.find(b => b.id === van.beachId) || beaches[0]
     setSelectedBeach(matchingBeach)
     setShowVanModal(true)
@@ -1398,10 +2486,9 @@ export default function App() {
             TAB: HOME
         ══════════════════════════════════════════════════════════════════ */}
         {activeTab === 'home' && (
-          <div className="space-y-12">
-            {/* HERO SECTION */}
+          <div className="space-y-10">
+            {/* HERO — matches preferred screenshot style */}
             <div className="relative overflow-hidden rounded-3xl bg-gradient-to-b from-slate-900 via-slate-900/90 to-[#07090E] border border-slate-800/90 p-6 md:p-12 shadow-2xl">
-              {/* Background Glow */}
               <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-cyan-500/10 blur-3xl pointer-events-none"></div>
               <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none"></div>
 
@@ -1433,7 +2520,7 @@ export default function App() {
                     <ArrowRight className="w-4 h-4" />
                   </button>
                   <button
-                    onClick={() => { setSelectedBeach(BEACHES[0]); setShowBeachModal(true); }}
+                    onClick={() => handleSelectBeach(BEACHES[0])}
                     className="px-6 py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-white font-bold text-sm border border-slate-700/80 active:scale-95 transition-all flex items-center gap-2"
                   >
                     <Eye className="w-4 h-4 text-cyan-400" />
@@ -1443,7 +2530,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* ── 5-STEP INTERACTIVE WORKFLOW BANNER (Every Step is Clickable) ── */}
+            {/* 5-STEP JOURNEY — single number per step */}
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <h3 className="text-xs font-mono uppercase tracking-widest text-slate-400 font-semibold flex items-center gap-2">
@@ -1452,144 +2539,114 @@ export default function App() {
                 </h3>
                 <span className="text-xs text-cyan-400 font-mono">Van-to-water in 3 minutes</span>
               </div>
-
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5 sm:gap-4">
                 {[
-                  {
-                    step: '1. Forecast',
-                    desc: 'Check live wave conditions',
-                    icon: Waves,
-                    action: () => { setSelectedBeach(BEACHES[0]); setShowBeachModal(true); }
-                  },
-                  {
-                    step: '2. Van',
-                    desc: 'Locate mobile fleet',
-                    icon: Car,
-                    action: () => setActiveTab('map')
-                  },
-                  {
-                    step: '3. Board',
-                    desc: 'Pick tailored quiver',
-                    icon: Compass,
-                    action: () => { setSelectedVan(VANS[0]); setShowVanModal(true); }
-                  },
-                  {
-                    step: '4. Pay',
-                    desc: 'USDC, BTC or Apple Pay',
-                    icon: CreditCard,
-                    action: () => handleOpenCheckout(INITIAL_BOARDS[0])
-                  },
-                  {
-                    step: '5. Pass & Surf',
-                    desc: 'QR van unlock & deposit',
-                    icon: QrCode,
-                    action: () => {
-                      if (rentals.length > 0) {
-                        setActivePass(rentals[0])
-                        setShowPassModal(true)
-                      } else {
-                        setActiveTab('rentals')
-                      }
+                  { step: '1. Forecast', label: 'Check live wave conditions', icon: Waves, action: () => handleSelectBeach(selectedBeach) },
+                  { step: '2. Van', label: 'Find closest mobile van', icon: Car, action: () => openMarketOnMap(selectedBeach) },
+                  { step: '3. Board', label: 'Select tailored surfboard', icon: Compass, action: () => {
+                    const van = vans.find(v => v.beachId === selectedBeach.id)
+                    if (van) {
+                      handleSelectVan(van)
+                    } else {
+                      openMarketOnMap(selectedBeach)
                     }
-                  }
+                  }},
+                  { step: '4. Pay', label: 'USDC, BTC or Apple Pay', icon: CreditCard, action: () => handleOpenCheckout(INITIAL_BOARDS[0]) },
+                  { step: '5. Pass & Surf', label: 'Scan QR & get board', icon: QrCode, action: () => {
+                    if (rentals.length > 0) {
+                      setActivePass(rentals[0])
+                      setShowPassModal(true)
+                    } else {
+                      setActiveTab('rentals')
+                    }
+                  }}
                 ].map((item, idx) => {
                   const Icon = item.icon
                   return (
-                    <div
+                    <button
                       key={idx}
                       onClick={item.action}
-                      className="group cursor-pointer p-4 rounded-2xl bg-slate-900/70 border border-slate-800/80 hover:border-cyan-500/50 hover:bg-slate-900 transition-all shadow-md relative overflow-hidden"
+                      className="text-left p-3 rounded-xl bg-slate-900/80 hover:bg-slate-800/90 border border-slate-800 hover:border-cyan-500/40 transition group"
                     >
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-mono font-bold text-slate-500 group-hover:text-cyan-400">0{idx + 1}</span>
-                        <div className="w-7 h-7 rounded-lg bg-slate-800 flex items-center justify-center text-slate-300 group-hover:text-cyan-300 group-hover:bg-cyan-500/20 transition-all">
-                          <Icon className="w-4 h-4" />
-                        </div>
+                      <div className="w-7 h-7 rounded-lg bg-cyan-500/10 group-hover:bg-cyan-500/20 text-cyan-400 flex items-center justify-center mb-2 transition">
+                        <Icon className="w-3.5 h-3.5" />
                       </div>
-                      <h4 className="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors">{item.step}</h4>
-                      <p className="text-xs text-slate-400 mt-0.5">{item.desc}</p>
-                    </div>
+                      <p className="text-xs font-bold text-white group-hover:text-cyan-300 transition">{item.step}</p>
+                      <p className="text-[10px] text-slate-400 mt-0.5 leading-snug">{item.label}</p>
+                    </button>
                   )
                 })}
               </div>
             </div>
 
-            {/* ── SMART "BEST MATCH RIGHT NOW" HERO CARD ── */}
-            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-[#0B132B] to-[#07090E] border-2 border-cyan-500/30 p-6 md:p-8 shadow-2xl">
-              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-                <div className="space-y-3 max-w-xl">
-                  <div className="flex items-center gap-2">
-                    <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 text-xs font-mono font-bold">
-                      SMART MATCH RIGHT NOW
+            {/* SMART MATCH */}
+            <section className="bg-gradient-to-r from-[#0C192E] via-[#0E203B] to-[#0A1628] border border-cyan-500/30 rounded-2xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+              <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+                <div className="space-y-3 max-w-2xl">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-cyan-500 text-black">
+                      BEST MATCH RIGHT NOW
                     </span>
-                    <span className="text-xs text-emerald-400 font-mono flex items-center gap-1">
-                      <CheckCircle2 className="w-3 h-3" /> Optimum Window: 8:30 AM – 11:30 AM
+                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold border ${getQualityBadgeStyle('GOOD')}`}>
+                      2–3 FT • GOOD
                     </span>
+                    <span className="text-xs text-slate-400 font-medium">Rockaway Beach (Queens, NY)</span>
                   </div>
 
-                  <h2 className="text-2xl md:text-3xl font-black text-white">
-                    Rockaway Beach 90th St • 2–3 ft Clean Lines
-                  </h2>
+                  <h3 className="text-xl sm:text-2xl font-black text-white">
+                    9'4 BING Classic at Rockaway Van #12
+                  </h3>
 
-                  <p className="text-sm text-slate-300 leading-relaxed">
-                    Waves are small, clean, and glassy with light offshore NW breeze on the incoming tide push. Perfect volume glide on a traditional log.
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    <strong className="text-cyan-300">Why this board: </strong>
+                    The waves are small, clean and soft this morning, so the 74.5L volume helps you glide through every set before the afternoon wind shift.
                   </p>
 
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
-                    <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-                      <span className="text-[10px] text-slate-400 uppercase font-mono">Recommended Board</span>
-                      <p className="text-sm font-bold text-white truncate">9'4 BING Classic</p>
-                      <span className="text-[11px] text-cyan-400">74.5L • Single Fin</span>
+                  <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400 pt-1">
+                    <div className="flex items-center gap-1.5 text-slate-200">
+                      <Car className="w-4 h-4 text-cyan-400" />
+                      <span>Van #12 (Rockaway Runner) • Beach 90th St</span>
                     </div>
-                    <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-                      <span className="text-[10px] text-slate-400 uppercase font-mono">Closest Mobile Van</span>
-                      <p className="text-sm font-bold text-white truncate">Van #12 (Runner)</p>
-                      <span className="text-[11px] text-emerald-400">0.2 mi • 3 Available</span>
+                    <div className="flex items-center gap-1 text-emerald-400 font-semibold">
+                      <Check className="w-3.5 h-3.5" />
+                      <span>3 longboards ready (0.2 mi away)</span>
                     </div>
-                    <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 col-span-2 sm:col-span-1">
-                      <span className="text-[10px] text-slate-400 uppercase font-mono">Transparent Rate</span>
-                      <p className="text-sm font-bold text-white">$25 / 2 Hours</p>
-                      <span className="text-[11px] text-slate-400">$50 deposit (instant refund)</span>
+                    <div className="text-white font-bold">
+                      $25 / 2 hrs <span className="text-slate-400 font-normal">($50 refundable deposit)</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Card Action & Board Preview */}
-                <div className="flex flex-col items-center justify-center p-5 rounded-2xl bg-slate-900/90 border border-slate-800 text-center min-w-[240px] space-y-4">
-                  <div className="py-2">
-                    <BoardSilhouette type="long" className="h-32" />
-                  </div>
-                  <div className="w-full space-y-2">
-                    <button
-                      onClick={() => handleOpenCheckout(INITIAL_BOARDS[0])}
-                      className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold text-sm hover:from-cyan-400 hover:to-blue-500 shadow-lg shadow-cyan-500/20 active:scale-95 transition-all"
-                    >
-                      Reserve This Board ($25)
-                    </button>
-                    <button
-                      onClick={() => { setSelectedBeach(BEACHES[0]); setShowBeachModal(true); }}
-                      className="w-full py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition-all"
-                    >
-                      View 12-Hour Forecast
-                    </button>
-                  </div>
+                <div className="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto">
+                  <button
+                    onClick={() => handleOpenCheckout(INITIAL_BOARDS[0])}
+                    className="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-extrabold text-xs sm:text-sm shadow-lg shadow-cyan-500/20 transition active:scale-95 text-center"
+                  >
+                    Reserve This Board ($25)
+                  </button>
+                  <button
+                    onClick={() => handleSelectBeach(BEACHES[0])}
+                    className="w-full sm:w-auto px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 text-xs font-semibold transition text-center"
+                  >
+                    View Conditions
+                  </button>
                 </div>
               </div>
-            </div>
+            </section>
 
-            {/* ── GOOD SURF DESTINATIONS (Scrollable Beach Cards) ── */}
-            <div className="space-y-4">
+            {/* GOOD SURF RIGHT NOW */}
+            <section className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-xl font-black text-white tracking-tight">Good Surf Across the Country</h3>
-                  <p className="text-xs text-slate-400">Live condition metrics & nearest SurfPass van inventory</p>
+                  <h2 className="text-xl font-black text-white">Good Surf Right Now</h2>
+                  <p className="text-xs text-slate-400">Live conditions feed with SurfPass van inventory by market</p>
                 </div>
                 <button
                   onClick={() => setActiveTab('explore')}
-                  className="text-xs text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1 font-mono"
+                  className="text-xs font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1"
                 >
-                  Explore All ({beaches.length})
-                  <ChevronRight className="w-3.5 h-3.5" />
+                  <span>Explore All ({beaches.length})</span>
+                  <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
 
@@ -1597,81 +2654,133 @@ export default function App() {
                 {beaches.slice(0, 6).map((beach) => (
                   <div
                     key={beach.id}
-                    onClick={() => handleSelectBeach(beach)}
-                    className="group cursor-pointer rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-900 transition-all overflow-hidden shadow-lg flex flex-col justify-between"
+                    className="group bg-slate-900/90 rounded-2xl border border-slate-800 hover:border-cyan-500/50 overflow-hidden transition shadow-lg flex flex-col"
                   >
-                    {/* Beach Image & Badges */}
-                    <div className="relative h-44 w-full overflow-hidden bg-slate-950">
-                      <img
-                        src={beach.image}
-                        alt={beach.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        onError={(e) => {
-                          e.currentTarget.src = 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1200&q=80'
-                        }}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
-
-                      {/* Top Badges */}
+                    <div className="relative h-44 overflow-hidden bg-slate-950">
+                      <BeachCoverImage beach={beach} className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent pointer-events-none" />
                       <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
-                        <span className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-bold border ${getQualityBadgeStyle(beach.quality)}`}>
-                          {beach.quality} • {beach.waveHeight}
+                        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase border ${getQualityBadgeStyle(beach.quality)}`}>
+                          {beach.quality}
                         </span>
-                        <span className="px-2 py-0.5 rounded-full bg-slate-900/90 text-slate-300 border border-slate-700 text-[11px] font-mono">
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-black/60 backdrop-blur-md text-white border border-white/10">
                           {beach.distance}
                         </span>
                       </div>
-
-                      {/* Bottom Info on Image */}
                       <div className="absolute bottom-3 left-3 right-3">
-                        <h4 className="text-lg font-black text-white group-hover:text-cyan-300 transition-colors">{beach.name}</h4>
-                        <p className="text-xs text-slate-300 flex items-center gap-1 font-mono">
-                          <MapPin className="w-3 h-3 text-cyan-400" />
-                          {beach.breakName} • {beach.city}, {beach.state}
-                        </p>
+                        <h3 className="text-lg font-black text-white">{beach.name}</h3>
+                        <p className="text-xs text-slate-300">{beach.breakName} • {beach.city}, {beach.state}</p>
                       </div>
                     </div>
 
-                    {/* Rich Condition Metrics */}
-                    <div className="p-4 space-y-3">
-                      <div className="grid grid-cols-2 gap-2 text-xs font-mono">
-                        <div className="bg-slate-950/60 p-2 rounded-lg border border-slate-800/80">
-                          <span className="text-slate-500 text-[10px]">WIND</span>
-                          <p className="text-slate-200 font-semibold truncate">{beach.wind}</p>
-                          <span className="text-[10px] text-cyan-400">{beach.windSub}</span>
+                    <div className="p-4 space-y-3 flex-1 flex flex-col justify-between">
+                      <div className="grid grid-cols-3 gap-2 text-center p-2 rounded-xl bg-slate-950/60 border border-slate-800">
+                        <div>
+                          <p className="text-[10px] text-slate-400 font-semibold">WAVE</p>
+                          <p className="text-xs font-black text-cyan-400">{beach.waveHeight}</p>
+                          <p className="text-[9px] text-slate-400 truncate">{beach.waveSub}</p>
                         </div>
-                        <div className="bg-slate-950/60 p-2 rounded-lg border border-slate-800/80">
-                          <span className="text-slate-500 text-[10px]">SWELL</span>
-                          <p className="text-slate-200 font-semibold truncate">{beach.swell} @ {beach.swellPeriod}</p>
-                          <span className="text-[10px] text-cyan-400">{beach.swellAngle}</span>
+                        <div className="border-x border-slate-800">
+                          <p className="text-[10px] text-slate-400 font-semibold">WIND</p>
+                          <p className="text-xs font-bold text-white">{beach.windMph} mph</p>
+                          <p className="text-[9px] text-slate-400 truncate">{beach.windSub}</p>
                         </div>
-                        <div className="bg-slate-950/60 p-2 rounded-lg border border-slate-800/80">
-                          <span className="text-slate-500 text-[10px]">TIDE & WATER</span>
-                          <p className="text-slate-200 font-semibold truncate">{beach.tide} • {beach.waterTemp}</p>
-                          <span className="text-[10px] text-emerald-400">{beach.tideSub}</span>
+                        <div>
+                          <p className="text-[10px] text-slate-400 font-semibold">TIDE</p>
+                          <p className="text-xs font-bold text-white">{beach.tide}</p>
+                          <p className="text-[9px] text-slate-400 truncate">{beach.waterTemp}</p>
                         </div>
-                        <div className="bg-slate-950/60 p-2 rounded-lg border border-slate-800/80">
-                          <span className="text-slate-500 text-[10px]">SURFPASS FLEET</span>
-                          <p className="text-emerald-400 font-bold">{beach.vanCount} Vans Nearby</p>
-                          <span className="text-[10px] text-slate-300">{beach.boardCount} boards ready</span>
+                      </div>
+
+                      <div className="flex items-center justify-between text-xs text-slate-400 pt-1">
+                        <div className="flex items-center gap-1.5">
+                          <Car className="w-3.5 h-3.5 text-cyan-400" />
+                          <span>{beach.vanCount > 0 ? `${beach.vanCount} Van${beach.vanCount === 1 ? '' : 's'} Nearby` : 'No vans in area'}</span>
+                        </div>
+                        <div className="font-semibold text-emerald-400">
+                          {beach.boardCount} boards available
                         </div>
                       </div>
 
                       <button
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          handleSelectBeach(beach)
-                        }}
-                        className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-cyan-500 hover:text-slate-950 text-slate-200 font-bold text-xs transition-all flex items-center justify-center gap-1.5"
+                        onClick={() => handleSelectBeach(beach)}
+                        className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-cyan-500 hover:text-black text-slate-200 font-bold text-xs transition active:scale-95 flex items-center justify-center gap-1.5"
                       >
-                        View Conditions & Vans
+                        <span>View Conditions & Vans</span>
                         <ChevronRight className="w-3.5 h-3.5" />
                       </button>
                     </div>
                   </div>
                 ))}
               </div>
-            </div>
+            </section>
+
+            {/* VAN #12 QUIVER READY */}
+            <section className="space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                  <h2 className="text-xl font-black text-white">VAN #12 QUIVER READY</h2>
+                  <p className="text-xs text-slate-400">Rockaway Beach • Beach 90th Street (0.2 mi away)</p>
+                </div>
+                <div className="flex items-center gap-1.5 bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs overflow-x-auto">
+                  {['All', 'Longboard', 'Mid-Length', 'Fish', 'Shortboard'].map(cat => (
+                    <button
+                      key={cat}
+                      onClick={() => setQuiverFilter(cat)}
+                      className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition whitespace-nowrap ${
+                        quiverFilter === cat ? 'bg-cyan-500 text-black' : 'text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {filteredQuiverBoards.map(board => (
+                  <div
+                    key={board.id}
+                    className="bg-slate-900/80 rounded-2xl border border-slate-800 hover:border-cyan-500/40 p-4 flex flex-col justify-between transition group"
+                  >
+                    <div>
+                      <div className="h-44 bg-slate-950/70 rounded-xl p-2 flex items-center justify-center relative overflow-hidden border border-slate-800/80 mb-3">
+                        <span className="absolute top-2 left-2 px-2 py-0.5 rounded text-[9px] font-bold bg-slate-800 text-slate-300 border border-slate-700">
+                          {board.tag}
+                        </span>
+                        <span className="absolute top-2 right-2 text-[10px] font-mono text-cyan-400">
+                          {board.volume}
+                        </span>
+                        <BoardSilhouette type={board.shapeType} className="h-36" />
+                      </div>
+
+                      <div className="space-y-1">
+                        <div className="flex items-center justify-between">
+                          <span className="text-[10px] font-bold uppercase text-cyan-400">{board.type}</span>
+                          <span className="text-[10px] text-emerald-400 font-bold">{board.availableCount} in van</span>
+                        </div>
+                        <h4 className="text-sm font-black text-white group-hover:text-cyan-300 transition">{board.name}</h4>
+                        <p className="text-[11px] text-slate-400 font-mono">{board.dimensions}</p>
+                        <p className="text-[11px] text-slate-300 italic pt-1 line-clamp-2">"{board.personality}"</p>
+                      </div>
+                    </div>
+
+                    <div className="pt-4 mt-3 border-t border-slate-800/80 flex items-center justify-between">
+                      <div>
+                        <p className="text-xs font-black text-white">${board.pricing.twoHours} <span className="text-[10px] font-normal text-slate-400">/ 2h</span></p>
+                        <p className="text-[9px] text-slate-400">${board.deposit} deposit</p>
+                      </div>
+                      <button
+                        onClick={() => handleOpenCheckout(board)}
+                        className="px-3.5 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black font-extrabold text-xs shadow-md shadow-cyan-500/20 transition active:scale-95"
+                      >
+                        Reserve
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
           </div>
         )}
 
@@ -1718,17 +2827,11 @@ export default function App() {
               {filteredBeaches.map((beach) => (
                 <div
                   key={beach.id}
-                  onClick={() => handleSelectBeach(beach)}
-                  className="group cursor-pointer rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 transition-all overflow-hidden shadow-lg flex flex-col justify-between"
+                  className="group rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 transition-all overflow-hidden shadow-lg flex flex-col justify-between"
                 >
                   <div className="relative h-44 w-full bg-slate-950 overflow-hidden">
-                    <img
-                      src={beach.image}
-                      alt={beach.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1200&q=80' }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                    <BeachCoverImage beach={beach} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent pointer-events-none"></div>
                     <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
                       <span className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-bold border ${getQualityBadgeStyle(beach.quality)}`}>
                         {beach.quality} • {beach.waveHeight}
@@ -1746,9 +2849,15 @@ export default function App() {
                   <div className="p-4 space-y-3">
                     <p className="text-xs text-slate-300 line-clamp-2">{beach.description}</p>
                     <div className="flex items-center justify-between text-xs font-mono pt-1 border-t border-slate-800 text-slate-400">
-                      <span>{beach.vanCount} Vans on duty</span>
+                      <span>{beach.vanCount > 0 ? `${beach.vanCount} Vans on duty` : 'No vans in area'}</span>
                       <span className="text-emerald-400 font-bold">{beach.boardCount} boards available</span>
                     </div>
+                    <button
+                      onClick={() => handleSelectBeach(beach)}
+                      className="w-full py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black font-extrabold text-xs transition active:scale-95"
+                    >
+                      View Conditions & Vans
+                    </button>
                   </div>
                 </div>
               ))}
@@ -1764,115 +2873,97 @@ export default function App() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
                 <h2 className="text-3xl font-black text-white">Live Coastal GPS Fleet Map</h2>
-                <p className="text-sm text-slate-400">Tracking 6 active mobile SurfPass vans stationed along prime breaks.</p>
+                <p className="text-sm text-slate-400">
+                  Showing SurfPass vans assigned to <span className="text-cyan-300 font-semibold">{selectedBeach.name}</span>
+                </p>
               </div>
               <div className="flex items-center gap-2 font-mono text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1.5 rounded-xl w-fit">
                 <Radio className="w-3.5 h-3.5 animate-pulse" />
-                6 GPS Van Nodes Active
+                {marketVans.length} GPS Van{marketVans.length === 1 ? '' : 's'} in Market
               </div>
             </div>
 
-            {/* REALISTIC HIGH-CONTRAST VECTOR COASTAL MAP */}
-            <div className="relative w-full h-[520px] rounded-3xl bg-[#091522] border-2 border-slate-800 overflow-hidden shadow-2xl">
-              {/* Map Background Grids & Coastal Water Contours */}
-              <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-40"></div>
-
-              {/* Geographic Coastline & Water Waves SVG */}
-              <svg className="absolute inset-0 w-full h-full opacity-60 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-                {/* Land Mass */}
-                <path d="M 0,0 L 1200,0 L 1200,180 C 1000,190 850,140 680,210 C 500,280 300,240 180,310 C 80,350 0,380 0,380 Z" fill="#0f172a" />
-                {/* Boardwalk / Coastal Shoreline Line */}
-                <path d="M 0,380 C 80,350 180,310 300,240 C 500,280 680,210 850,140 C 1000,190 1200,180 1200,180" fill="none" stroke="#0284c7" strokeWidth="4" strokeDasharray="6 4" />
-                {/* Ocean Waves */}
-                <path d="M 0,440 Q 300,410 600,450 T 1200,420" fill="none" stroke="#0369a1" strokeWidth="2" opacity="0.4" />
-                <path d="M 0,480 Q 400,460 800,490 T 1200,460" fill="none" stroke="#0369a1" strokeWidth="2" opacity="0.3" />
-              </svg>
-
-              {/* Map Legend Overlay */}
-              <div className="absolute top-4 left-4 z-10 p-3 rounded-2xl bg-slate-950/90 border border-slate-800 backdrop-blur-md text-xs font-mono space-y-1.5 shadow-lg">
-                <div className="text-slate-400 font-bold uppercase text-[10px]">COASTAL MAP LEGEND</div>
-                <div className="flex items-center gap-2 text-white">
-                  <div className="w-3 h-3 rounded-full bg-cyan-500 border border-white"></div>
-                  <span>SurfPass Mobile Van</span>
-                </div>
-                <div className="flex items-center gap-2 text-slate-300">
-                  <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
-                  <span>Surf Break Pin</span>
-                </div>
-                <div className="flex items-center gap-2 text-slate-400">
-                  <Crosshair className="w-3 h-3 text-indigo-400" />
-                  <span>Your Location (Beach 90th)</span>
-                </div>
-              </div>
-
-              {/* Van Pins on Map */}
-              {vans.map((van) => (
-                <div
-                  key={van.id}
-                  onClick={() => handleSelectVan(van)}
-                  style={{ left: `${van.mapX}%`, top: `${van.mapY}%` }}
-                  className="absolute -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer group"
+            {/* Market selector */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs font-mono">
+              <span className="text-slate-500 font-bold mr-1 shrink-0">MARKET:</span>
+              {beaches.map((beach) => (
+                <button
+                  key={beach.id}
+                  onClick={() => {
+                    setSelectedBeach(beach)
+                    const van = vans.find(v => v.beachId === beach.id)
+                    if (van) setSelectedVan(van)
+                  }}
+                  className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition-all ${
+                    selectedBeach.id === beach.id
+                      ? 'bg-cyan-500 text-slate-950 font-bold'
+                      : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                  }`}
                 >
-                  <div className="relative flex flex-col items-center">
-                    {/* Ping Ring */}
-                    <div className="absolute w-12 h-12 rounded-full bg-cyan-500/20 animate-ping"></div>
-
-                    {/* Van Pin Icon */}
-                    <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 border-2 border-white flex items-center justify-center text-slate-950 shadow-xl group-hover:scale-110 transition-transform">
-                      <Car className="w-5 h-5 font-bold" />
-                    </div>
-
-                    {/* Popup Pill */}
-                    <div className="mt-1 px-2.5 py-1 rounded-xl bg-slate-950/95 border border-cyan-500/50 text-[11px] font-mono text-white whitespace-nowrap shadow-xl flex items-center gap-1.5">
-                      <span className="font-bold text-cyan-300">{van.fleetNumber}</span>
-                      <span className="text-emerald-400 font-bold">({van.boardsAvailable} free)</span>
-                    </div>
-                  </div>
-                </div>
+                  {beach.city === 'Queens' ? 'Rockaway' : beach.city === 'San Diego' ? 'Sunset Cliffs' : beach.city === 'San Clemente' ? 'Trestles' : beach.city === 'Honolulu' ? 'Waikiki' : beach.city}
+                </button>
               ))}
             </div>
 
-            {/* Fleet List Cards Under Map */}
+            <FleetGpsMap
+              beach={selectedBeach}
+              vans={marketVans}
+              onSelectBeach={() => handleSelectBeach(selectedBeach)}
+              onSelectVan={(vanId) => {
+                const van = vans.find(v => v.id === vanId)
+                if (van) handleSelectVan(van)
+              }}
+              onBrowseMarkets={() => setActiveTab('explore')}
+            />
+
+            {/* Fleet List Cards Under Map — market filtered */}
             <div className="space-y-3">
-              <h3 className="text-lg font-bold text-white">Active Vans on Duty</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {vans.map((van) => (
-                  <div
-                    key={van.id}
-                    onClick={() => handleSelectVan(van)}
-                    className="cursor-pointer p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-cyan-500/50 transition-all space-y-3 shadow-md"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="text-base font-black text-white">{van.fleetNumber} — {van.nickname}</h4>
-                        <p className="text-xs text-cyan-400 font-mono">{van.spot}</p>
-                      </div>
-                      <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[11px] font-mono font-bold">
-                        ACTIVE
-                      </span>
-                    </div>
-
-                    <div className="text-xs text-slate-300 space-y-1 font-mono bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80">
-                      <p className="text-slate-400 truncate">{van.streetAddress}</p>
-                      <p className="text-slate-400">{van.hours}</p>
-                      <div className="flex items-center justify-between pt-1 text-slate-200">
-                        <span className="text-emerald-400 font-bold">{van.boardsAvailable} Boards Ready</span>
-                        <span>{van.phone}</span>
-                      </div>
-                    </div>
-
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        handleSelectVan(van)
-                      }}
-                      className="w-full py-2 rounded-xl bg-slate-800 hover:bg-cyan-500 hover:text-slate-950 text-slate-200 text-xs font-bold transition-all"
+              <h3 className="text-lg font-bold text-white">Active Vans in {selectedBeach.name}</h3>
+              {marketVans.length === 0 ? (
+                <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 text-center space-y-2">
+                  <p className="text-sm font-bold text-white">No SurfPass vans currently in this area</p>
+                  <p className="text-xs text-slate-400">Switch markets above to locate available fleet inventory.</p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {marketVans.map((van) => (
+                    <div
+                      key={van.id}
+                      onClick={() => handleSelectVan(van)}
+                      className="cursor-pointer p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-cyan-500/50 transition-all space-y-3 shadow-md"
                     >
-                      View Van Inventory
-                    </button>
-                  </div>
-                ))}
-              </div>
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <h4 className="text-base font-black text-white">{van.fleetNumber} — {van.nickname}</h4>
+                          <p className="text-xs text-cyan-400 font-mono">{van.spot}</p>
+                        </div>
+                        <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[11px] font-mono font-bold">
+                          ACTIVE
+                        </span>
+                      </div>
+
+                      <div className="text-xs text-slate-300 space-y-1 font-mono bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80">
+                        <p className="text-slate-400 truncate">{van.streetAddress}</p>
+                        <p className="text-slate-400">{van.hours}</p>
+                        <div className="flex items-center justify-between pt-1 text-slate-200">
+                          <span className="text-emerald-400 font-bold">{van.boardsAvailable} Boards Ready</span>
+                          <span>{van.phone}</span>
+                        </div>
+                      </div>
+
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          handleSelectVan(van)
+                        }}
+                        className="w-full py-2 rounded-xl bg-slate-800 hover:bg-cyan-500 hover:text-slate-950 text-slate-200 text-xs font-bold transition-all"
+                      >
+                        View Van Inventory
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -2111,22 +3202,56 @@ export default function App() {
               </div>
             </div>
 
-            {/* Vans Nearby Action */}
-            <div className="flex items-center justify-between p-4 rounded-2xl bg-slate-950/80 border border-slate-800">
-              <div>
-                <h4 className="text-sm font-bold text-white">SurfPass Van #12 (Rockaway Runner)</h4>
-                <p className="text-xs text-slate-400">Stationed at Beach 90th Street Boardwalk • 8 Boards Ready</p>
-              </div>
-              <button
-                onClick={() => {
-                  setShowBeachModal(false)
-                  setSelectedVan(VANS[0])
-                  setShowVanModal(true)
-                }}
-                className="px-5 py-2 rounded-xl bg-cyan-500 text-slate-950 font-bold text-xs hover:bg-cyan-400 transition-all"
-              >
-                View Van Boards
-              </button>
+            {/* Vans Nearby Action — market-aware */}
+            <div className="space-y-3">
+              {selectedBeachVans.length === 0 ? (
+                <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 text-center space-y-3">
+                  <p className="text-sm font-bold text-white">No SurfPass vans currently in this area</p>
+                  <p className="text-xs text-slate-400">
+                    Forecast is live for {selectedBeach.name}, but there’s no assigned fleet van here right now.
+                  </p>
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    <button
+                      onClick={() => openMarketOnMap(selectedBeach)}
+                      className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs"
+                    >
+                      Open Live Map
+                    </button>
+                    <button
+                      onClick={() => { setShowBeachModal(false); setActiveTab('explore') }}
+                      className="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs"
+                    >
+                      Browse Other Markets
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                selectedBeachVans.map((van) => (
+                  <div key={van.id} className="flex items-center justify-between gap-3 p-4 rounded-2xl bg-slate-950/80 border border-slate-800">
+                    <div>
+                      <h4 className="text-sm font-bold text-white">{van.fleetNumber} — {van.nickname}</h4>
+                      <p className="text-xs text-slate-400">{van.spot} • {van.boardsAvailable} Boards Ready</p>
+                    </div>
+                    <div className="flex items-center gap-2 shrink-0">
+                      <button
+                        onClick={() => openMarketOnMap(selectedBeach)}
+                        className="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs"
+                      >
+                        Map
+                      </button>
+                      <button
+                        onClick={() => {
+                          setShowBeachModal(false)
+                          handleSelectVan(van)
+                        }}
+                        className="px-5 py-2 rounded-xl bg-cyan-500 text-slate-950 font-bold text-xs hover:bg-cyan-400 transition-all"
+                      >
+                        View Van Boards
+                      </button>
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>
@@ -2164,7 +3289,19 @@ export default function App() {
 
             {/* Boards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[480px] overflow-y-auto pr-1">
-              {currentVanBoards.map((board) => (
+              {currentVanBoards.length === 0 ? (
+                <div className="md:col-span-2 p-8 rounded-2xl bg-slate-950 border border-slate-800 text-center space-y-2">
+                  <p className="text-sm font-bold text-white">No boards in this filter</p>
+                  <p className="text-xs text-slate-400">Try another board type — this van still has inventory available.</p>
+                  <button
+                    onClick={() => setBoardTypeFilter('All')}
+                    className="mt-2 px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 font-bold text-xs"
+                  >
+                    Show All Boards
+                  </button>
+                </div>
+              ) : (
+                currentVanBoards.map((board) => (
                 <div
                   key={board.id}
                   className="p-5 rounded-2xl bg-slate-950 border border-slate-800 hover:border-cyan-500/40 transition-all space-y-4 flex flex-col justify-between"
@@ -2198,7 +3335,8 @@ export default function App() {
                     </button>
                   </div>
                 </div>
-              ))}
+              ))
+              )}
             </div>
           </div>
         </div>
@@ -2521,6 +3659,69 @@ export default function App() {
                 <span className="text-amber-400 font-bold">4. Smart Wallets</span>
                 <p className="text-slate-300">Mainstream onboarding with embedded seedless account infrastructure.</p>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Traveling destination picker */}
+      {showTravelerModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div className="relative w-full max-w-md bg-[#091122] border border-slate-700 rounded-3xl p-6 shadow-2xl space-y-4">
+            <button
+              onClick={() => setShowTravelerModal(false)}
+              className="absolute top-4 right-4 p-2 text-slate-400 hover:text-white"
+            >
+              <X className="w-4 h-4" />
+            </button>
+            <div className="flex items-center gap-2">
+              <Plane className="w-4 h-4 text-amber-400" />
+              <h3 className="text-base font-black text-white">Traveling to Surf?</h3>
+            </div>
+            <p className="text-xs text-slate-300">
+              Skip paying $150+ airline surfboard bag fees. Reserve high-performance boards waiting for you at your destination van before you land.
+            </p>
+            <div className="grid grid-cols-2 gap-2 text-xs">
+              <button
+                onClick={() => {
+                  setSelectedRegion('California')
+                  setShowTravelerModal(false)
+                  setActiveTab('explore')
+                }}
+                className="p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-left font-bold text-white"
+              >
+                California (Trestles/HB)
+              </button>
+              <button
+                onClick={() => {
+                  setSelectedRegion('Hawaii')
+                  setShowTravelerModal(false)
+                  setActiveTab('explore')
+                }}
+                className="p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-left font-bold text-white"
+              >
+                Hawaii (Waikiki)
+              </button>
+              <button
+                onClick={() => {
+                  setSelectedRegion('Florida')
+                  setShowTravelerModal(false)
+                  setActiveTab('explore')
+                }}
+                className="p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-left font-bold text-white"
+              >
+                Florida (Cocoa)
+              </button>
+              <button
+                onClick={() => {
+                  setSelectedRegion('New York')
+                  setShowTravelerModal(false)
+                  setActiveTab('explore')
+                }}
+                className="p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-left font-bold text-white"
+              >
+                New York (Rockaway)
+              </button>
             </div>
           </div>
         </div>
