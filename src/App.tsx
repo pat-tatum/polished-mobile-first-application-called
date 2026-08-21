@@ -254,8 +254,8 @@ const BEACHES: Beach[] = [
     distance: '0.2 mi',
     vanCount: 2,
     boardCount: 22,
-    image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1200&q=80',
-    imageFallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1200&q=80',
+    image: '/beaches/rockaway.jpg',
+    imageFallback: '/beaches/rockaway-2.jpg',
     description: 'Urban beach-break surfing with multiple jetty sandbar peaks and easy boardwalk access from New York City.',
     recommendation: 'Cleanest conditions before the afternoon wind shift. Longboards, classic mid-lengths, and forgiving fish are catching everything on the incoming push.',
     bestWindow: '8:30 AM – 11:30 AM',
@@ -309,8 +309,8 @@ const BEACHES: Beach[] = [
     distance: 'San Diego Market',
     vanCount: 1,
     boardCount: 14,
-    image: 'https://images.unsplash.com/photo-1529553815871-df205a9a2891?auto=format&fit=crop&w=1200&q=80',
-    imageFallback: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?auto=format&fit=crop&w=1200&q=80',
+    image: '/beaches/sunset-cliffs.jpg',
+    imageFallback: '/beaches/sunset-cliffs-2.jpg',
     description: 'Iconic sandstone cliff reef break with long rolling lefts, cobblestone shoulders, and dramatic California coastal vistas.',
     recommendation: 'Groundswell firing on the reef with light morning offshore wind. Performance fish and refined mid-lengths are carrying momentum through every section.',
     bestWindow: '7:30 AM – 11:30 AM',
@@ -358,8 +358,8 @@ const BEACHES: Beach[] = [
     distance: '118 mi',
     vanCount: 1,
     boardCount: 12,
-    image: 'https://images.unsplash.com/photo-1414609245224-afa02bfb3fda?auto=format&fit=crop&w=1200&q=80',
-    imageFallback: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?auto=format&fit=crop&w=1200&q=80',
+    image: '/beaches/montauk.jpg',
+    imageFallback: '/beaches/montauk-2.jpg',
     description: 'Longer peeling waves and classic Long Island cobblestone point-break character framed by dramatic bluffs.',
     recommendation: 'Cobblestone point breaking clean. High-volume mid-lengths and traditional noseriders are gliding through the full section.',
     bestWindow: '8:00 AM – 1:00 PM',
@@ -407,8 +407,8 @@ const BEACHES: Beach[] = [
     distance: '48 mi',
     vanCount: 1,
     boardCount: 11,
-    image: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1200&q=80',
-    imageFallback: 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?auto=format&fit=crop&w=1200&q=80',
+    image: '/beaches/asbury.jpg',
+    imageFallback: '/beaches/asbury-2.jpg',
     description: 'New Jersey boardwalk, historic stone jetties, and classic East Coast beach-town vibe with punchy inside peaks.',
     recommendation: 'Soft waves right next to the 8th Avenue stone jetty. Perfect for high-volume soft-tops and stable logs.',
     bestWindow: '9:00 AM – 11:30 AM',
@@ -454,8 +454,8 @@ const BEACHES: Beach[] = [
     distance: 'West Coast Market',
     vanCount: 1,
     boardCount: 16,
-    image: 'https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?auto=format&fit=crop&w=1200&q=80',
-    imageFallback: 'https://images.unsplash.com/photo-1516815231560-8f41ec531527?auto=format&fit=crop&w=1200&q=80',
+    image: '/beaches/huntington-pier-color.jpg',
+    imageFallback: '/beaches/huntington-rubys.jpg',
     description: 'High-energy Southern California beach breaks with iconic pier backdrop and consistent year-round surf culture.',
     recommendation: 'Consistent pier bowls with good shoulder taper. Twin fish and high-performance daily drivers are ripping.',
     bestWindow: '6:30 AM – 10:30 AM',
@@ -502,8 +502,8 @@ const BEACHES: Beach[] = [
     distance: 'West Coast Market',
     vanCount: 1,
     boardCount: 13,
-    image: 'https://images.unsplash.com/photo-1504681869696-d977211a5f4c?auto=format&fit=crop&w=1200&q=80',
-    imageFallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1200&q=80',
+    image: '/beaches/trestles.jpg',
+    imageFallback: '/beaches/trestles-2.jpg',
     description: 'World-famous cobblestone skatepark wave with peeling lefts and rippable rights inside San Onofre State Park.',
     recommendation: 'A-frame perfection with wide open faces. Performance shortboards, step-downs, and refined fish are the weapon of choice.',
     bestWindow: '7:00 AM – 11:30 AM',
@@ -549,8 +549,8 @@ const BEACHES: Beach[] = [
     distance: 'East Coast Market',
     vanCount: 1,
     boardCount: 14,
-    image: 'https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=1200&q=80',
-    imageFallback: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
+    image: '/beaches/cocoa.jpg',
+    imageFallback: '/beaches/cocoa-2.jpg',
     description: 'Warm-water Florida surf capital with approachable beach-break sandbars, vibrant pier energy, and beginner-friendly waves.',
     recommendation: 'Soft, playful wave shoulders peeling right off the pier. Perfect for longboards, soft-tops, and relaxed cruising.',
     bestWindow: '8:00 AM – 12:00 PM',
@@ -597,8 +597,8 @@ const BEACHES: Beach[] = [
     distance: 'Hawaii Market',
     vanCount: 1,
     boardCount: 15,
-    image: 'https://images.unsplash.com/photo-1542259009477-d625272157b7?auto=format&fit=crop&w=1200&q=80',
-    imageFallback: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
+    image: '/beaches/waikiki.jpg',
+    imageFallback: '/beaches/waikiki-2.jpg',
     description: 'Long rolling waves, crystal-clear warm water, Diamond Head backdrop, and the world birthplace of modern board-riding.',
     recommendation: 'Endless 150-yard rights rolling across the outer reef into Queens bay. Pure noserider and classic log paradise.',
     bestWindow: '7:00 AM – 1:30 PM',
@@ -645,8 +645,8 @@ const BEACHES: Beach[] = [
     distance: 'Atlantic Market',
     vanCount: 1,
     boardCount: 10,
-    image: 'https://images.unsplash.com/photo-1509233725247-49e657c54213?auto=format&fit=crop&w=1200&q=80',
-    imageFallback: 'https://images.unsplash.com/photo-1414609245224-afa02bfb3fda?auto=format&fit=crop&w=1200&q=80',
+    image: '/beaches/hatteras.jpg',
+    imageFallback: '/beaches/hatteras-2.jpg',
     description: 'Dynamic barrier island surf destination with powerful shifting sandbars and deep open-ocean swell access.',
     recommendation: 'Fast breaking peaks with hollow reform sections. Fast twin fish and responsive shortboards are ideal.',
     bestWindow: '7:30 AM – 10:30 AM',
@@ -2095,7 +2095,7 @@ function BoardSilhouette({ type, className = "h-40" }: { type: 'long' | 'mid' | 
   }
 }
 
-/** Always show a full-color location photo — primary, then curated colorful fallback. */
+/** Exact-location cover photos (Wikimedia / geotagged), with local fallback. */
 function BeachCoverImage({ beach, className = 'w-full h-full object-cover' }: { beach: Beach; className?: string }) {
   const [src, setSrc] = useState(beach.image)
 
@@ -2107,7 +2107,7 @@ function BeachCoverImage({ beach, className = 'w-full h-full object-cover' }: { 
     <img
       src={src}
       alt={beach.name}
-      className={`${className} saturate-150`}
+      className={className}
       onError={() => {
         if (src !== beach.imageFallback) {
           setSrc(beach.imageFallback)
